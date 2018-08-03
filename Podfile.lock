@@ -1,0 +1,52 @@
+PODS:
+  - Fuzi (1.0.1)
+  - ObjectMapper (3.3.0)
+  - ReachabilitySwift (4.1.0)
+  - Realm (3.7.4):
+    - Realm/Headers (= 3.7.4)
+  - Realm/Headers (3.7.4)
+  - RealmS (4.0.0):
+    - ObjectMapper (~> 3.0)
+    - RealmSwift (~> 3.0)
+  - RealmSwift (3.7.4):
+    - Realm (= 3.7.4)
+  - Retrolux (0.10.4)
+  - SDWebImage (4.4.2):
+    - SDWebImage/Core (= 4.4.2)
+  - SDWebImage/Core (4.4.2)
+  - SwiftHash (2.0.1)
+
+DEPENDENCIES:
+  - Fuzi (~> 1.0.0)
+  - ReachabilitySwift
+  - RealmS (~> 4.0.0)
+  - Retrolux
+  - SDWebImage (~> 4.0)
+  - SwiftHash
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Fuzi
+    - ObjectMapper
+    - ReachabilitySwift
+    - Realm
+    - RealmS
+    - RealmSwift
+    - Retrolux
+    - SDWebImage
+    - SwiftHash
+
+SPEC CHECKSUMS:
+  Fuzi: 851403654bac55675aaeed815d0c8a1d3e3d3e8b
+  ObjectMapper: b612bf8c8e99c4dc0bb6013a51f7c27966ed5da9
+  ReachabilitySwift: 6849231cd4e06559f3b9ef4a97a0a0f96d41e09f
+  Realm: a469bb59e33f9926102ccaea4349822c53b9117e
+  RealmS: a3c2f86a3393e3bd4ec3fc85e0714633686b5693
+  RealmSwift: a45861b21c180f5cf0f122144b9759fa8dde3e9e
+  Retrolux: 48ff7c4009765a75e6c5ee0e5bb126f10f63d1a1
+  SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
+  SwiftHash: c805de5a434eacfa0dac7210745a50c55d7fe33d
+
+PODFILE CHECKSUM: cb7de776975e14d1ba6fef44f997de100efb3b42
+
+COCOAPODS: 1.5.3

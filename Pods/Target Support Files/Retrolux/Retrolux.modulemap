@@ -1,0 +1,6 @@
+framework module Retrolux {
+  umbrella header "Retrolux-umbrella.h"
+
+  export *
+  module * { export * }
+}

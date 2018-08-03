@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyWeaklyApp/ModelClasses/Online/NetworkAPI.swift"
+            timestampString = "554719835.26651"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "358"
+            endingLineNumber = "358"
+            landmarkName = "applyDigestAuth(to:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyWeaklyApp/ModelClasses/Online/NetworkAPI.swift"
+            timestampString = "554719835.266616"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "348"
+            endingLineNumber = "348"
+            landmarkName = "applyDigestAuth(to:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyWeaklyApp/ModelClasses/Online/NetworkAPI.swift"
+            timestampString = "554719835.266681"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "354"
+            endingLineNumber = "354"
+            landmarkName = "applyDigestAuth(to:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pods/Retrolux/Retrolux/Builder.swift"
+            timestampString = "554290742.312567"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "log(request:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pods/Retrolux/Retrolux/Builder.swift"
+            timestampString = "554290742.3130701"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
+            landmarkName = "log(response:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pods/Retrolux/Retrolux/Builder.swift"
+            timestampString = "554290742.313397"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
+            landmarkName = "makeRequest(type:method:endpoint:args:response:testProvider:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pods/Retrolux/Retrolux/Builder.swift"
+            timestampString = "554290742.313707"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "166"
+            endingLineNumber = "166"
+            landmarkName = "makeRequest(type:method:endpoint:args:response:testProvider:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pods/Retrolux/Retrolux/Builder.swift"
+            timestampString = "554290742.314007"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "170"
+            endingLineNumber = "170"
+            landmarkName = "makeRequest(type:method:endpoint:args:response:testProvider:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pods/Retrolux/Retrolux/Builder.swift"
+            timestampString = "554290742.314308"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "177"
+            endingLineNumber = "177"
+            landmarkName = "makeRequest(type:method:endpoint:args:response:testProvider:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Retrolux.RequestCapturedState, (Retrolux.Response&lt;B&gt;) -&gt; ()) -&gt; () in closure #1 (A) -&gt; Retrolux.Call&lt;B&gt; in Retrolux.Builder.makeRequest&lt;A, B&gt;(type: Retrolux.OutboundSerializerType, method: Retrolux.HTTPMethod, endpoint: Swift.String, args: A, response: B.Type, testProvider: Swift.Optional&lt;(A, A, Foundation.URLRequest) -&gt; Retrolux.ClientResponse&gt;) -&gt; (A) -&gt; Retrolux.Call&lt;B&gt;"
+                  moduleName = "Retrolux"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mansingh/Desktop/Study_Buddies/StudyWeaklyAppWorking/Pods/Retrolux/Retrolux/Builder.swift"
+                  timestampString = "554718799.4807889"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "177"
+                  endingLineNumber = "177"
+                  offsetFromSymbolStart = "1648">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "implicit closure #1 : @autoclosure () throws -&gt; (A, A, Foundation.URLRequest) -&gt; Retrolux.ClientResponse in closure #1 (Retrolux.RequestCapturedState, (Retrolux.Response&lt;B&gt;) -&gt; ()) -&gt; () in closure #1 (A) -&gt; Retrolux.Call&lt;B&gt; in Retrolux.Builder.makeRequest&lt;A, B&gt;(type: Retrolux.OutboundSerializerType, method: Retrolux.HTTPMethod, endpoint: Swift.String, args: A, response: B.Type, testProvider: Swift.Optional&lt;(A, A, Foundation.URLRequest) -&gt; Retrolux.ClientResponse&gt;) -&gt; (A) -&gt; Retrolux.Call&lt;B&gt;"
+                  moduleName = "Retrolux"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mansingh/Desktop/Study_Buddies/StudyWeaklyAppWorking/Pods/Retrolux/Retrolux/Builder.swift"
+                  timestampString = "554718799.484516"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "177"
+                  endingLineNumber = "177"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (A, A, Foundation.URLRequest) -&gt; Retrolux.ClientResponse in implicit closure #1 : @autoclosure () throws -&gt; (A, A, Foundation.URLRequest) -&gt; Retrolux.ClientResponse in closure #1 (Retrolux.RequestCapturedState, (Retrolux.Response&lt;B&gt;) -&gt; ()) -&gt; () in closure #1 (A) -&gt; Retrolux.Call&lt;B&gt; in Retrolux.Builder.makeRequest&lt;A, B&gt;(type: Retrolux.OutboundSerializerType, method: Retrolux.HTTPMethod, endpoint: Swift.String, args: A, response: B.Type, testProvider: Swift.Optional&lt;(A, A, Foundation.URLRequest) -&gt; Retrolux.ClientResponse&gt;) -&gt; (A) -&gt; Retrolux.Call&lt;B&gt;"
+                  moduleName = "Retrolux"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mansingh/Desktop/Study_Buddies/StudyWeaklyAppWorking/Pods/Retrolux/Retrolux/Builder.swift"
+                  timestampString = "554718799.488322"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "177"
+                  endingLineNumber = "177"
+                  offsetFromSymbolStart = "106">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pods/Retrolux/Retrolux/Builder.swift"
+            timestampString = "554290742.314641"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "178"
+            endingLineNumber = "178"
+            landmarkName = "makeRequest(type:method:endpoint:args:response:testProvider:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pods/Retrolux/Retrolux/Builder.swift"
+            timestampString = "554290742.314939"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "183"
+            endingLineNumber = "183"
+            landmarkName = "makeRequest(type:method:endpoint:args:response:testProvider:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Retrolux.RequestCapturedState, (Retrolux.Response&lt;B&gt;) -&gt; ()) -&gt; () in closure #1 (A) -&gt; Retrolux.Call&lt;B&gt; in Retrolux.Builder.makeRequest&lt;A, B&gt;(type: Retrolux.OutboundSerializerType, method: Retrolux.HTTPMethod, endpoint: Swift.String, args: A, response: B.Type, testProvider: Swift.Optional&lt;(A, A, Foundation.URLRequest) -&gt; Retrolux.ClientResponse&gt;) -&gt; (A) -&gt; Retrolux.Call&lt;B&gt;"
+                  moduleName = "Retrolux"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mansingh/Desktop/Study_Buddies/StudyWeaklyAppWorking/Pods/Retrolux/Retrolux/Builder.swift"
+                  timestampString = "554718799.498503"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "183"
+                  endingLineNumber = "183"
+                  offsetFromSymbolStart = "3313">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Retrolux.ClientResponse) -&gt; () in closure #1 (Retrolux.RequestCapturedState, (Retrolux.Response&lt;B&gt;) -&gt; ()) -&gt; () in closure #1 (A) -&gt; Retrolux.Call&lt;B&gt; in Retrolux.Builder.makeRequest&lt;A, B&gt;(type: Retrolux.OutboundSerializerType, method: Retrolux.HTTPMethod, endpoint: Swift.String, args: A, response: B.Type, testProvider: Swift.Optional&lt;(A, A, Foundation.URLRequest) -&gt; Retrolux.ClientResponse&gt;) -&gt; (A) -&gt; Retrolux.Call&lt;B&gt;"
+                  moduleName = "Retrolux"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mansingh/Desktop/Study_Buddies/StudyWeaklyAppWorking/Pods/Retrolux/Retrolux/Builder.swift"
+                  timestampString = "554718799.502049"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "158"
+                  endingLineNumber = "158"
+                  offsetFromSymbolStart = "91">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pods/Retrolux/Retrolux/Builder.swift"
+            timestampString = "554290742.315235"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "194"
+            endingLineNumber = "194"
+            landmarkName = "makeRequest(type:method:endpoint:args:response:testProvider:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pods/Retrolux/Retrolux/Builder.swift"
+            timestampString = "554290742.315529"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "217"
+            endingLineNumber = "217"
+            landmarkName = "applyArguments(type:state:endpoint:method:creation:starting:modifying:responseType:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pods/Retrolux/Retrolux/Builder.swift"
+            timestampString = "554290742.315822"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "228"
+            endingLineNumber = "228"
+            landmarkName = "applyArguments(type:state:endpoint:method:creation:starting:modifying:responseType:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pods/Retrolux/Retrolux/Builder.swift"
+            timestampString = "554290742.316116"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "275"
+            endingLineNumber = "275"
+            landmarkName = "process(immutableClientResponse:request:responseType:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyWeaklyApp/ViewController.swift"
+            timestampString = "554719835.2674249"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "loginBtnClick(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyWeaklyApp/ModelClasses/NetworkCheck.swift"
+            timestampString = "554710719.143909"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "12"
+            endingLineNumber = "12"
+            landmarkName = "isConnectedToNetwork(completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyWeaklyApp/ModelClasses/NetworkCheck.swift"
+            timestampString = "554710719.144001"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "isConnectedToNetwork(completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyWeaklyApp/ViewController.swift"
+            timestampString = "554719835.267596"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "loginBtnClick(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyWeaklyApp/ModelClasses/NetworkCheck.swift"
+            timestampString = "554710719.144093"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "isConnectedToNetwork(completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyWeaklyApp/ModelClasses/NetworkCheck.swift"
+            timestampString = "554710719.144154"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "isConnectedToNetwork(completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyWeaklyApp/AppDelegate.swift"
+            timestampString = "554719835.268066"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "application(_:didFinishLaunchingWithOptions:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyWeaklyApp/AppDelegate.swift"
+            timestampString = "554719835.26852"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
+            landmarkName = "application(_:didFinishLaunchingWithOptions:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyWeaklyApp/AppDelegate.swift"
+            timestampString = "554719835.268814"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "application(_:didFinishLaunchingWithOptions:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
