@@ -14,8 +14,8 @@ import Realm
 import Retrolux
 
 class ViewController: UIViewController,UITextFieldDelegate,URLSessionDelegate,URLSessionDataDelegate,CustomAlertBtnDelegate{
-    
-    
+   
+
      let customAlertController = CustomController()
     @IBOutlet weak var login_txtField: CustomTextField!
     
@@ -33,8 +33,6 @@ class ViewController: UIViewController,UITextFieldDelegate,URLSessionDelegate,UR
           }
     
     @IBAction func loginBtnClick(_ sender: Any) {
-        
-        
        // rxVtdUT6vr82wf9jwowj9fw28rv6TUdtVxr
        // rxVtdUT6vr82wf9jwowj9fw28rv6TUdtVxr
         if login_txtField.text == "" {
@@ -46,52 +44,84 @@ class ViewController: UIViewController,UITextFieldDelegate,URLSessionDelegate,UR
            }
         NetworkCheckReachbility.isConnectedToNetwork { (boolTrue) in
             if boolTrue == false{
+                self.customAlertController.showCustomAlert3(getMesage: AlertTitle.networkStr, getView: self)
                  return
-                }else{
+                }
                  self.customAlertController.showActivityIndicatory(uiView: self.view)
-                  let parameters = LoginParameters(username:Field("ron1234"),password: Field("1195643"))
+            let parameters = LoginParameters(username:Field((self.login_txtField?.text)!),password: Field((self.password_txtField?.text)!))
                    NetworkAPI.login(parameters).enqueue { [weak self] response in
                     guard let me = self else {
-                        self?.customAlertController.hideActivityIndicator(uiView: (self?.view)!)
+                       DispatchQueue.main.async { self?.customAlertController.hideActivityIndicator(uiView: (self?.view)!)
+                        }
                         return
                          }
-                      self?.customAlertController.hideActivityIndicator(uiView: (self?.view)!)
+                    DispatchQueue.main.async{
+                    self?.customAlertController.hideActivityIndicator(uiView: (self?.view)!)
+                        }
                      switch response.interpreted {
                      case .success(let value):
                          NetworkAPI.setLoginCookie(using: response)
                         guard let userID = value.success?.user_id else {
                             return
                          }
-                        print("success \(userID) && \(value.success?.role ?? "")")
+                          DispatchQueue.main.async {
+                            print("success \(userID) && \(value.success?.role ?? "")")
+                         }
                         NetworkAPI.setUserID(userID)
-                        
-//                        DataManager.getUser(withID: userID, password: "1195643", callback: { [weak self] (user, error) in
-//                            guard let me = self else {
-//                                return
-//                            }
-//                            guard let user = user else {
-//                                //debug("Failed to get user info", "ERROR")
-//                               // me.handleFailedLogin(error: Strings.noServerData.localized)
-//                                return
-//                            }
-//                            print("data get\(user)")
-//                        })
-                        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                        appDelegate.createTabbarMethod(getIndex: 0)
+                         let parameters = ["user_id": userID]
+                         CommonWebserviceClass.makeHTTPGetRequest(path: BaseUrlOther.baseURLOther + WebserviceName.userWebName, postString: parameters, httpMethodName: "GET") { (response, booll) in
+                            if booll == false {
+                                 DispatchQueue.main.async {
+                                print(booll)
+                                }
+                            }else{
+                                 DispatchQueue.main.async {
+                                print("fIND RESPOSE",response ?? "")
+                                }
+                              //  let getDict = (response!["success"] as? [String:Any])?["Type"]
+                                //var getDict = response!["success"] as? Any as! [String: AnyObject]
+                              //  let getDict = response["success"] as! Any
+                               let getDict =   response as? [String: Any]
+                                CDBManager().addCDBData(object: getDict!)
+                                CommonWebserviceClass.makeHTTPGetRequest(path: BaseUrlOther.baseURLOther + WebserviceName.user_publication_ids, postString: parameters, httpMethodName: "GET") { (response, booll) in
+                                    if booll == false {
+                                         DispatchQueue.main.async {
+                                        print(booll)
+                                        }
+                                    }else{
+                                         DispatchQueue.main.async {
+                                            print("fIND second RESPOSE")
+                                            self?.navigateMethod()
+                                        }
+                                     }
+                                  }
+                              }
+                          }
+                      
                        case .failure(let error):
+                         DispatchQueue.main.async {
                         print("Login failed: \(error)")
                         self?.customAlertController.delegate = self
                         self?.customAlertController.showCustomAlert3(getMesage: error.localizedDescription.description, getView: self!)
+                        }
                     }
                 }
-            }
         }
     }
     
-    // MARK: Custom alert button click here
-    func customAlertBtnClick() {
-        print("btn click here")
+    func navigateMethod(){
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.createTabbarMethod(getIndex: 0)
     }
+    // MARK: Custom alert button click here
+    func customAlertBtnClick(getAlertTitle: String) {
+        print("btn click here")
+        if getAlertTitle == "sessionExpired" {
+            
+            
+        }
+    }
+    
     
 //    func digestAuthTrip(didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
 //        if challenge.previousFailureCount < 3 {

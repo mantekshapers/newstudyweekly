@@ -1,4 +1,51 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="17G65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="ArticlesTable" representedClassName="ArticlesTable" isAbstract="YES" syncable="YES" codeGenerationType="class">
+        <attribute name="article_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="read" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="unit_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="PodMedia" representedClassName="PodMedia" isAbstract="YES" syncable="YES" codeGenerationType="class">
+        <attribute name="article_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="media_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="read" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="unit_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="PublicationDownload" representedClassName="PublicationDownload" isAbstract="YES" syncable="YES" codeGenerationType="class">
+        <attribute name="publication_download" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="publication_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="units" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Units" inverseName="publicationDownload" inverseEntity="Units" syncable="YES"/>
+    </entity>
+    <entity name="Publications" representedClassName="Publications" isAbstract="YES" syncable="YES" codeGenerationType="class">
+        <attribute name="cover_url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="publication_download" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="publication_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sku" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="unitsOfArray" optional="YES" attributeType="Transformable" valueTransformerName="" customClassName="AnyObject" syncable="YES"/>
+        <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="units" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Units" syncable="YES"/>
+    </entity>
+    <entity name="Units" representedClassName="Units" isAbstract="YES" syncable="YES" codeGenerationType="class">
+        <attribute name="publication_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="units" optional="YES" attributeType="Transformable" customClassName="[AnyObject]" syncable="YES"/>
+        <relationship name="publicationDownload" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PublicationDownload" inverseName="units" inverseEntity="PublicationDownload" syncable="YES"/>
+    </entity>
+    <entity name="USER" representedClassName="USER" isAbstract="YES" syncable="YES" codeGenerationType="class">
+        <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userPassword" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userPoints" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="ArticlesTable" positionX="45" positionY="117" width="128" height="105"/>
+        <element name="PublicationDownload" positionX="232" positionY="162" width="128" height="103"/>
+        <element name="Publications" positionX="-137" positionY="117" width="128" height="163"/>
+        <element name="Units" positionX="27" positionY="110" width="128" height="88"/>
+        <element name="USER" positionX="-63" positionY="-18" width="128" height="105"/>
+        <element name="PodMedia" positionX="45" positionY="117" width="128" height="120"/>
+    </elements>
 </model>

@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5CF8AD7B514EDF3058449720F1D84181"
+               BlueprintIdentifier = "C70FBD2C1973D5C83415F991B68EAD53"
                BlueprintName = "Retrolux"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "Retrolux.framework">

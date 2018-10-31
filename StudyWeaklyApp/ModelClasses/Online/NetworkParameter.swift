@@ -11,6 +11,11 @@ import Retrolux
 struct LoginParameters {
     let username: Field
     let password: Field
-    
 }
+
+struct QuestionSendParameter {
+    let question_id: Field
+    let answer: Field
+}
+
 

@@ -8,23 +8,57 @@
 
 import UIKit
 import CoreData
-
+import SlideMenuControllerSwift
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate{
+    var activityIndicatorView: UIActivityIndicatorView = UIActivityIndicatorView()
 
     var window: UIWindow?
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        // https://app.studiesweekly.com/online/student_learning_index
+      // Override point for customization after application launch.
         let getUserID =  NetworkAPI.userID()
         if getUserID != nil{
-             //createTabbarMethod(getIndex: 0)
+             createTabbarMethod(getIndex: 0)
         }else{
       
          }
         return true
+        
+        
+
       }
     
+    
+    func rootViewCallMethod(getAlertTitle: String) {
+        print("btn sessionExpired here")
+        if getAlertTitle == "sessionExpired" {
+            CDBManager().deleteAllCDB()
+            NetworkAPI.removeUserId()
+            let story = UIStoryboard.init(name: "Main", bundle: nil)
+            let viewController  =  story.instantiateViewController(withIdentifier: "ViewController") as! ViewController
+            let rooNav = UINavigationController(rootViewController: viewController)
+            self.window?.rootViewController = rooNav
+            self.window?.makeKeyAndVisible()
+        }
+    }
+    
     func  createTabbarMethod(getIndex: Int) {
+        
+        let story = UIStoryboard.init(name: "Main", bundle: nil)
+        let moreViewController  =  story.instantiateViewController(withIdentifier: "MoreViewController") as! MoreViewController
+        let more: UINavigationController = UINavigationController(rootViewController: moreViewController)
+        let homeViewController = story.instantiateViewController(withIdentifier: "HomeFileViewController") as! HomeFileViewController
+         let home: UINavigationController = UINavigationController(rootViewController: homeViewController)
+        let slideMenuController = SlideMenuController(mainViewController: home, leftMenuViewController: more)
+       
+       // leftViewController.mainVC = nvc
+        SlideMenuOptions.contentViewScale = 1
+        SlideMenuOptions.hideStatusBar = false;
+        self.window?.rootViewController = slideMenuController
+        self.window?.makeKeyAndVisible()
+        /*
          let tabBarController = UITabBarController()
          let  tabBarHeight = tabBarController.tabBar.frame.size.height
         let story = UIStoryboard.init(name: "Main", bundle: nil)
@@ -62,8 +96,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window?.rootViewController = tabBarController
         self.window?.makeKeyAndVisible()
+        */
         // Do any additional setup after loading the view.
      }
+    
+    func showLoader(){
+        activityIndicatorView.activityIndicatorViewStyle = .gray
+        activityIndicatorView.center = (self.window?.center)!
+        self.window?.addSubview(activityIndicatorView)
+        activityIndicatorView.startAnimating()
+    }
+    
+    func hideLoader(){
+        
+        activityIndicatorView.stopAnimating()
+        activityIndicatorView.removeFromSuperview()
+    }
     
 
     func applicationWillResignActive(_ application: UIApplication) {

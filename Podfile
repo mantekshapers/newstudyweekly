@@ -8,8 +8,9 @@ target 'StudiesWeekly' do
   pod 'RealmS', '~> 4.0.0'
   pod 'ReachabilitySwift'
   pod 'SDWebImage', '~> 4.0'
-  pod 'Fuzi', '~> 1.0.0'
   pod 'SwiftHash'
+  pod 'SlideMenuControllerSwift'
+  pod 'DropDown'
  # pod 'RealmSwift'
   # Pods for StudiesWeekly
 

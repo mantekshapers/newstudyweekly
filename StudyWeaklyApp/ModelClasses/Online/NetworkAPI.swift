@@ -156,7 +156,15 @@ class NetworkAPI {
 //                                 answer: Field("answer")),
 //        response: MCAnswerSubmitResponse.self
 //    )
-//
+    
+    static let postMCAnswer = builder.makeRequest(
+            method: .post,
+            endpoint: "assessments/answer_mc",
+            args: QuestionSendParameter(question_id: Field("question_id"),
+                                        answer: Field("answer")),
+            response: QuestionResponse.self
+        )
+
 //    static let getAssessmentScores = builder.makeRequest(
 //        method: .get,
 //        endpoint: "assessments/class_scores",
@@ -315,6 +323,12 @@ class NetworkAPI {
         }
         UserDefaults.standard.synchronize()
     }
+    
+    static func removeUserId(){
+        UserDefaults.standard.removeObject(forKey: loginCookieKey)
+        UserDefaults.standard.removeObject(forKey: UserDefaultsKey.userID.rawValue)
+        UserDefaults.standard.synchronize()
+    }
 
     static func userID() -> String? {
         return UserDefaults.standard.string(forKey: UserDefaultsKey.userID.rawValue)
@@ -465,7 +479,6 @@ class NetworkAPI {
                 guard let data = response.data, let dataString = String(data: data, encoding: .ascii) else {
                     return
                 }
-                
                 switch response.interpreted {
                 case .success: break
                 case .failure(let error):

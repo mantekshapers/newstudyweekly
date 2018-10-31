@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" restorationIdentifier="PinClass" id="iN0-l3-epB" customClass="PinClass" customModule="StudiesWeekly" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vBh-yy-Iyl">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <subviews>
+                        <view autoresizesSubviews="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4KE-mc-iZK">
+                            <rect key="frame" x="70" y="210" width="180" height="115"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lT1-vg-WTn">
+                                    <rect key="frame" x="160" y="-12" width="30" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" image="Popup_X">
+                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="btnCancelClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="NbG-JD-WN5"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T1o-aY-Wfe">
+                                    <rect key="frame" x="42" y="24" width="130" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                    <state key="normal" title="Pin it">
+                                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="btnPinClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="THM-W2-uYb"/>
+                                    </connections>
+                                </button>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="push-pin" translatesAutoresizingMaskIntoConstraints="NO" id="cLv-zE-pJ5">
+                                    <rect key="frame" x="10" y="27.5" width="24" height="24"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sla-5D-ccl">
+                                    <rect key="frame" x="42" y="64.5" width="130" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                    <state key="normal" title="Remove">
+                                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="btnRemoveClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="jBO-AP-ilF"/>
+                                    </connections>
+                                </button>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="remove" translatesAutoresizingMaskIntoConstraints="NO" id="ia5-b7-Tvz">
+                                    <rect key="frame" x="10" y="68.5" width="24" height="24"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="180" id="VQ4-kg-Bu7"/>
+                                <constraint firstAttribute="height" constant="115" id="owx-jy-XeU"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="0.50920376712328763" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="4KE-mc-iZK" firstAttribute="centerY" secondItem="vBh-yy-Iyl" secondAttribute="centerY" constant="-16.5" id="0mD-Up-am8"/>
+                        <constraint firstItem="4KE-mc-iZK" firstAttribute="centerX" secondItem="vBh-yy-Iyl" secondAttribute="centerX" id="X1c-y3-913"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="vBh-yy-Iyl" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="9tK-Lw-CC9"/>
+                <constraint firstItem="vBh-yy-Iyl" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="hUV-4J-fC0"/>
+                <constraint firstItem="vBh-yy-Iyl" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ooN-TA-NUy"/>
+                <constraint firstItem="vBh-yy-Iyl" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="sfy-RH-CAd"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="btn_pinIt" destination="T1o-aY-Wfe" id="hij-4Y-Y86"/>
+                <outlet property="btn_remove" destination="Sla-5D-ccl" id="zOl-IM-fde"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <image name="Popup_X" width="111" height="111"/>
+        <image name="push-pin" width="30" height="30"/>
+        <image name="remove" width="30" height="30"/>
+    </resources>
+</document>

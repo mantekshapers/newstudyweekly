@@ -21,6 +21,13 @@ class LoginResponse: Reflection {
     var error: String?
 }
 
+class QuestionResponse: Reflection {
+    var correct: NSNumber = true
+    var points: NSNumber?
+}
+
+
+
 // MARK: Content
 
 //class PublicationsResponse: Reflection {
