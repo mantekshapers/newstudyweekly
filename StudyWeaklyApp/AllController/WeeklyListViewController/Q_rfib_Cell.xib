@@ -12,7 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Q_rfib_Cell" rowHeight="103" id="KGk-i7-Jjw" customClass="Q_rfib_Cell" customModule="StudiesWeekly" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Q_rfib_Cell" rowHeight="103" id="KGk-i7-Jjw" customClass="Q_rfib_Cell" customModule="StudiesWeekly" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="121"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -32,21 +32,22 @@
                                 </constraints>
                                 <state key="normal" image="play"/>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zyi-L5-kRl">
-                                <rect key="frame" x="50" y="8" width="262" height="34"/>
-                                <attributedString key="attributedText"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="GIz-Uo-mkX">
+                                <rect key="frame" x="40" y="5" width="275" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="zyi-L5-kRl" firstAttribute="leading" secondItem="bM7-00-teq" secondAttribute="trailing" constant="8" id="13s-1D-Vfc"/>
-                            <constraint firstAttribute="trailing" secondItem="zyi-L5-kRl" secondAttribute="trailing" constant="8" id="1ig-fn-UCk"/>
                             <constraint firstItem="bM7-00-teq" firstAttribute="leading" secondItem="xej-8f-hAz" secondAttribute="leading" constant="2" id="4lp-ZH-yul"/>
-                            <constraint firstAttribute="bottom" secondItem="zyi-L5-kRl" secondAttribute="bottom" constant="8" id="BXj-p0-9pi"/>
-                            <constraint firstItem="zyi-L5-kRl" firstAttribute="top" secondItem="xej-8f-hAz" secondAttribute="top" constant="8" id="NJj-hw-JVy"/>
+                            <constraint firstAttribute="bottom" secondItem="GIz-Uo-mkX" secondAttribute="bottom" constant="5" id="O4e-eV-3cx"/>
                             <constraint firstAttribute="height" constant="50" id="eRZ-FV-bTW"/>
                             <constraint firstItem="bM7-00-teq" firstAttribute="top" secondItem="xej-8f-hAz" secondAttribute="top" constant="5" id="foN-9a-iFg"/>
+                            <constraint firstItem="GIz-Uo-mkX" firstAttribute="top" secondItem="xej-8f-hAz" secondAttribute="top" constant="5" id="fxS-sW-Lci"/>
+                            <constraint firstAttribute="trailing" secondItem="GIz-Uo-mkX" secondAttribute="trailing" constant="5" id="gtN-YP-Vap"/>
+                            <constraint firstItem="GIz-Uo-mkX" firstAttribute="leading" secondItem="xej-8f-hAz" secondAttribute="leading" constant="40" id="nck-zg-nvq"/>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="xFt-DS-kK5"/>
                         </constraints>
                     </view>
@@ -87,8 +88,8 @@
             <connections>
                 <outlet property="btn_down" destination="VNa-1X-ZBk" id="4rI-pa-Nmu"/>
                 <outlet property="btn_qrPlay" destination="bM7-00-teq" id="dMm-DV-h3G"/>
-                <outlet property="lbl_qrTitle" destination="zyi-L5-kRl" id="eT5-uA-qNR"/>
                 <outlet property="txtField_option" destination="it0-34-yXV" id="fbv-YA-5Hk"/>
+                <outlet property="txtView" destination="GIz-Uo-mkX" id="tS6-Hm-cnh"/>
             </connections>
             <point key="canvasLocation" x="33" y="124.5"/>
         </tableViewCell>

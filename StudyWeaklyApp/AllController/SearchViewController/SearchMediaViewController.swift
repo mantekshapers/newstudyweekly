@@ -44,7 +44,10 @@ class SearchMediaViewController: UIViewController {
         view_searchVideo.isHidden = true
         let urlDtr = getMediaDict!["media_source"] as? String ?? "0"
          let urlString = urlDtr.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? "0"
-        let mediaDescriptionStr = getMediaDict!["media_descriptio"] as? String ?? "0"
+        
+      //  lbl_description.text =  CustomController.htmlTagRemoveFromString(getString: getUnitDetailDict["description"] as? String ?? "")
+        
+        let mediaDescriptionStr = CustomController.htmlTagRemoveFromString(getString: getMediaDict!["media_description"] as? String ?? "")// getMediaDict!["media_descriptio"] as? String ?? ""
          let media_nameTitle = getMediaDict!["media_name"] as? String ?? "0"
         self.lbl_mediaTitle.text = media_nameTitle
         
@@ -54,7 +57,8 @@ class SearchMediaViewController: UIViewController {
             view_searchVideo.isHidden = false
             mediaType = "mp4"
             urlCommon = urlString
-          AudioPlayClass.AudioPlayShareInstant.videoSetUrlMethod(videoUrl: urlCommon!,view: self.view_searchVideo)
+            let url = CommonDownloadClass().fetchMediaFromDocument(urlStr: urlCommon!)
+            AudioPlayClass.AudioPlayShareInstant.videoSetUrlMethod(videoUrl: url.absoluteString,view: self.view_searchVideo,superView1:self.view)
         }
         
         let range2 = urlDtr.range(of: ".mp3", options: .caseInsensitive)
@@ -63,8 +67,9 @@ class SearchMediaViewController: UIViewController {
             view_mediaContent.isHidden = false
             img_searchImg.isHidden = false
              urlCommon = "http://" + urlString
-            AudioPlayClass.AudioPlayShareInstant.playUsingAVPlayer(url: urlCommon!,content: img_searchImg)
-           
+            let url = CommonDownloadClass().fetchMediaFromDocument(urlStr: urlCommon!)
+            AudioPlayClass.AudioPlayShareInstant.playUsingAVPlayer(url: url.absoluteString,content: img_searchImg)
+           // AudioPlayClass.AudioPlayShareInstant.playUsingAVPlayer(url: urlCommon!,content: img_searchImg)
             let coverImage = getMediaDict!["media_splash"] as? String ?? "0"
             let imgeUrl = "https://" + coverImage
             CommonWebserviceClass.downloadImgFromServer(url:URL(string: imgeUrl as? String ?? "0")!) { (DATA, RESPOSE, error) in
@@ -135,10 +140,17 @@ class SearchMediaViewController: UIViewController {
     
     @IBAction func playBtnClick(_ sender: UIButton) {
         if mediaType == "mp4"{
+             if !sender.isSelected {
+                 sender.isSelected = true
            AudioPlayClass.AudioPlayShareInstant.videoPlay()
+             }else {
+                sender.isSelected = false
+                 AudioPlayClass.AudioPlayShareInstant.stopVideoMethod()
+             }
        // MediaClass().videoPlay(getUrl: urlCommon!, view: self.view_searchVideo)
             
-         }else {
+            
+          }else {
             if !sender.isSelected {
               sender.isSelected = true
               AudioPlayClass.AudioPlayShareInstant.playAudio()
@@ -153,7 +165,7 @@ class SearchMediaViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
+     }
     
 
     /*

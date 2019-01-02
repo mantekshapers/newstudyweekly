@@ -11,7 +11,7 @@ import Realm
 import Retrolux
 class WeeklyDetailVC: UIViewController,UITableViewDelegate,UITableViewDataSource ,BtnDelegate,AlertQuestionDelegate{
    
-     let customAlertController = CustomController()
+    let customAlertController = CustomController()
     var alertView = AlertQuestionAnswerView()
     @IBOutlet weak var lbl_desConstHeight: NSLayoutConstraint!
     
@@ -79,23 +79,25 @@ class WeeklyDetailVC: UIViewController,UITableViewDelegate,UITableViewDataSource
             }else{
            
              audioTextAppend = audioTextAppend! + " " + getWord
-            }
-          }
-        
+             }
+           }
          let getContentStr = getUnitDetailDict?["content"] as? String ?? ""
 //      //  getAtributedStr = CustomController.stringFromHtml(string: getContentStr)
 //        lbl_describtions.attributedText = CustomController.stringFromHtml(string: getContentStr)
           lbl_describtions.text = audioTextAppend
         //audioTextAppend
         
+        
+        let fetchQArr =  CDBManager().fetchArticleQstMethod(articlesId:articleId!)
+        if fetchQArr.count == 0{
         let qArr = getUnitDetailDict?["questions"] as? [AnyObject]
         
         let podMediaArr = getUnitDetailDict?["pod_media"] as? [AnyObject]
         if podMediaArr?.count != 0{
             podMediaData = getUnitDetailDict?["pod_media"] as! [AnyObject]
-        }else{
+          }else{
             bonusHeghtConst.constant = 0
-        }
+              }
         
         if qArr?.count != 0  {
             // let qSArr = getUnitDetailDict?["standards"] as? [AnyObject]
@@ -104,7 +106,8 @@ class WeeklyDetailVC: UIViewController,UITableViewDelegate,UITableViewDataSource
                 dataDict = data as! [String : AnyObject]
                 dataDict["selectAns"] = "unselect" as AnyObject
                 questionData.append(dataDict as AnyObject)
-              }
+                CDBManager().addQuestionsInDB(articleId: articleId!,questDict:dataDict)
+               }
 //            for dataS in qSArr! {
 //                 questionData.append(dataS)
 //              }
@@ -116,9 +119,28 @@ class WeeklyDetailVC: UIViewController,UITableViewDelegate,UITableViewDataSource
         }else{
             tbl_constHeight.constant = 0
         }
-        
+        }else {
+            
+            let podMediaArr = getUnitDetailDict?["pod_media"] as? [AnyObject]
+            if podMediaArr?.count != 0{
+                podMediaData = getUnitDetailDict?["pod_media"] as! [AnyObject]
+            }else{
+                bonusHeghtConst.constant = 0
+            }
+            questionData = fetchQArr
+            
+            for var i in 0..<questionData.count {
+                let j = i + 1
+                tbl_height = 232 * j
+            }
+            tbl_height = tbl_height! + 50
+            
+        }
         
         CDBManager().updateArticleToDB(getUnitsDetailDict: getUnitDetailDict!)
+       
+        
+        
         
         
         // Do any additional setup after loading the view.
@@ -218,7 +240,6 @@ class WeeklyDetailVC: UIViewController,UITableViewDelegate,UITableViewDataSource
     // method to run when table view cell is tapped
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("You tapped cell number \(indexPath.row).")
-        
         print("You tapped cell number \(indexPath.row).")
         
         //let getDict = unitArr[indexPath.item] as? [String:AnyObject]
@@ -264,7 +285,7 @@ class WeeklyDetailVC: UIViewController,UITableViewDelegate,UITableViewDataSource
                         self.alertView.lbl_title.text = "Correct Answer!"
                         self.alertView.lbl_showPoints.text = "You just earned " + (answer_points + " rev points")
                         self.alertView.img_question.image = UIImage(named: "correct_answer_image")
-                    }
+                      }
                     
                 }else {
                     self.alertView.isHidden = false
@@ -277,7 +298,7 @@ class WeeklyDetailVC: UIViewController,UITableViewDelegate,UITableViewDataSource
                 }
                 return
             }
-            
+
            // let getUserId    = NetworkAPI.userID()
             
             let postDict = ["question_id":"5363600","answer": "a"]
@@ -324,6 +345,10 @@ class WeeklyDetailVC: UIViewController,UITableViewDelegate,UITableViewDataSource
                         print("success \(isCorrect.boolValue) && \(isCorrect)")
                         getDict?["selectAns"] = getAnwr as AnyObject
                         self?.questionData[btnTag] = getDict as AnyObject
+                        let articleIdTmp = getDict?["article_id"] as? String
+                        
+                        // CDBManager().addQuestionsInDB(articleId: articleIdTmp!,questDict:getDict!)
+                        CDBManager().updateArticleOfQuestionMethod(articleId: articleIdTmp!, questDict: getDict!)
                         
                         let answer_points = String(getDict?["points_possible"] as! Int)
                         DispatchQueue.main.async {
@@ -332,7 +357,9 @@ class WeeklyDetailVC: UIViewController,UITableViewDelegate,UITableViewDataSource
                             self?.alertView.lbl_title.text = "Correct Answer!"
                             self?.alertView.lbl_showPoints.text = "You just earned " + (answer_points + " rev points")
                             self?.alertView.img_question.image = UIImage(named: "correct_answer_image")
-                        }
+                            CDBManager().updateUserRevPointCDBData(revPoints: String(answer_points))
+                            
+                            }
                     }
 
                    // callback(nil)
@@ -343,7 +370,7 @@ class WeeklyDetailVC: UIViewController,UITableViewDelegate,UITableViewDataSource
                     self?.alertView.lbl_title.text = "Wrong Answer!"
                     self?.alertView.lbl_showPoints.text = "You did not  earn" + " rev points"
                     self?.alertView.img_question.image = UIImage(named: "wrong_answer_image")
-                    return
+                   // return
                    // debug("ERROR - Possible Data Corruption")
                     //callback(nil)
                 }
@@ -418,24 +445,17 @@ class WeeklyDetailVC: UIViewController,UITableViewDelegate,UITableViewDataSource
          alertView.isHidden = true
     }
     
-    
-    
     @IBAction func downloadBtnClick(_ sender: UIButton) {
-      
        // gameTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
-        
       }
     
     @IBAction func collectBtnClick(_ sender: UIButton) {
         
     let getUserId    = NetworkAPI.userID()
-        
-        let postDict = ["article_id":articleId,"user_id": getUserId]
-//        let appdelegate = UIApplication.shared.delegate as? AppDelegate
-//        DispatchQueue.main.async {
-//            appdelegate?.showLoader()
-//        }
-//
+       // let postDict = ["article_id":articleId,"user_id": getUserId]
+        /*
+        let postDict = ["article_id":articleId]
+       
         CommonWebserviceClass.makeHTTPGetRequest(path: BaseUrlOther.baseURLOther + WebserviceName.collectCointsName, postString: postDict as! [String : String], httpMethodName: "GET") { (respose, boolTrue) in
             
             if boolTrue == false{
@@ -454,11 +474,18 @@ class WeeklyDetailVC: UIViewController,UITableViewDelegate,UITableViewDataSource
                 self.customAlertController.showCustomAlert3(getMesage: errorStr!, getView: self)
                       return
                 }
-              
               }
+            let successTmp = getDict["success"] as? Int
+            if successTmp != nil{
+                CDBManager().updateUserRevPointCDBData(revPoints: String(successTmp!))
             print("collection point response",getDict)
-           }
+                 self.customAlertController.showCustomAlert3(getMesage: "Rev Point have successfully collect", getView: self)
+              }
+             }
     
+        */
+        
+        self.collectRevPointMethod(articleId: articleId!)
       }
     
     func timerAction() {
@@ -469,7 +496,7 @@ class WeeklyDetailVC: UIViewController,UITableViewDelegate,UITableViewDataSource
             gameTimer.invalidate()
             btn_playOut.isSelected = false
             return
-          }
+            }
         
         let getDict = self.audioTimeArr[counter] as? [String:AnyObject]
         
@@ -493,6 +520,7 @@ class WeeklyDetailVC: UIViewController,UITableViewDelegate,UITableViewDataSource
         let bonusViewController  =  story.instantiateViewController(withIdentifier: "BonusViewController") as! BonusViewController
         bonusViewController.getPodMediaData = podMediaData
         self.navigationController?.pushViewController(bonusViewController, animated: true)
+        
     }
     
     @IBAction func playBtnClick(_ sender: UIButton) {
@@ -509,6 +537,42 @@ class WeeklyDetailVC: UIViewController,UITableViewDelegate,UITableViewDataSource
        
            //  gameTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
       
+        
+    }
+    
+    
+    func collectRevPointMethod(articleId:String){
+        
+        
+        let postDict = ["article_id":articleId]
+        
+        CommonWebserviceClass.makeHTTPGetRequest(path: BaseUrlOther.baseURLOther + WebserviceName.collectCointsName, postString: postDict as! [String : String], httpMethodName: "GET") { (respose, boolTrue) in
+            
+            if boolTrue == false{
+                let getDict = respose as! [String:AnyObject]
+                DispatchQueue.main.async {
+                    //                    self.customAlertController.showCustomAlert3(getMesage: getDict["responseError"] as! String, getView: self)
+                    //                    appdelegate?.hideLoader()
+                }
+                return
+            }
+            
+            let getDict = respose as! [String: AnyObject]
+            let errorStr = getDict["error"] as? String
+            if errorStr == "you cannot update this user" || errorStr == "points are already redeemed"{
+                DispatchQueue.main.async {
+                    self.customAlertController.showCustomAlert3(getMesage: errorStr!, getView: self)
+                    return
+                }
+            }
+            let successTmp = getDict["success"] as? Int
+            if successTmp != nil{
+                CDBManager().updateUserRevPointCDBData(revPoints: String(successTmp!))
+                print("collection point response",getDict)
+                self.customAlertController.showCustomAlert3(getMesage: "Rev Point have successfully collect", getView: self)
+            }
+        }
+        
         
     }
     

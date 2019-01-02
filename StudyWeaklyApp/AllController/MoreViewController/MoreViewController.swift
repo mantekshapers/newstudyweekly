@@ -20,6 +20,10 @@ class MoreViewController: UIViewController {
     
     @IBOutlet weak var lbl_setting: UILabel!
     
+    @IBOutlet weak var view_classHieghtCons: NSLayoutConstraint!
+    
+    @IBOutlet weak var lbl_line: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = true
@@ -39,6 +43,16 @@ class MoreViewController: UIViewController {
             lbl_nameTitle.text = getDict?["name"] as? String ?? ""
             let getPoints = getDict!["points"] as? String ?? ""
             lbl_points.text = getPoints + " Points"
+              let userEmailStr = getDict!["userEmail"] as? String ?? ""
+              let userRoleStr = getDict!["userRole"] as? String ?? ""
+            if userRoleStr == "teacher"{
+                lbl_line.backgroundColor = UIColor.lightGray
+                view_classHieghtCons.constant = 56
+            }else{
+               
+                 lbl_line.backgroundColor = UIColor.clear
+                 view_classHieghtCons.constant = 0
+            }
            }
        }
     
@@ -60,6 +74,17 @@ class MoreViewController: UIViewController {
     let na = UINavigationController(rootViewController: settingController)
         self.slideMenuController()?.changeMainViewController(na, close: true)
     }
+    
+    
+    
+    @IBAction func btnClassClick(_ sender: UIButton) {
+        let story = UIStoryboard.init(name: "Main", bundle: nil)
+        let settingController = story.instantiateViewController(withIdentifier: "ClassViewController") as! ClassViewController
+        let na = UINavigationController(rootViewController: settingController)
+        self.slideMenuController()?.changeMainViewController(na, close: true)
+        
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

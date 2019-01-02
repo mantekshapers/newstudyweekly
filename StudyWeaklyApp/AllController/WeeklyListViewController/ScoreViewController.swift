@@ -19,9 +19,14 @@ class ScoreViewController: UIViewController,UITableViewDelegate,UITableViewDataS
         self.tblView_score.delegate = self
         self.tblView_score.dataSource = self
         // Do any additional setup after loading the view.
-        let postDict = ["unit_id":getUnitId]
-        CommonWebserviceClass.makeHTTPGetRequest(path: BaseUrlOther.baseURLOther + WebserviceName.assessment_userScore, postString: postDict as! [String : String], httpMethodName: "GET") { (respose, boolTrue) in
-            
+        //https://app.studiesweekly.com/online/api/v2/app/assessments/user_scores?unit_id=127829
+        //128061
+       // 128061
+       // getUnitId
+       // scores?test_id=560698
+       // let postDict = ["unit_id": "128061"]
+        let postDict = ["test_id": getUnitId]
+        CommonWebserviceClass.makeHTTPGetRequest(path: BaseUrlOther.baseURLOther + WebserviceName.assessment_scores, postString: postDict as! [String : String], httpMethodName: "GET") { (respose, boolTrue) in
             if boolTrue == false{
                 let getDict = respose as! [String:AnyObject]
                 DispatchQueue.main.async {
@@ -33,13 +38,13 @@ class ScoreViewController: UIViewController,UITableViewDelegate,UITableViewDataS
             
             let getDataArr = respose as? [AnyObject]
             
-            if (getDataArr?.count)!>0{
+            if (getDataArr?.count ?? 0)>0{
                 self.testQuestionArr = getDataArr!
             }
             
             DispatchQueue.main.async {
                // self.tblView_score.reloadData()
-                print("test score_response =\(getDataArr!)")
+                print("test score_response =\(getDataArr ?? [])")
              }
          }
     }

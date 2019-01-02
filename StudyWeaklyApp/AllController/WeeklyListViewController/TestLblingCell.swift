@@ -15,8 +15,6 @@ class TestLblingCell: UITableViewCell {
     @IBOutlet weak var lbl_question: UILabel!
     
     @IBOutlet weak var btn_play: UIButton!
-    
-   
     @IBOutlet weak var img_imgView: UIImageView!
     
     @IBOutlet weak var lbl_drag: UILabel!
@@ -24,7 +22,6 @@ class TestLblingCell: UITableViewCell {
     @IBOutlet weak var lbl_drag1: UILabel!
     
     @IBOutlet weak var lbl_dragPositionConst: UILabel!
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

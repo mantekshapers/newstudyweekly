@@ -49,17 +49,17 @@ class QuestionTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-    }
+     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
-    }
+       }
     
     @IBAction func btnAclick(_ sender: UIButton) {
         btnDelegateCall?.answerSeleckMethod(getAnwr: "a",btnTag: sender.tag)
-    }
+      }
     
     @IBAction func btnBclicl(_ sender: UIButton) {
         btnDelegateCall?.answerSeleckMethod(getAnwr: "b",btnTag: sender.tag)
@@ -67,7 +67,7 @@ class QuestionTableViewCell: UITableViewCell {
     
     @IBAction func btnCclick(_ sender: UIButton) {
          btnDelegateCall?.answerSeleckMethod(getAnwr: "c",btnTag: sender.tag)
-    }
+      }
     
     @IBAction func btnDclick(_ sender: UIButton) {
          btnDelegateCall?.answerSeleckMethod(getAnwr: "d",btnTag: sender.tag)

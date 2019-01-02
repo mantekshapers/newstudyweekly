@@ -33,6 +33,7 @@ class BonusDetailsVC: UIViewController ,UITableViewDelegate,UITableViewDataSourc
     var getUnitDetailDict = [String:AnyObject]()
     var questionArr = [AnyObject]()
      var tbl_height:Int?
+    var articleId:String?
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -41,6 +42,11 @@ class BonusDetailsVC: UIViewController ,UITableViewDelegate,UITableViewDataSourc
         print("Bonus detail list===\(getUnitDetailDict)")
         imgView.isHidden = true
         view_media.isHidden = true
+        articleId = getUnitDetailDict["article_id"] as? String ?? "0"
+        
+        
+//        let fetchQArr =  CDBManager().fetchArticleQstMethod(articlesId:articleId!)
+//       if fetchQArr.count == 0{
         let qArr = getUnitDetailDict["questions"] as? [AnyObject]
         let qCount = qArr?.count ?? 0
         if qCount != 0 {
@@ -51,6 +57,7 @@ class BonusDetailsVC: UIViewController ,UITableViewDelegate,UITableViewDataSourc
                 dataDict = data as! [String : AnyObject]
                 dataDict["selectAns"] = "unselect" as AnyObject
                 questionArr.append(dataDict as AnyObject)
+               // CDBManager().addQuestionsInDB(articleId: articleId!,questDict:dataDict)
             }
             for i in 0..<questionArr.count {
                 let j = i + 1
@@ -60,6 +67,18 @@ class BonusDetailsVC: UIViewController ,UITableViewDelegate,UITableViewDataSourc
         }else{
             tbl_constHieght.constant = 0
         }
+//       }else{
+//        questionArr = fetchQArr
+//
+//        for i in 0..<questionArr.count {
+//            let j = i + 1
+//            tbl_height = 232 * j
+//        }
+//        tbl_height = tbl_height! + 50
+//
+//        }
+        
+        
         let urlDtr = getUnitDetailDict["url"] as? String ?? ""
         
       //  "type": audio
@@ -104,7 +123,10 @@ class BonusDetailsVC: UIViewController ,UITableViewDelegate,UITableViewDataSourc
         
        lbl_header.text = getUnitDetailDict["name"] as? String ?? ""
 
-        lbl_description.text = getUnitDetailDict["description"] as? String ?? ""
+//        let str = string.stringByReplacingOccurrencesOfString("<[^>]+>", withString: "", options: .RegularExpressionSearch, range: nil)
+//        print(str)
+           lbl_description.text =  CustomController.htmlTagRemoveFromString(getString: getUnitDetailDict["description"] as? String ?? "")//CustomController.stringFromHtml(string: getUnitDetailDict["description"] as? String ?? "")
+      //  lbl_description.text = getUnitDetailDict["description"] as? String ?? ""
         
          CDBManager().updatePodToDB(getPodDetailDict: getUnitDetailDict)
         // Do any additional setup after loading the view.
@@ -127,19 +149,19 @@ class BonusDetailsVC: UIViewController ,UITableViewDelegate,UITableViewDataSourc
             print("height_y \(self.tbl_constHieght.constant) & \(self.tblView.frame.origin.y) & label height \(self.lbl_description.frame.size.height)")
             self.scrollView.contentSize = CGSize(width: self.contenView.frame.size.width, height: (self.contenView.frame.size.height))
             
-             }
-      }
+               }
+        }
     override func viewDidAppear(_ animated: Bool) {
          super.viewDidAppear(animated)
-      }
+        }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 232
-    }
+       }
     // number of rows in table view
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return questionArr.count
-    }
+      }
     // create a cell for each table view row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell: QuestionTableViewCell! = tblView.dequeueReusableCell(withIdentifier: "QuestionTableViewCell") as? QuestionTableViewCell
@@ -177,7 +199,7 @@ class BonusDetailsVC: UIViewController ,UITableViewDelegate,UITableViewDataSourc
         }
         // let getDificultStr = getQDict!["d"] as? String
         
-        cell.lbl_question?.text = getQStr
+        cell.lbl_question?.text = CustomController.htmlTagRemoveFromString(getString: getQStr ?? "")
         cell.lbl_a?.text = getAStr
         cell.lbl_b?.text = getBStr
         cell.lbl_c?.text = getCStr
@@ -212,7 +234,7 @@ class BonusDetailsVC: UIViewController ,UITableViewDelegate,UITableViewDataSourc
         let getQuestion_id = getDict!["question_id"] as? String
         NetworkCheckReachbility.isConnectedToNetwork { (boolTrue) in
             if boolTrue == false{
-                //                self.customAlertController.showCustomAlert3(getMesage: AlertTitle.networkStr, getView: self)
+                //  self.customAlertController.showCustomAlert3(getMesage: AlertTitle.networkStr, getView: self)
                 if getAnswer == getAnwr {
                     
                     print("ANSWER IS MATHCED--\(getAnwr)")
@@ -256,16 +278,18 @@ class BonusDetailsVC: UIViewController ,UITableViewDelegate,UITableViewDataSourc
                         print("success \(isCorrect.boolValue) && \(isCorrect)")
                         getDict?["selectAns"] = getAnwr as AnyObject
                         self?.questionArr[btnTag] = getDict as AnyObject
-                        
+                         let articleIdTmp = getDict?["article_id"] as? String
                         let answer_points = String(getDict?["points_possible"] as! Int)
+                       //  CDBManager().updateArticleOfQuestionMethod(articleId: articleIdTmp!, questDict: getDict!)
                         DispatchQueue.main.async {
                             self?.tblView.reloadData()
                             self?.alertView.isHidden = false
                             self?.alertView.lbl_title.text = "Correct Answer!"
                             self?.alertView.lbl_showPoints.text = "You just earned " + (answer_points + " rev points")
                             self?.alertView.img_question.image = UIImage(named: "correct_answer_image")
-                        }
-                    }
+                           //  CDBManager().updateUserRevPointCDBData(revPoints: String(answer_points))
+                         }
+                     }
                     
                 } else {
                     // This shouldn't be called. We should only make this request if the answer is correct

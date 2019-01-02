@@ -35,7 +35,8 @@ class CommonWebserviceClass: NSObject,URLSessionDelegate, URLSessionTaskDelegate
         let realm = "REST API"
         //let password = "j9fw28rv6TUdtVxr"
         // let password = "rxVtdUT6vr82wf9jwowj9fw28rv6TUdtVxr"
-        let password = "eromrxVtdUT6vr82wf9jwowj9fw28rv6TUdtVxrmore"
+      //  let password = "eromrxVtdUT6vr82wf9jwowj9fw28rv6TUdtVxrmore"
+        let password = "yaHeromrxVtdUT6vr82wf9jwowj9fw28rv6TUdtVxrmoreHay"
         let ha1 = md5("\(username):\(realm):\(password)")
         
         let method = "\(request.httpMethod ?? "")"
@@ -55,21 +56,25 @@ class CommonWebserviceClass: NSObject,URLSessionDelegate, URLSessionTaskDelegate
         let headerValue = "Digest username=\"\(username)\", realm=\"\(realm)\", nonce=\"\(nonce)\", uri=\"\(digestURI)\", response=\"\(responseStr ?? "")\", opaque=\"\""
         request.addValue(headerValue, forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+       // request.setValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
+      //  request.setValue("339", forHTTPHeaderField: "Content-Length")
+        request.setValue("keep-alive", forHTTPHeaderField: "Connection")
         
         let configuration = URLSessionConfiguration.default
         configuration.timeoutIntervalForRequest = 240
         let session = URLSession(configuration: configuration, delegate: self.sharedInstance, delegateQueue: nil)
         let task = session.dataTask(with: request, completionHandler: { (data, response, error) in
             if (error != nil) {
+        
                 print(error!.localizedDescription)
                 onCompletion(["responseError":error!.localizedDescription],false)
-                
                 return
                 }
             
             let httpResponse = response as? HTTPURLResponse
             if httpResponse?.statusCode == 504 {
                 print(httpResponse?.statusCode)
+               
                 onCompletion(["responseError": "Time out"],false)
                 return
             }else if httpResponse?.statusCode == 500 {
@@ -84,8 +89,7 @@ class CommonWebserviceClass: NSObject,URLSessionDelegate, URLSessionTaskDelegate
                 if let range = dataStr?.range(of: "400 Bad Request", options: .caseInsensitive, range: nil, locale: nil) {
                     print("Case sensitive \(range)")
                     return
-                    
-                }
+                  }
                
                 if dataStr == "\n\"1\"" {
                 
@@ -98,7 +102,6 @@ class CommonWebserviceClass: NSObject,URLSessionDelegate, URLSessionTaskDelegate
                 
                do {
                print("error message+++=======%@",data ?? "not error")
-                
                 
                 let jsonResult  = try? JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableLeaves) as Any
                 print("main json Print=\(jsonResult)")
@@ -129,10 +132,10 @@ class CommonWebserviceClass: NSObject,URLSessionDelegate, URLSessionTaskDelegate
         for cookie in cookies {
             //request.addValue(cookie, forHTTPHeaderField: "Cookie")
             request.addValue(cookie, forHTTPHeaderField: "Cooke")
-             }
-         }
+              }
+          }
         
-      }
+       }
     
     //MARK: Digest url here
     
@@ -155,6 +158,8 @@ class CommonWebserviceClass: NSObject,URLSessionDelegate, URLSessionTaskDelegate
     //MARK: DOWNLOAD IMAGE FROM SERVER
     
  class func downloadImgFromServer(url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+    
+      
         URLSession.shared.dataTask(with: url) { data, response, error in
             completion(data, response, error)
             }.resume()

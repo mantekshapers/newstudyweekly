@@ -29,23 +29,51 @@
         <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="units" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Units" syncable="YES"/>
     </entity>
+    <entity name="QuestionsTable" representedClassName="QuestionsTable" syncable="YES" codeGenerationType="class">
+        <attribute name="a" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="answer" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="article_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="b" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="d" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="difficulty" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="points_possible" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="question" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="question_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="selectAns" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="SearchMedia" representedClassName="SearchMedia" isAbstract="YES" syncable="YES" codeGenerationType="class">
+        <attribute name="dateCreate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="download" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="media_description" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="media_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="media_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="media_source" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="media_splash" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="Units" representedClassName="Units" isAbstract="YES" syncable="YES" codeGenerationType="class">
         <attribute name="publication_id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="units" optional="YES" attributeType="Transformable" customClassName="[AnyObject]" syncable="YES"/>
         <relationship name="publicationDownload" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PublicationDownload" inverseName="units" inverseEntity="PublicationDownload" syncable="YES"/>
     </entity>
     <entity name="USER" representedClassName="USER" isAbstract="YES" syncable="YES" codeGenerationType="class">
+        <attribute name="userEmail" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userPassword" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userPoints" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userRole" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="ArticlesTable" positionX="45" positionY="117" width="128" height="105"/>
+        <element name="ArticlesTable" positionX="18" positionY="135" width="128" height="105"/>
+        <element name="PodMedia" positionX="108" positionY="-9" width="128" height="120"/>
         <element name="PublicationDownload" positionX="232" positionY="162" width="128" height="103"/>
-        <element name="Publications" positionX="-137" positionY="117" width="128" height="163"/>
-        <element name="Units" positionX="27" positionY="110" width="128" height="88"/>
-        <element name="USER" positionX="-63" positionY="-18" width="128" height="105"/>
-        <element name="PodMedia" positionX="45" positionY="117" width="128" height="120"/>
+        <element name="Publications" positionX="-198" positionY="117" width="128" height="163"/>
+        <element name="QuestionsTable" positionX="196" positionY="306" width="128" height="223"/>
+        <element name="SearchMedia" positionX="27" positionY="429" width="128" height="165"/>
+        <element name="Units" positionX="-99" positionY="308" width="128" height="88"/>
+        <element name="USER" positionX="-63" positionY="-18" width="128" height="135"/>
     </elements>
 </model>

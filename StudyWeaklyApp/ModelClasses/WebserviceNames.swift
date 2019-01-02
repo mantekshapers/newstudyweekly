@@ -35,5 +35,9 @@ struct WebserviceName {
     static let assessment_info = "assessments/info"
     static let quesAns_mc = "assessments/answer_mc"
     static let assessment_userScore = "assessments/user_scores"
+    static let assessment_scores = "assessments/scores"
+ 
+    static let classRoom = "classroom"
+    // /online/api/v2/app/classroom
 }
 

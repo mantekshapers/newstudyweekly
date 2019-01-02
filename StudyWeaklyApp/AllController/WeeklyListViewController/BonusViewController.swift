@@ -52,7 +52,7 @@ class BonusViewController: UIViewController ,UITableViewDataSource,UITableViewDe
         let getArticleId    = StorageClass.getArticleId()
        // let getUnitId = getUnitDict!["unit_id"] as! String
         self.getReadPodMediaData = CDBManager().getPodMediaData(getUnitsId: getUnitsId, getArticleId: getArticleId)
-        DispatchQueue.main.async {
+         DispatchQueue.main.async {
             self.tblView_bonus.reloadData()
         }
     }
@@ -194,7 +194,6 @@ class BonusViewController: UIViewController ,UITableViewDataSource,UITableViewDe
             let urlStr = dict1!["url"] as? String ?? ""
             
             let converUrl = "https://" + urlStr
-            
             
             
             CommonWebserviceClass.loadFileAsync(url: URL(string: converUrl as? String ?? "0")!, completion: { (urlFile, error) in

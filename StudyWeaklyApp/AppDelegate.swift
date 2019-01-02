@@ -24,10 +24,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         }else{
       
          }
+        
+        
+//        NetworkCheckReachbility.isConnectedToNetwork { (bool) in
+//            if bool == false {
+//                
+//            }
+//        }
+//        
+        
         return true
-        
-        
-
+    
       }
     
     

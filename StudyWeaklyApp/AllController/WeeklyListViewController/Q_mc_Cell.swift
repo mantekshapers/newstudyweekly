@@ -15,14 +15,11 @@ class Q_mc_Cell: UITableViewCell {
   weak var testDelegateCall:TestDelegate?
     @IBOutlet weak var btn_play: UIButton!
     @IBOutlet weak var lbl_qTitle: UILabel!
-    
     @IBOutlet weak var btn_a: UIButton!
-    
     @IBOutlet weak var btn_b: UIButton!
     @IBOutlet weak var btn_c: UIButton!
     
     @IBOutlet weak var btn_d: UIButton!
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

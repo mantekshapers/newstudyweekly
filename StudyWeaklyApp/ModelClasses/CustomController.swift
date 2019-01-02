@@ -60,7 +60,7 @@ class CustomController: NSObject{
             self.activityIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
             self.activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
             self.activityIndicator.center = CGPoint(x: self.loadingView.frame.size.width / 2, y: self.loadingView.frame.size.height / 2)
-      
+            
             self.loadingView.addSubview(self.activityIndicator)
             //container.addSubview(loadingView)
             uiView.addSubview(self.loadingView)
@@ -89,7 +89,12 @@ class CustomController: NSObject{
         ///let trimmedString = getString.trimmingCharacters(in: .whitespaces)
         return newString
     }
-    
+    class func backSlaceRemoveFromUrl(urlStr:String)->String{
+     
+        var newString = (urlStr as NSString).replacingOccurrences(of: "\"/", with: "")
+        newString = newString.replacingOccurrences(of: " ", with: "%20")
+        return newString
+    }
     
 class func stringFromHtml(string: String) -> NSAttributedString? {
         do {
@@ -105,11 +110,18 @@ class func stringFromHtml(string: String) -> NSAttributedString? {
         return nil
     }
     
+    class func htmlTagRemoveFromString(getString:String)->String {
+//        let str = getString.stringByReplacingOccurrencesOfString("<[^>]+>", withString: "", options: .regularExpression, range: nil)
+        //        print(str)
+        let str = getString.replacingOccurrences(of: "<[^>]+>", with: "",options: .regularExpression, range: nil)
+        //        print(str)
+        return str
+    }
+    
      func showLoader()->UIActivityIndicatorView {
          activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
        // activityIndicator.startAnimating()
         return activityIndicator
-    
     }
     
     func hideLoader(){

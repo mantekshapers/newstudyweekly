@@ -22,17 +22,15 @@ class WeeklyListViewController: UIViewController ,UITableViewDelegate,UITableVie
         self.navigationController?.navigationBar.isHidden = true
         tblView.dataSource = self
         tblView.delegate = self
-        
         print("+++++++++++++\(getWeeklyDict!)")
         weeklyArr = getWeeklyDict!["units"] as! [AnyObject]
         lbl_hearderTitle.text = getWeeklyDict!["title"] as? String ?? ""
         // Do any additional setup after loading the view.
-    }
+      }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 44
     }
-    
     // number of rows in table view
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return weeklyArr.count
@@ -43,13 +41,15 @@ class WeeklyListViewController: UIViewController ,UITableViewDelegate,UITableVie
         if cell == nil {
             tblView.register(UINib(nibName: "WeeklyTableViewCell", bundle: nil), forCellReuseIdentifier: "WeeklyTableViewCell")
             cell = tblView.dequeueReusableCell(withIdentifier: "WeeklyTableViewCell") as? WeeklyTableViewCell
-             }
+                 }
+        
         let getDict = weeklyArr[indexPath.row] as! [String:AnyObject]
         let getWeekly = getDict["week_num"]  as! String
         let gettitle = getDict["title"] as! String
         cell.lbl_weekly.text = "Week-" + getWeekly + " " + gettitle
         return cell
-    }
+        
+        }
 
     // method to run when table view cell is tapped
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -68,7 +68,7 @@ class WeeklyListViewController: UIViewController ,UITableViewDelegate,UITableVie
         self.navigationController?.pushViewController(weeklyUnitListVC, animated: true)
            // }
        // }
-    }
+      }
     
     @IBAction func backBtnClick(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)

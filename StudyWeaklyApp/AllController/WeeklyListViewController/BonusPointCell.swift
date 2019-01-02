@@ -9,11 +9,9 @@
 import UIKit
 
 protocol DownloadBtnDelegate: class {
-    
     func downloadedCellBtnClick(indexCell:UIButton)
 }
-class BonusPointCell: UITableViewCell {
-    
+ class BonusPointCell: UITableViewCell {
     
     weak var downloadBtnDelegate:DownloadBtnDelegate?
     @IBOutlet weak var lbl_title: UILabel!
@@ -30,12 +28,11 @@ class BonusPointCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-    }
+     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
-    }
+     }
     
     @IBAction func downloadBtnClick(_ sender: UIButton) {
         downloadBtnDelegate?.downloadedCellBtnClick(indexCell: sender)

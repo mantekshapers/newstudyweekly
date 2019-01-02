@@ -54,13 +54,21 @@ class AudioPlayClass: NSObject {
     
     func stopAudio() {
         // timer.invalidate()
+        if timer == nil{
+            
+        }else{
+             timer.invalidate()
+        }
+        
          audioPlay.pause()
          audioPlay.rate = 0.0
      }
     func updateTime(_ timer: Timer) {
         let currentItem = audioPlay.currentItem
         let duration = currentItem?.currentTime()
+        
         if timeHold! > 0.0{
+            
             if timeHold == Float((duration?.seconds)!/60){
                 timer.invalidate()
               }
@@ -70,18 +78,17 @@ class AudioPlayClass: NSObject {
         sliderr.value =   Float(((duration?.seconds)!))
        
     }
-    func videoSetUrlMethod(videoUrl:String,view: UIView) {
+    func videoSetUrlMethod(videoUrl:String,view: UIView,superView1: UIView) {
         let urlString = videoUrl.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
-        let urlStr = "https://" + urlString
-        let url = URL(string: urlStr)
+       // let urlStr = "https://" + urlString
+        let url = URL(string: urlString)
         //  let urlString = getUrl.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? "0"
         // let videoURL = URL(string: "https://" + urlString)
         audioPlay = AVPlayer(url: url!)
         let playerLayer = AVPlayerLayer(player: audioPlay)
-       
+        playerLayer.frame = CGRect(x: superView1.frame.origin.x, y: superView1.frame.origin.y, width: superView1.frame.size.width, height: 200)
         view.layer.addSublayer(playerLayer)
-         playerLayer.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: 200)
-    
+        
     }
     
     func videoPlay(){

@@ -35,24 +35,21 @@ protocol ScreenCellDelegate: class {
             indicationView.startAnimating()
          }else {
             indicationView.stopAnimating()
-            
         }
     }
     
     @IBAction func indexBtnClick(_ sender: UIButton) {
+        
         if sender.isSelected {
             sender.isSelected = false
             indicationView.stopAnimating()
         }else{
              sender.isSelected = true
-            indicationView.startAnimating()
-        }
-         print("cell click",String(sender.tag))
+             indicationView.startAnimating()
+          }
+        print("cell click",String(sender.tag))
         cellDelegate?.btnIndex(send: String(sender.tag))
        // self.indexBtnClick(String(sender.tag))
-       
-        
     }
-    
     
 }

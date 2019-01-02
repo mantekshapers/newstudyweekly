@@ -360,7 +360,8 @@ class NetworkAPI {
         let realm = "REST API"
         //let password = "j9fw28rv6TUdtVxr"
       // let password = "rxVtdUT6vr82wf9jwowj9fw28rv6TUdtVxr"
-         let password = "eromrxVtdUT6vr82wf9jwowj9fw28rv6TUdtVxrmore"
+     //let password = "eromrxVtdUT6vr82wf9jwowj9fw28rv6TUdtVxrmore"
+        let password = "yaHeromrxVtdUT6vr82wf9jwowj9fw28rv6TUdtVxrmoreHay"
         let ha1 = md5("\(username):\(realm):\(password)")
 
         let method = "\(request.httpMethod ?? "")"

@@ -23,11 +23,18 @@ class HomeFileViewController: UIViewController,URLSessionDelegate, URLSessionTas
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = true
+        
+        if NetworkCheckWifiReachbility.iswifi() == true {
+              print("WIFI IS ON THIS TIME and working ")
+        }else {
+            
+              print("WIFI IS OFF THIS TIME and not working ")
+        }
+        
         longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(self.handleLongGesture(gesture:)))
         collectionView.addGestureRecognizer(longPressGesture)
         
         NetworkCheckReachbility.isConnectedToNetwork { (bool1) in
-            
             if bool1 == false {
                 self.publicDataArr = CDBManager().getpublicationFromDB() as [AnyObject]
                 DispatchQueue.main.async {
@@ -36,9 +43,7 @@ class HomeFileViewController: UIViewController,URLSessionDelegate, URLSessionTas
                     //self.customAlertController.hideActivityIndicator(uiView: self.view)
                 }
                 return
-                
             }
-            
        // CDBManager().unitsDeleteFromDB()
         let userId = NetworkAPI.userID() ?? ""
         let parameters = ["user_id": userId]
@@ -101,9 +106,28 @@ class HomeFileViewController: UIViewController,URLSessionDelegate, URLSessionTas
     }
     
     @objc func handleLongGesture(gesture: UILongPressGestureRecognizer) {
+        
+        /*
+        switch(gesture.state) {
+        case .began:
+            guard let selectedIndexPath = self.collectionView.indexPathForItem(at: gesture.location(in: self.collectionView)) else {
+                return
+            }
+            self.collectionView.beginInteractiveMovementForItem(at: selectedIndexPath)
+        case .changed:
+            self.collectionView.updateInteractiveMovementTargetPosition(gesture.location(in: gesture.view!))
+        case .ended:
+            self.collectionView.endInteractiveMovement()
+          
+            self.collectionView.reloadData()
+        default:
+            self.collectionView.cancelInteractiveMovement()
+        }
+        */
+        
         if gesture.state != .ended {
             return
-        }
+          }
         
         let point = gesture.location(in: self.collectionView)
         let indexPath = self.collectionView.indexPathForItem(at: point)
@@ -244,7 +268,9 @@ class HomeFileViewController: UIViewController,URLSessionDelegate, URLSessionTas
                     cell.progressBar.isHidden = false
                     cell.progressBar.progress = 0
                     cell.activitiView.isHidden = false
+                    cell.bringSubview(toFront: cell.activitiView)
                     cell.activitiView.startAnimating()
+                    
                  }
                  var progressDoubl:Float? = 0
                  var countHit:Int = 0
@@ -329,9 +355,12 @@ class HomeFileViewController: UIViewController,URLSessionDelegate, URLSessionTas
     }
     
     @IBAction func fileBtnClick(_ sender: UIButton) {
+      
         let story = UIStoryboard.init(name: "Main", bundle: nil)
-        let searchViewController  =  story.instantiateViewController(withIdentifier: "ScreenViewController") as! ScreenViewController
-        self.navigationController?.pushViewController(searchViewController, animated: true)
+        let tabViewController  =  story.instantiateViewController(withIdentifier: "TabViewController") as! TabViewController
+        self.navigationController?.pushViewController(tabViewController, animated: true)
+        
+       
     }
 /*
     lazy var session : URLSession = {

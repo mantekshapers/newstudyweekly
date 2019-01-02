@@ -14,6 +14,8 @@ class SearchCell: UITableViewCell {
     
     @IBOutlet weak var imgView_search: UIImageView!
     
+    @IBOutlet weak var activity_cellView: UIActivityIndicatorView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -8,8 +8,17 @@
 
 import UIKit
 
-class Q_open_Cell: UITableViewCell {
-
+//protocol QopenDelegate:class{
+//    func openPlayBtnClick()
+//    }
+//}
+ class Q_open_Cell: UITableViewCell {
+    
+    @IBOutlet weak var btn_playOpen: UIButton!
+    
+    @IBOutlet weak var lbl_openQ: UILabel!
+    
+    @IBOutlet weak var txtField_open: UITextField!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -19,6 +28,10 @@ class Q_open_Cell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
-    }
+     }
+    
+    
+    
+    
     
 }

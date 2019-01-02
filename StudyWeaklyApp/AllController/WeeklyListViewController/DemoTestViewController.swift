@@ -48,9 +48,8 @@ class DemoTestViewController: UIViewController {
           txtView.attributedText = CustomController.stringFromHtml(string: getContentStr)
        // txtView.text = getContentStr
         // Do any additional setup after loading the view.
-        
            print("attributedTemp1\(attributedTemp1)")
-    }
+       }
     
     
     @IBAction func playBtnClick(_ sender: UIButton) {
@@ -74,7 +73,6 @@ class DemoTestViewController: UIViewController {
             counter = 0
             locationInt = 0
             gameTimer.invalidate()
-        
             return
         }
         
@@ -114,7 +112,6 @@ class DemoTestViewController: UIViewController {
         TextToSpeechClass().startSpeechMethod(getWord:wordStr)
         locationInt = (locationInt + 1) + wordStr.count
         counter += 1
-    
     }
     @IBAction func backBtncLICK(_ sender: UIButton) {
         

@@ -7,9 +7,10 @@
 //
 
 import UIKit
-
-class CommonDownloadClass: NSObject ,URLSessionDelegate,URLSessionDownloadDelegate,URLSessionTaskDelegate{
-    
+import Photos
+class CommonDownloadClass: NSObject{
+   
+  //  URLSessionDelegate,URLSessionDownloadDelegate,URLSessionTaskDelegate
       var task : URLSessionTask!
     class var sharedInstanceDownload: CommonDownloadClass {
         struct Static {
@@ -18,6 +19,100 @@ class CommonDownloadClass: NSObject ,URLSessionDelegate,URLSessionDownloadDelega
         return Static.instance
     }
     
+    
+    
+    func saveVideo(getMediDict:[String:AnyObject],completion: @escaping (String?, Error?) -> Void) {
+        
+        let mediaSource = getMediDict["media_source"] as! String
+        let mediaUrlStr = "https://" +  CustomController.backSlaceRemoveFromUrl(urlStr: mediaSource)
+        
+       // http://freetone.org/ring/stan/iPhone_5-Alarm.mp3
+        if let audioUrl = URL(string: mediaUrlStr) {
+            
+            // then lets create your document folder url
+            let documentsDirectoryURL =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+            
+            // lets create your destination file url
+            let destinationUrl = documentsDirectoryURL.appendingPathComponent(audioUrl.lastPathComponent)
+            print(destinationUrl)
+            
+            // to check if it exists before downloading it
+            if FileManager.default.fileExists(atPath: destinationUrl.path) {
+                print("The file already exists at path")
+                
+                // if the file doesn't exist
+            } else {
+                
+                // you can use NSURLSession.sharedSession to download the data asynchronously
+                URLSession.shared.downloadTask(with: audioUrl, completionHandler: { (location, response, error) -> Void in
+                    guard let location = location, error == nil else { return }
+                    do {
+                        // after downloading your file you need to move it to your destination url
+                        try FileManager.default.moveItem(at: location, to: destinationUrl)
+                        print("File moved to documents folder")
+                        CDBManager().addSearchMediaInDB(getSearchDict: getMediDict)
+                        completion("success",nil)
+                    } catch let error as NSError {
+                        print(error.localizedDescription)
+                    }
+                }).resume()
+            }
+        }
+        
+        /*
+        DispatchQueue.global(qos: .userInitiated).async {
+            guard let documentsDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
+            if !FileManager.default.fileExists(atPath: documentsDirectoryURL.appendingPathComponent(url.lastPathComponent).path) {
+                URLSession.shared.downloadTask(with: url) { (location, response, error) -> Void in
+                    guard let location = location else { return }
+                    let destinationURL = documentsDirectoryURL.appendingPathComponent(response?.suggestedFilename ?? url.lastPathComponent)
+                    
+                    do {
+                        try FileManager.default.moveItem(at: location, to: destinationURL)
+                        PHPhotoLibrary.requestAuthorization({ (authorizationStatus: PHAuthorizationStatus) -> Void in
+                            if authorizationStatus == .authorized {
+                                PHPhotoLibrary.shared().performChanges({
+                                    PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: destinationURL)}) { completed, error in
+                                        DispatchQueue.main.async {
+                                            if completed {
+                                              //  self.view.makeToast(NSLocalizedString("Video Saved!", comment: "Video Saved!"), duration: 3.0, position: .center)
+                                            } else {
+                                                print(error!)
+                                            }
+                                        }
+                                }
+                            }
+                        })
+                    } catch { print(error) }
+                    
+                    }.resume()
+            } else {
+                print("File already exists at destination url")
+            }
+        }
+        */
+    }
+    
+    
+    func fetchMediaFromDocument(urlStr: String)->URL{
+        
+       // http://freetone.org/ring/stan/iPhone_5-Alarm.mp3
+       // if let audioUrl = URL(string: "http://freetone.org/ring/stan/iPhone_5-Alarm.mp3"){
+        
+        let audioUrl = URL(string: urlStr)
+            // then lets create your document folder url
+            let documentsDirectoryURL =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+            
+            // lets create your destination file url
+        let destinationUrl = documentsDirectoryURL.appendingPathComponent((audioUrl?.lastPathComponent)!)
+            
+            //let url = Bundle.main.url(forResource: destinationUrl, withExtension: "mp3")!
+            return destinationUrl
+        //}
+       
+    }
+    
+    /*
     lazy var session : URLSession = {
         let config = URLSessionConfiguration.default
         config.allowsCellularAccess = false
@@ -52,12 +147,15 @@ class CommonDownloadClass: NSObject ,URLSessionDelegate,URLSessionDownloadDelega
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
         print("completed: error: \(error)")
     }
-    
+
     // this is the only required NSURLSessionDownloadDelegate method
     
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
     
         print("didFinishDownloading")
+        print("did Finish Download==\(location)")
         
     }
+    */
+    
 }

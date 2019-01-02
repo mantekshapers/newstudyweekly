@@ -51,9 +51,9 @@ class WeeklyUnitListVC: UIViewController ,UITableViewDataSource,UITableViewDeleg
                 if getUnitId == getUnitsId {
                     unitArr = (getTemp["units"] as? [AnyObject])!
                     CDBManager().addArticleInDB(getArticleData: unitArr,saveUnitsId: getUnitsId!)
-                }
+                  }
+              }
           }
-        }
         }else{
             
             CDBManager().addArticleInDB(getArticleData: unitArr,saveUnitsId: getUnitId)
@@ -68,6 +68,8 @@ class WeeklyUnitListVC: UIViewController ,UITableViewDataSource,UITableViewDeleg
             self.tblView_unit.reloadData()
         }
         
+       // getUnitId
+        //128061
          let getUserId    = NetworkAPI.userID()
         let postDict = ["unit_id":getUnitId,"user_id": getUserId]
 //        let appdelegate = UIApplication.shared.delegate as? AppDelegate
@@ -82,9 +84,9 @@ class WeeklyUnitListVC: UIViewController ,UITableViewDataSource,UITableViewDeleg
                 DispatchQueue.main.async {
 //                    self.customAlertController.showCustomAlert3(getMesage: getDict["responseError"] as! String, getView: self)
 //                    appdelegate?.hideLoader()
-                }
+                 }
                 return
-             }
+              }
            
             let getDict = respose as? [String:String]
             let avaibleStr = getDict!["valueKey"]
@@ -113,24 +115,24 @@ class WeeklyUnitListVC: UIViewController ,UITableViewDataSource,UITableViewDeleg
         DispatchQueue.main.async {
             print("articleDataArr===\(self.articleDataArr)")
             self.tblView_unit.reloadData()
-        }
+          }
        
-    }
+      }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 44
-    }
+       }
     // number of rows in table view
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return unitArr.count
-    }
+       }
     // create a cell for each table view row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell: WeeklyUnitListCell! = tblView_unit.dequeueReusableCell(withIdentifier: "WeeklyUnitListCell") as? WeeklyUnitListCell
         if cell == nil {
             tblView_unit.register(UINib(nibName: "WeeklyUnitListCell", bundle: nil), forCellReuseIdentifier: "WeeklyUnitListCell")
             cell = tblView_unit.dequeueReusableCell(withIdentifier: "WeeklyUnitListCell") as? WeeklyUnitListCell
-        }
+           }
          cell.imgView.image = UIImage(named: "circle-uncheck")
         if  self.articleDataArr.count>0{
             let getTmpDict = self.articleDataArr[indexPath.row] as AnyObject
@@ -138,9 +140,8 @@ class WeeklyUnitListVC: UIViewController ,UITableViewDataSource,UITableViewDeleg
             if getReadStr == "readed" {
                  cell.imgView.image = UIImage(named: "circle-check")
           //  cell.backgroundColor = CustomBGColor.GreenCellBGColor
-            }
-        }
-       
+             }
+         }
         let getDict = unitArr[indexPath.row] as! [String:AnyObject]
         let gettitle = getDict["article_title"] as! String
         cell.lbl_title.text = gettitle
@@ -154,9 +155,7 @@ class WeeklyUnitListVC: UIViewController ,UITableViewDataSource,UITableViewDeleg
         print("You tapped cell number \(indexPath.row).")
            let getDict = unitArr[indexPath.row] as? [String:AnyObject]
            let getArtcleDict =   self.articleDataArr[indexPath.row]  as? [String: AnyObject]
-       
-      
-        
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
         let story = UIStoryboard.init(name: "Main", bundle: nil)
         let weeklyDetailVC  =  story.instantiateViewController(withIdentifier: "WeeklyDetailVC") as! WeeklyDetailVC
         weeklyDetailVC.getUnitDetailDict = getDict
@@ -173,7 +172,8 @@ class WeeklyUnitListVC: UIViewController ,UITableViewDataSource,UITableViewDeleg
     
     @IBAction func testScoreBtnClick(_ sender: UIButton) {
         
-        let getUnitId = getUnitDict["unit_id"] as! String
+       // let getUnitId = getUnitDict["unit_id"] as! String
+        let getUnitId = getUnitDict["test_id"] as! String
         let story = UIStoryboard.init(name: "Main", bundle: nil)
         let scoreViewController  =  story.instantiateViewController(withIdentifier: "ScoreViewController") as! ScoreViewController
         scoreViewController.getUnitId = getUnitId

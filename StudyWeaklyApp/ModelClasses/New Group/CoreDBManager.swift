@@ -11,22 +11,24 @@ import UIKit
 import CoreData
 class CDBManager {
       static let sharedInstance = CDBManager()
-    let appDelegate = UIApplication.shared.delegate as? AppDelegate
-    func getDataFromDB()->[AnyObject] {
+      let appDelegate = UIApplication.shared.delegate as? AppDelegate
+      func getDataFromDB()->[AnyObject] {
        var dataArr = [AnyObject]()
        let managedContext = appDelegate?.persistentContainer.viewContext
         let userFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "USER")
         userFetch.returnsObjectsAsFaults = false
         do {
-            let result = try managedContext?.fetch(userFetch)
-            for data in result as! [NSManagedObject] {
+             let result = try managedContext?.fetch(userFetch)
+             for data in result as! [NSManagedObject] {
                 var dataSetDict = [String:AnyObject]()
                 dataSetDict["name"] = data.value(forKey: "userName") as AnyObject
                 dataSetDict["userId"] = data.value(forKey: "userId") as AnyObject
+                 dataSetDict["userEmail"] = data.value(forKey: "userEmail") as AnyObject
+                 dataSetDict["userRole"] = data.value(forKey: "userRole") as AnyObject
                  dataSetDict["userPassword"] = data.value(forKey: "userPassword") as AnyObject
-                dataSetDict["points"] = data.value(forKey: "userPoints") as AnyObject
-                dataArr.append(dataSetDict as AnyObject)
-              }
+                 dataSetDict["points"] = data.value(forKey: "userPoints") as AnyObject
+                 dataArr.append(dataSetDict as AnyObject)
+               }
          } catch {
             print("Failed")
            }
@@ -118,15 +120,15 @@ class CDBManager {
             }
         } catch {
             print("Failed")
-        }
+         }
         
         do {
             try managedContext?.save()
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
-        }
+         }
         
-    }
+      }
     
     func addCDBData(object: [String:Any]) {
        //  deleteAllCDB()
@@ -135,6 +137,8 @@ class CDBManager {
        // let userName = object["username"] as? String
         let userId = getDict!["user_id"] as? String
         let userPassword = getDict!["student_password"] as? String
+        let userRoles = getDict!["role"] as? String
+         let userEmails = getDict!["email"] as? String
         let userPonits = getDict!["points"] as? String
         let managedContext = appDelegate?.persistentContainer.viewContext
         let userEntity = NSEntityDescription.entity(forEntityName: "USER", in: managedContext!)!
@@ -145,18 +149,19 @@ class CDBManager {
          user.setValue(getName, forKey: "userName")
          user.setValue(userPassword, forKey: "userPassword")
          user.setValue(userPonits, forKey: "userPoints")
+         user.setValue(userRoles, forKey: "userRole")
+         user.setValue(userEmails, forKey: "userEmail")
             do {
                 try managedContext?.save()
             } catch let error as NSError {
                 print("Could not save. \(error), \(error.userInfo)")
-            }
+             }
         }else{
             print("already save. in db")
             
-        }
+         }
         
-    }
-    
+     }
     
     // here is add unit data in core database
     func addUnitsCDBData(publicationIdStr:String,object: [AnyObject]) {
@@ -179,10 +184,6 @@ class CDBManager {
                 print("Could not save. \(error), \(error.userInfo)")
               }
        }
-    
-    
-    
-    
     
     func getUnitsDataFromUnitsTable(searchUnits:String)->[AnyObject]{
         var unitArr = [AnyObject]()
@@ -460,7 +461,7 @@ class CDBManager {
               let artManagedContext = appDelegate?.persistentContainer.viewContext
               let articleFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "ArticlesTable")
               articleFetch.returnsObjectsAsFaults = false
-        do {
+          do {
               let result = try artManagedContext?.fetch(articleFetch)
             //  print("fethc publication==\(result)")
             for data in result as! [NSManagedObject] {
@@ -468,7 +469,6 @@ class CDBManager {
                 let unit_idTmp = data.value(forKey: "unit_id") as? String
                 let userIdTmp = data.value(forKey: "userId") as? String
                 if getUserId == userIdTmp && getTmpArId == article_idTmp && getTmpUnitId == unit_idTmp {
-                    
                     data.setValue(article_idTmp, forKey: "article_id")
                     data.setValue(unit_idTmp, forKey: "unit_id")
                     data.setValue(userIdTmp, forKey: "userId")
@@ -487,18 +487,19 @@ class CDBManager {
         
      }
     
+    
     func getArticleData(getUnitsId:String) ->[AnyObject]{
           var arData = [AnyObject]()
           let artManagedContext = appDelegate?.persistentContainer.viewContext
         
-        let articleFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "ArticlesTable")
-        articleFetch.returnsObjectsAsFaults = false
-        do {
-            let result = try artManagedContext?.fetch(articleFetch)
-            for data in result as! [NSManagedObject] {
+         let articleFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "ArticlesTable")
+         articleFetch.returnsObjectsAsFaults = false
+         do {
+             let result = try artManagedContext?.fetch(articleFetch)
+             for data in result as! [NSManagedObject] {
                  let unit_idTmp = data.value(forKey: "unit_id") as? String
                 
-                print(" units ==\(getUnitsId) & unit ==\(unit_idTmp)")
+                 print(" units ==\(getUnitsId) & unit ==\(unit_idTmp)")
                 if getUnitsId == unit_idTmp {
                     
                 var arDict = [String:AnyObject]()
@@ -524,6 +525,322 @@ class CDBManager {
    return arData
      }
     
+
+    func addQuestionsInDB(articleId:String,questDict:[String:AnyObject]){
+        
+       // Now working on question
+         let aStr = questDict["a"] as? String
+         let bStr = questDict["b"] as? String
+         let cStr = questDict["c"] as? String
+         let dStr = questDict["d"] as? String
+         let articleIdStr = questDict["article_id"] as? String
+        let answerStr = questDict["answer"] as? String
+        let answerSelectStr = questDict["selectAns"] as? String
+        let difficultyStr = questDict["difficulty"] as? String
+        let typeStr = questDict["type"] as? String
+        let points_possible = questDict["points_possible"] as? Int
+        let questionStr = questDict["question"] as? String
+        let questionIdStr = questDict["question_id"] as? String
+      
+        let managedContext = appDelegate?.persistentContainer.viewContext
+        
+        let QuestionsEntity = NSEntityDescription.entity(forEntityName: "QuestionsTable", in: (managedContext)!)!
+        /*
+        let questionsFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "QuestionsTable")
+        //questionsFetch.fetchLimit = 1
+        let predicate = NSPredicate(format: "article_id = %@",articleId)
+        questionsFetch.predicate = predicate
+        
+        //articleFetch.returnsObjectsAsFaults = false
+        do {
+            let result = try managedContext?.fetch(questionsFetch) as? [NSManagedObject]
+            if (result?.count)!>0{
+                var updateCheck:String?  = "insert"
+                for i in 0..<(result?.count)! {
+                    var qDictTMP = [String:AnyObject]()
+                    let qDict = result![i] as NSManagedObject
+                  
+                   let questionIdTmp1 = qDict.value(forKey: "question_id") as? String
+                     //let articleIdStr = questDict["article_id"] as? String
+                    if questionIdStr == questionIdTmp1 {
+                        updateCheck = "NotInsert"
+//                     qDict["a"] = qDict.value(forKey: "a") as AnyObject
+//                     qDict["b"] = qDict.value(forKey: "b") as AnyObject
+//                     qDict["c"] = qDict.value(forKey: "c") as AnyObject
+//                     qDict["d"] = qDict.value(forKey: "d") as AnyObject
+//                     qDict["article_id"] = qDict.value(forKey: "article_id") as AnyObject
+//                     qDict["answer"] = qDict.value(forKey: "answer") as AnyObject
+//                     qDict["selectAns"] = qDict.value(forKey: "selectAns") as AnyObject
+//                     qDict["difficulty"] = qDict.value(forKey: "difficulty") as AnyObject
+//                     qDict["type"] = qDict.value(forKey: "type") as AnyObject
+//                    qDict["points_possible"] = qDict.value(forKey: "points_possible") as AnyObject
+//                     qDict["question"] = qDict.value(forKey: "question") as AnyObject
+//                     qDict["question_id"] = qDict.value(forKey: "question_id") as AnyObject
+                        
+                       // qDict.setValue(, forKey: <#T##String#>)
+                        // qDict["selectAns"] = qDict.value(forKey: "selectAns") as AnyObject
+                        qDict.setValue(answerSelectStr, forKey: "selectAns")
+                        
+                }
+        
+                }
+                if updateCheck == "insert"{
+                    
+                    let questionObject = NSManagedObject(entity: QuestionsEntity, insertInto: managedContext)
+                    print("fethc == publication==\(result)")
+                    questionObject.setValue(articleIdStr, forKey: "article_id")
+                    questionObject.setValue(answerStr, forKey: "answer")
+                    questionObject.setValue(answerSelectStr, forKey: "selectAns")
+                    questionObject.setValue(aStr, forKey: "a")
+                    questionObject.setValue(bStr, forKey: "b")
+                    questionObject.setValue(cStr, forKey: "c")
+                    questionObject.setValue(dStr, forKey: "d")
+                    questionObject.setValue(difficultyStr, forKey: "difficulty")
+                    questionObject.setValue(typeStr, forKey: "type")
+                    questionObject.setValue(points_possible, forKey: "points_possible")
+                    questionObject.setValue(questionStr, forKey: "question")
+                    questionObject.setValue(questionIdStr, forKey: "question_id")
+                    
+                    do {
+                        try managedContext?.save()
+                    } catch let error as NSError {
+                        print("Could not save. \(error), \(error.userInfo)")
+                    }
+                }
+                
+                return
+            }
+          */
+            let questionObject = NSManagedObject(entity: QuestionsEntity, insertInto: managedContext)
+        
+            questionObject.setValue(articleIdStr, forKey: "article_id")
+            questionObject.setValue(answerStr, forKey: "answer")
+            questionObject.setValue(answerSelectStr, forKey: "selectAns")
+            questionObject.setValue(aStr, forKey: "a")
+            questionObject.setValue(bStr, forKey: "b")
+            questionObject.setValue(cStr, forKey: "c")
+            questionObject.setValue(dStr, forKey: "d")
+            questionObject.setValue(difficultyStr, forKey: "difficulty")
+            questionObject.setValue(typeStr, forKey: "type")
+           questionObject.setValue(points_possible, forKey: "points_possible")
+            questionObject.setValue(questionStr, forKey: "question")
+            questionObject.setValue(questionIdStr, forKey: "question_id")
+            
+            do {
+                try managedContext?.save()
+            } catch let error as NSError {
+                print("Could not save. \(error), \(error.userInfo)")
+            }
+            
+      // }
+          //  catch {
+//            print("Failed")
+//        }
+        
+    }
+    
+    
+    
+    func fetchArticleQstMethod(articlesId:String)->[AnyObject]{
+        
+        var qFetchQuestionArr = [AnyObject]()
+        let managedContext = appDelegate?.persistentContainer.viewContext
+        
+        //let QuestionsEntity = NSEntityDescription.entity(forEntityName: "QuestionsTable", in: (managedContext)!)!
+        
+        let questionsFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "QuestionsTable")
+        //questionsFetch.fetchLimit = 1
+        let predicate = NSPredicate(format: "article_id = %@",articlesId)
+        questionsFetch.predicate = predicate
+        
+        //articleFetch.returnsObjectsAsFaults = false
+        do {
+            let result = try managedContext?.fetch(questionsFetch) as? [NSManagedObject]
+            if (result?.count)!>0{
+                for i in 0..<(result?.count)! {
+                    var qDictTmp = [String:AnyObject]()
+                    let qDict = result![i]
+                    
+                   // let questionIdTmp = qDict.value(forKey: "question_id") as? String
+                    
+                    qDictTmp["a"] = qDict.value(forKey: "a") as AnyObject
+                    qDictTmp["b"] = qDict.value(forKey: "b") as AnyObject
+                    qDictTmp["c"] = qDict.value(forKey: "c") as AnyObject
+                    qDictTmp["d"] = qDict.value(forKey: "d") as AnyObject
+                    qDictTmp["article_id"] = qDict.value(forKey: "article_id") as AnyObject
+                    qDictTmp["answer"] = qDict.value(forKey: "answer") as AnyObject
+                    qDictTmp["selectAns"] = qDict.value(forKey: "selectAns") as AnyObject
+                    qDictTmp["difficulty"] = qDict.value(forKey: "difficulty") as AnyObject
+                    qDictTmp["type"] = qDict.value(forKey: "type") as AnyObject
+                   qDictTmp["points_possible"] = qDict.value(forKey: "points_possible") as AnyObject
+                    qDictTmp["question"] = qDict.value(forKey: "question") as AnyObject
+                    qDictTmp["question_id"] = qDict.value(forKey: "question_id") as AnyObject
+                    
+                    qFetchQuestionArr.append(qDictTmp as AnyObject)
+                    
+                    
+                }
+            }
+            
+        }catch {
+            print("Failed")
+        }
+        
+        
+        return qFetchQuestionArr
+        
+        
+    }
+    
+    
+    func updateArticleOfQuestionMethod(articleId:String,questDict:[String:AnyObject]){
+         let answerSelectStr = questDict["selectAns"] as? String
+         let questionIdStr = questDict["question_id"] as? String
+         let managedContext = appDelegate?.persistentContainer.viewContext
+        let questionsFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "QuestionsTable")
+        //questionsFetch.fetchLimit = 1
+        let predicate = NSPredicate(format: "article_id = %@",articleId)
+        questionsFetch.predicate = predicate
+        
+        //articleFetch.returnsObjectsAsFaults = false
+        do {
+            let result = try managedContext?.fetch(questionsFetch) as? [NSManagedObject]
+            if (result?.count)!>0{
+                for i in 0..<(result?.count)! {
+                    let qDict = result![i] as NSManagedObject
+                    let questionIdTmp1 = qDict.value(forKey: "question_id") as? String
+                    //let articleIdStr = questDict["article_id"] as? String
+                    if questionIdStr == questionIdTmp1 {
+                     
+                        //                     qDict["a"] = qDict.value(forKey: "a") as AnyObject
+                        //                     qDict["b"] = qDict.value(forKey: "b") as AnyObject
+                        //                     qDict["c"] = qDict.value(forKey: "c") as AnyObject
+                        //                     qDict["d"] = qDict.value(forKey: "d") as AnyObject
+                        //                     qDict["article_id"] = qDict.value(forKey: "article_id") as AnyObject
+                        //                     qDict["answer"] = qDict.value(forKey: "answer") as AnyObject
+                        //                     qDict["selectAns"] = qDict.value(forKey: "selectAns") as AnyObject
+                        //                     qDict["difficulty"] = qDict.value(forKey: "difficulty") as AnyObject
+                        //                     qDict["type"] = qDict.value(forKey: "type") as AnyObject
+                        //                    qDict["points_possible"] = qDict.value(forKey: "points_possible") as AnyObject
+                        //                     qDict["question"] = qDict.value(forKey: "question") as AnyObject
+                        //                     qDict["question_id"] = qDict.value(forKey: "question_id") as AnyObject
+                        
+                        // qDict.setValue(, forKey: <#T##String#>)
+                        // qDict["selectAns"] = qDict.value(forKey: "selectAns") as AnyObject
+                        qDict.setValue(answerSelectStr, forKey: "selectAns")
+                        
+                    }
+                    
+                }
+            }
+            
+        } catch {
+                        print("Failed")
+            }
+        
+        
+    }
+    
+    
+    // ------------- add search media in DB --------------
+    
+    func addSearchMediaInDB(getSearchDict:[String:AnyObject]){
+        
+         let getMediaId = getSearchDict["media_id"] as? String
+          let media_nameTmp = getSearchDict["media_name"] as? String
+          let media_splashTmp = getSearchDict["media_splash"] as? String
+          let media_descriptionTmp = getSearchDict["media_description"] as? String
+          let media_sourceTmp = getSearchDict["media_source"] as? String
+          //let downloadTmp = getSearchDict["download"] as? String
+         // let getMediaId = getSearchDict["userId"] as? String
+        let mediaSource = getSearchDict["media_source"] as! String
+        let mediaUrlStr = "https://" +  CustomController.backSlaceRemoveFromUrl(urlStr: mediaSource)
+        
+         let managedContext = appDelegate?.persistentContainer.viewContext
+        
+        let searchMediaEntity = NSEntityDescription.entity(forEntityName: "SearchMedia", in: (managedContext)!)!
+        
+        let articleFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "SearchMedia")
+         articleFetch.fetchLimit = 1
+        let predicate = NSPredicate(format: "media_id = %@",getMediaId!)
+        articleFetch.predicate = predicate
+       
+        //articleFetch.returnsObjectsAsFaults = false
+        do {
+            let result = try managedContext?.fetch(articleFetch) as? [NSManagedObject]
+            if (result?.count)!>0{
+                return
+              }
+            let currentDate = DateModel().saveCurrentDate()
+            
+              let searchMediaObject = NSManagedObject(entity: searchMediaEntity, insertInto: managedContext)
+             print("fethc publication==\(result)")
+             searchMediaObject.setValue("download", forKey: "download")
+            searchMediaObject.setValue(getMediaId, forKey: "media_id")
+             searchMediaObject.setValue(media_nameTmp, forKey: "media_name")
+             searchMediaObject.setValue(media_splashTmp, forKey: "media_splash")
+             searchMediaObject.setValue(media_descriptionTmp, forKey: "media_description")
+             searchMediaObject.setValue(mediaUrlStr, forKey: "media_source")
+             searchMediaObject.setValue(NetworkAPI.userID(), forKey: "userId")
+             searchMediaObject.setValue(currentDate, forKey: "dateCreate")
+           
+
+            do {
+                try managedContext?.save()
+            } catch let error as NSError {
+                print("Could not save. \(error), \(error.userInfo)")
+            }
+            
+        }catch {
+            print("Failed")
+        }
+        
+    }
+    
+    
+    func getSearchMedia(getSearchDict:[String:AnyObject],searchKey:String)->[AnyObject]{
+        
+        var searchMediaAr = [AnyObject]()
+       // media_id
+       
+        let managedContext = appDelegate?.persistentContainer.viewContext
+        
+        let searchFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "SearchMedia")
+        if searchKey != "AllFetch"{
+        let getMediaId = getSearchDict["media_id"] as? String
+         searchFetch.fetchLimit = 1
+         let predicate = NSPredicate(format: "media_id = %@",getMediaId!)
+         searchFetch.predicate = predicate
+          }
+        searchFetch.returnsObjectsAsFaults = false
+        do {
+            
+            let result = try managedContext?.fetch(searchFetch) as? [NSManagedObject]
+            if (result?.count)!>0{
+                for i in 0..<(result?.count)! {
+                var dictTmp = [String:AnyObject]()
+                let searchObject = result![i] as NSManagedObject
+                print("fethc publication==\(result)")
+                  dictTmp["download"] = searchObject.value(forKey: "download") as AnyObject
+                dictTmp["media_id"] = searchObject.value(forKey: "media_id") as AnyObject
+                 dictTmp["media_name"] = searchObject.value(forKey: "media_name") as AnyObject
+                 dictTmp["media_splash"] = searchObject.value(forKey: "media_splash") as AnyObject
+                 dictTmp["media_description"] = searchObject.value(forKey: "media_description") as AnyObject
+                 dictTmp["media_source"] = searchObject.value(forKey: "media_source") as AnyObject
+                dictTmp["userId"] = searchObject.value(forKey: "userId") as AnyObject
+                dictTmp["dateCreate"] = searchObject.value(forKey: "dateCreate") as AnyObject
+                searchMediaAr.append(dictTmp as AnyObject)
+            }
+            }
+            
+         
+            
+        }catch {
+            print("Failed")
+        }
+        return searchMediaAr
+        
+    }
     func podMediaInDB(podMediaArr:[AnyObject]){
         
         let getUserId    = NetworkAPI.userID()
@@ -694,6 +1011,50 @@ class CDBManager {
     
 
     
+    func updateUserRevPointCDBData(revPoints:String) {
+         let getUserId    = NetworkAPI.userID()
+        var userEnterData:String? = "user exit in db"
+        let managedContext = appDelegate?.persistentContainer.viewContext
+        let userFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "USER")
+        // let results: Results<Item> = database.objects(Item.self)
+        /* Let’s work on our request. We want to fetch just a one record:
+         
+         userFetch.fetchLimit = 1
+         and only when a name is “John”:
+         
+         userFetch.predicate = NSPredicate(format: "name = %@", "John")
+         Moreover, we want to sort by an email address with ascending order:
+         
+         userFetch.sortDescriptors = [NSSortDescriptor.init(key: "email", ascending: true)]
+         */
+        userFetch.fetchLimit = 1
+        let predicate = NSPredicate(format: "userId = %@",getUserId!)
+        userFetch.predicate = predicate
+        userFetch.returnsObjectsAsFaults = false
+        do {
+            let result = try managedContext?.fetch(userFetch)
+            for data in result as! [NSManagedObject] {
+                //let getUserId = data.value(forKey: "userId") as? String
+                let revUserPoints = data.value(forKey: "userPoints") as? String
+                var revPointInt = Int(revUserPoints!)
+                revPointInt = revPointInt! + Int(revPoints)!
+                data.setValue(String(revPointInt!), forKey: "userPoints")
+
+                print("===Rev point=\(revPointInt)=Array==\(result!)")
+                do {
+                    try managedContext?.save()
+                } catch {
+                    print ("There was an error")
+                }
+            }
+        } catch {
+            
+            print("Failed")
+        }
+        
+       // return userEnterData!
+    }
+    
     func updateCDBData(userId:String)->String {
         var userEnterData:String? = "user exit in db"
         let managedContext = appDelegate?.persistentContainer.viewContext
@@ -815,6 +1176,9 @@ class CDBManager {
         }
        
     }
+    
+    
+    //----------------- add Search media
     
     func deleteFromCDB(object: Item) {
         
