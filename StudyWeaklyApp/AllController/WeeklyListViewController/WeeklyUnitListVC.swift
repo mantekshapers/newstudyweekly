@@ -9,211 +9,377 @@
 import UIKit
 import AVKit
 import AVFoundation
-class WeeklyUnitListVC: UIViewController ,UITableViewDataSource,UITableViewDelegate,UIApplicationDelegate{
+class WeeklyUnitListVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIApplicationDelegate
+{
+    let customAlertController = CustomController()
     
-      let customAlertController = CustomController()
     @IBOutlet weak var lbl_headerTitle: UILabel!
-    
     @IBOutlet weak var tblView_unit: UITableView!
     
-    @IBOutlet weak var testView_constHeight: NSLayoutConstraint!
+    @IBOutlet weak var viewTestBottom : UIView!
+    @IBOutlet weak var viewMenu : UIView!
+    @IBOutlet weak var btnSideMenu : UIButton!
+    @IBOutlet weak var btnInitial : UIButton!
+    @IBOutlet weak var btnSetting : UIButton!
+    @IBOutlet weak var btnCoins : UIButton!
+    @IBOutlet weak var btnLogout : UIButton!
+    @IBOutlet weak var lblName : UILabel!
+    @IBOutlet weak var lblCoins : UILabel!
+    @IBOutlet weak var lblRole : UILabel!
+    @IBOutlet weak var viewTest : UIView!
+    @IBOutlet weak var viewScore : UIView!
+    @IBOutlet weak var viewBottom : UIView!
+    @IBOutlet weak var btnBack : UIButton!
+    @IBOutlet weak var btnNext : UIButton!
+    @IBOutlet weak var btnCopy : UIButton!
+    @IBOutlet weak var btnSearch : UIButton!
+    @IBOutlet weak var btnPlay : UIButton!
+
+    @IBOutlet weak var btnTest : UIButton!
+    @IBOutlet weak var btnScore : UIButton!
+
     var unitArr = [AnyObject]()
-     var getUnitDataArr = [AnyObject]()
+    var getUnitDataArr = [AnyObject]()
     var articleDataArr = [AnyObject]()
     var getUnitDict:[String:AnyObject] = [:]
     var typeGetTitle:String? = nil
     
-    
-    override func viewDidLoad() {
+    //MARK: - UIView Life Cycle
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
-        
-//        "article_id" = 27327;
-//        content = "grown. What might have been different if the Russians and the Aleut had shared STARTOFFOUNDTEXTpublicENDOFFOUNDTEXT space fairly? Where in your community is there a debate over STARTOFFOUNDTEXTpublicENDOFFOUNDTEXT land? How should";
-//        "publication_id" = 6388;
-//        title = "Vitus Bering and Russian Colonies in Alaska";
-//        "unit_id" = 6449;
-        
-        self.tblView_unit.dataSource = self
-        self.tblView_unit.delegate = self
-        testView_constHeight.constant = 0
-       // /online/api/v2/app/units?unit_id=127809
-        print("title==\(getUnitDict)")
-        self.lbl_headerTitle?.text = getUnitDict["title"] as? String
-        let getUnitId = getUnitDict["unit_id"] as! String
-        if typeGetTitle != "FromSearch"{
-          for i in 0..<getUnitDataArr.count {
-          let getDict1 = getUnitDataArr[i] as! [String: AnyObject]
-          let getArr = getDict1["units"] as! [AnyObject]
-            for j in 0..<getArr.count {
-                let getTemp = getArr[j]
-                let getUnitsId = getTemp["unit_id"] as? String
-                print("unitId\(getUnitsId)")
-                if getUnitId == getUnitsId {
-                    unitArr = (getTemp["units"] as? [AnyObject])!
-                    CDBManager().addArticleInDB(getArticleData: unitArr,saveUnitsId: getUnitsId!)
-                  }
-              }
-          }
-        }else{
-            
-            CDBManager().addArticleInDB(getArticleData: unitArr,saveUnitsId: getUnitId)
-        }
-        
-        
-      //  let getUnitId = getUnitDict["unit_id"] as! String
-       // self.articleDataArr = CDBManager().getArticleData(getUnitsId: getUnitId)
-        
-        DispatchQueue.main.async {
-            print("articleDataArr===\(self.articleDataArr)")
-            self.tblView_unit.reloadData()
-        }
-        
-       // getUnitId
-        //128061
-         let getUserId    = NetworkAPI.userID()
-        let postDict = ["unit_id":getUnitId,"user_id": getUserId]
-//        let appdelegate = UIApplication.shared.delegate as? AppDelegate
-//        DispatchQueue.main.async {
-//             appdelegate?.showLoader()
-//        }
 
-        CommonWebserviceClass.makeHTTPGetRequest(path: BaseUrlOther.baseURLOther + WebserviceName.testAvailable, postString: postDict as! [String : String], httpMethodName: "GET") { (respose, boolTrue) in
-            
-            if boolTrue == false{
-                let getDict = respose as! [String:AnyObject]
-                DispatchQueue.main.async {
-//                    self.customAlertController.showCustomAlert3(getMesage: getDict["responseError"] as! String, getView: self)
-//                    appdelegate?.hideLoader()
-                 }
-                return
-              }
-           
-            let getDict = respose as? [String:String]
-            let avaibleStr = getDict!["valueKey"]
-           
-            DispatchQueue.main.async {
-              
-                if avaibleStr == "1"{
-                    self.testView_constHeight.constant = 60
-                }else {
-                    self.testView_constHeight.constant = 0
-                    
+        DispatchQueue.main.async {
+            self.customAlertController.showActivityIndicatory(uiView: self.view)
+        }
+        
+        self.navigationController?.navigationBar.isHidden = true
+        self.viewMenu.isHidden = true
+        self.viewTestBottom.isHidden = true
+        
+        self.viewScore.backgroundColor = UIColor.init(red: 186/255, green: 186/255, blue: 186/255, alpha: 1.0)
+        self.viewTest.backgroundColor = UIColor.init(red: 186/255, green: 186/255, blue: 186/255, alpha: 1.0)
+        self.btnScore.isUserInteractionEnabled = false
+        self.btnTest.isUserInteractionEnabled = false
+
+        CommonFunctions.closeMenu(view: viewMenu)
+
+        //Side Menu
+        btnSideMenu.layer.cornerRadius = btnSideMenu.frame.size.width / 2
+        btnSideMenu.layer.masksToBounds = true
+        btnInitial.layer.cornerRadius = btnInitial.frame.size.width / 2
+        btnInitial.layer.masksToBounds = true
+        
+        //Bottom Bar
+        btnBack.isEnabled = true
+        btnNext.isEnabled = false
+        btnCopy.isEnabled = true
+        btnSearch.isEnabled = true
+        btnPlay.isEnabled = false
+        
+        //print("getUnitDict:=\(getUnitDict)")
+        self.lbl_headerTitle?.text = getUnitDict[WSKeyValues.title] as? String
+        self.wsForAssessmentsAvail(unit_id: getUnitDict[WSKeyValues.unit_id] as! String)
+    }
+    
+    override func viewWillAppear(_ animated: Bool)
+    {
+        super.viewWillAppear(animated)
+        DispatchQueue.main.async {
+            self.customAlertController.showActivityIndicatory(uiView: self.view)
+
+            let getUnitId = self.getUnitDict["unit_id"] as! String
+
+            if self.typeGetTitle != "FromSearch"
+            {
+                for i in 0..<self.getUnitDataArr.count
+                {
+                   // let getDict1 = self.getUnitDataArr[i] as! [String: AnyObject]
+                    let getArr = self.getUnitDataArr[i]["units"] as! [AnyObject]
+                   // print("getArr\(getArr)")
+                    if getArr.count > 0
+                    {
+                        for j in 0..<getArr.count
+                        {
+                            let getTemp = getArr[j]
+                            let getUnitsId = getTemp["unit_id"] as! String
+                            //print("unitId\(String(describing: getUnitsId))")
+                            if getUnitId == getUnitsId
+                            {
+                                //print("gwetTemp\(getTemp["units"])")
+                                if (getTemp["units"] == nil || getTemp["units"] is NSNull)
+                                {
+                                    //CustomController.showMessage(message: "No data found")
+
+                                }
+                                else
+                                {
+                                    self.unitArr = (getTemp["units"] as? [AnyObject])!
+                                    
+                                    if self.unitArr.count > 0
+                                    {
+                                        self.viewTestBottom.isHidden = false
+                                        CDBManager().addArticleInDB(getArticleData: self.unitArr,saveUnitsId: getUnitsId)
+                                    }
+                                    else
+                                    {
+                                        self.customAlertController.hideActivityIndicator(uiView: self.view)
+                                        
+                                        self.viewTestBottom.isHidden = true
+                                        let uiAlert = UIAlertController(title: "Studies Weekly", message: "There are currently no articles for this week.We are working to add the articles as soon as possible. Please check back soon.", preferredStyle: UIAlertControllerStyle.alert)
+                                        print("Click of default button")
+                                        uiAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
+                                            print("Click of default button")
+                                            self.customAlertController.hideActivityIndicator(uiView: self.view)
+                                            
+                                        }))
+                                        self.present(uiAlert, animated: true, completion: nil)
+
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
-            print("unit response",getDict)
-             }
- 
-        // Do any additional setup after loading the view.
+            else
+            {
+                CDBManager().addArticleInDB(getArticleData: self.unitArr,saveUnitsId: self.getUnitDict[WSKeyValues.unit_id] as! String)
+            }
         }
-    
-    
-    override func viewDidAppear(_ animated: Bool) {
-          super.viewDidAppear(animated)
-         let getUnitId = getUnitDict["unit_id"] as! String
-        self.articleDataArr = CDBManager().getArticleData(getUnitsId: getUnitId)
-        
-        DispatchQueue.main.async {
-            print("articleDataArr===\(self.articleDataArr)")
-            self.tblView_unit.reloadData()
-          }
-       
-      }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 44
-       }
-    // number of rows in table view
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return unitArr.count
-       }
-    // create a cell for each table view row
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell: WeeklyUnitListCell! = tblView_unit.dequeueReusableCell(withIdentifier: "WeeklyUnitListCell") as? WeeklyUnitListCell
-        if cell == nil {
-            tblView_unit.register(UINib(nibName: "WeeklyUnitListCell", bundle: nil), forCellReuseIdentifier: "WeeklyUnitListCell")
-            cell = tblView_unit.dequeueReusableCell(withIdentifier: "WeeklyUnitListCell") as? WeeklyUnitListCell
-           }
-         cell.imgView.image = UIImage(named: "circle-uncheck")
-        if  self.articleDataArr.count>0{
-            let getTmpDict = self.articleDataArr[indexPath.row] as AnyObject
-            let getReadStr = getTmpDict["read"] as? String ?? ""
-            if getReadStr == "readed" {
-                 cell.imgView.image = UIImage(named: "circle-check")
-          //  cell.backgroundColor = CustomBGColor.GreenCellBGColor
-             }
-         }
-        let getDict = unitArr[indexPath.row] as! [String:AnyObject]
-        let gettitle = getDict["article_title"] as! String
-        cell.lbl_title.text = gettitle
-       // cell.lbl_weekly.text = "Week-" + getWeekly + " " + gettitle
-        return cell
+        self.customAlertController.hideActivityIndicator(uiView: self.view)
     }
-    
-    // method to run when table view cell is tapped
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("You tapped cell number \(indexPath.row).")
-        print("You tapped cell number \(indexPath.row).")
-           let getDict = unitArr[indexPath.row] as? [String:AnyObject]
-           let getArtcleDict =   self.articleDataArr[indexPath.row]  as? [String: AnyObject]
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
-        let story = UIStoryboard.init(name: "Main", bundle: nil)
-        let weeklyDetailVC  =  story.instantiateViewController(withIdentifier: "WeeklyDetailVC") as! WeeklyDetailVC
-        weeklyDetailVC.getUnitDetailDict = getDict
-        weeklyDetailVC.getArticleDetailDict = getArtcleDict
-        self.navigationController?.pushViewController(weeklyDetailVC, animated: true)
-        
-//        let story = UIStoryboard.init(name: "Main", bundle: nil)
-//        let weeklyDetailVC  =  story.instantiateViewController(withIdentifier: "DemoTestViewController") as! DemoTestViewController
-//        weeklyDetailVC.getUnitDetailDict = getDict
-//        weeklyDetailVC.getArticleDetailDict = getArtcleDict
-//        self.navigationController?.pushViewController(weeklyDetailVC, animated: true)
-        
-    }
-    
-    @IBAction func testScoreBtnClick(_ sender: UIButton) {
-        
-       // let getUnitId = getUnitDict["unit_id"] as! String
-        let getUnitId = getUnitDict["test_id"] as! String
-        let story = UIStoryboard.init(name: "Main", bundle: nil)
-        let scoreViewController  =  story.instantiateViewController(withIdentifier: "ScoreViewController") as! ScoreViewController
-        scoreViewController.getUnitId = getUnitId
-        self.navigationController?.pushViewController(scoreViewController, animated: true)
-        
-    }
-    
-    @IBAction func testBtnClick(_ sender: UIButton) {
-        
-      //  http://s3-us-west-2.amazonaws.com/audio-test-questions/2994814.mp3
-        
-         let getUnitId = getUnitDict["unit_id"] as! String
 
-        let story = UIStoryboard.init(name: "Main", bundle: nil)
-        let testViewController  =  story.instantiateViewController(withIdentifier: "TestViewController") as! TestViewController
-        testViewController.getUnitId = getUnitId
-        self.navigationController?.pushViewController(testViewController, animated: true)
-        
-//        let story = UIStoryboard.init(name: "Main", bundle: nil)
-//        let testViewController  =  story.instantiateViewController(withIdentifier: "GestureVC") as! GestureVC
-//        self.navigationController?.pushViewController(testViewController, animated: true)
+    override func viewDidAppear(_ animated: Bool)
+    {
+        super.viewDidAppear(animated)
+        DispatchQueue.main.async {
+        self.customAlertController.showActivityIndicatory(uiView: self.view)
+        }
+
+        let dbArr = CDBManager().getDataFromDB() as [AnyObject]
+        //print(dbArr as AnyObject)
+        if dbArr.count>0
+        {
+            let getDict = dbArr[0] as? [String:AnyObject]
+            //print("getDict:\(String(describing: getDict))")
+            
+            lblName.text = getDict?["name"] as? String ?? ""
+            //print("Name:\(String(describing: lblName.text))")
+            let getPoints = getDict!["points"] as? String ?? ""
+            lblCoins.text = getPoints + " Coins"
+            
+            let userRoleStr = getDict!["userRole"] as? String ?? ""
+            lblRole.text = userRoleStr
+            
+            let strChar = String(Array(self.lblName.text!)[0])
+            //print("strChar:\(strChar)")
+            
+            btnSideMenu.setTitle(strChar, for: .normal)
+            btnInitial.setTitle(strChar, for: .normal)
+        }
+
+        self.articleDataArr = CDBManager().getArticleData(getUnitsId: self.getUnitDict[WSKeyValues.unit_id] as! String)
+        self.tblView_unit.reloadData()
+        self.customAlertController.hideActivityIndicator(uiView: self.view)
     }
     
-    @IBAction func backBtnClick(_ sender: UIButton) {
+    //MARK: - User Define Method
+    func wsForAssessmentsAvail(unit_id: String)
+    {
+        self.customAlertController.showActivityIndicatory(uiView: self.view)
+        let getUserId = NetworkAPI.userID()
+        let postDict = [WSKeyValues.unit_id:unit_id,WSKeyValues.user_id: getUserId]
+        CommonWebserviceClass.makeHTTPGetRequest(path: BaseUrlOther.baseURLOther + WebserviceName.assessmentAvailable, postString: postDict as! [String : String], httpMethodName: "GET") { (respose, boolTrue) in
+            self.customAlertController.showActivityIndicatory(uiView: self.view)
+
+            if boolTrue == false
+            {
+                let getDict = respose as! [String:AnyObject]
+               // print("getDict:\(getDict)")
+                return
+            }
+            
+            let getDict = respose as? [String:String]
+            let avaibleStr = getDict!["valueKey"]
+            DispatchQueue.main.async {
+                self.viewTestBottom.isHidden = false
+            }
+
+            DispatchQueue.main.async {
+                if avaibleStr == "1"
+                {
+                    self.viewScore.backgroundColor = UIColor.init(red: 186/255, green: 186/255, blue: 186/255, alpha: 1.0)
+                    self.viewTest.backgroundColor = UIColor.init(red: 31/255, green: 167/255, blue: 47/255, alpha: 1.0)
+                    
+                    self.btnScore.isUserInteractionEnabled = false
+                    self.btnTest.isUserInteractionEnabled = true
+                }
+                else
+                {
+                    self.viewScore.backgroundColor = UIColor.init(red: 186/255, green: 186/255, blue: 186/255, alpha: 1.0)
+                    self.viewTest.backgroundColor = UIColor.init(red: 186/255, green: 186/255, blue: 186/255, alpha: 1.0)
+                    
+                    self.btnScore.isUserInteractionEnabled = false
+                    self.btnTest.isUserInteractionEnabled = false
+                }
+            }
+            //print("unit response",getDict as Any)
+        }
+    }
+
+    //MARK: - UIButton Methods
+    @IBAction func menuBtnClick(_ sender: UIButton)
+    {
+        sender.isSelected = !sender.isSelected
+        if sender.isSelected
+        {
+            viewMenu.isHidden = false
+            CommonFunctions.openMenu(view: viewMenu)
+        }
+        else
+        {
+            CommonFunctions.closeMenu(view: viewMenu)
+        }
+    }
+    
+    @IBAction func btnSettingsClicked(_ sender: UIButton)
+    {
+        viewMenu.isHidden = true
+        CommonFunctions.closeMenu(view: viewMenu)
+
+        let settingController = self.storyboard?.instantiateViewController(withIdentifier: StoryBoardId.SettingsViewControllerID) as! SettingsViewController
+        self.navigationController?.pushViewController(settingController, animated: true)
+    }
+    
+    @IBAction func btnLogoutClicked(_ sender: UIButton)
+    {
+        viewMenu.isHidden = true
+        CommonFunctions.closeMenu(view: viewMenu)
+
+        CDBManager().deleteAllCDB()
+        NetworkAPI.removeUserId()
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.rootViewCallMethod(getAlertTitle:"sessionExpired")
+    }
+    
+    @IBAction func backBtnClick(_ sender: UIButton)
+    {
         self.navigationController?.popViewController(animated: true)
     }
     
-    override func didReceiveMemoryWarning() {
+    @IBAction func fileBtnClick(_ sender: UIButton)
+    {
+        viewMenu.isHidden = true
+        CommonFunctions.closeMenu(view: viewMenu)
+
+        let tabViewController  =  self.storyboard?.instantiateViewController(withIdentifier: StoryBoardId.TabViewControllerID) as! TabViewController
+        self.navigationController?.pushViewController(tabViewController, animated: true)
+    }
+    
+    @IBAction func searchBtnClick(_ sender: UIButton)
+    {
+        viewMenu.isHidden = true
+        CommonFunctions.closeMenu(view: viewMenu)
+
+        let searchViewController = self.storyboard?.instantiateViewController(withIdentifier: StoryBoardId.SearchViewControllerID) as! SearchViewController
+        self.navigationController?.pushViewController(searchViewController, animated: true)
+    }
+    
+    @IBAction func homeBtnClick(_ sender: UIButton)
+    {
+        viewMenu.isHidden = true
+        CommonFunctions.closeMenu(view: viewMenu)
+
+        for vc in (self.navigationController?.viewControllers ?? []) {
+            if vc is HomeFileViewController {
+                _ = self.navigationController?.popToViewController(vc, animated: true)
+                break
+            }
+        }
+    }
+
+    @IBAction func testScoreBtnClick(_ sender: UIButton)
+    {
+        viewMenu.isHidden = true
+        CommonFunctions.closeMenu(view: viewMenu)
+
+        let scoreViewController  =  self.storyboard?.instantiateViewController(withIdentifier: StoryBoardId.ScoreViewControllerID) as! ScoreViewController
+        scoreViewController.getUnitId = getUnitDict[WSKeyValues.test_id] as? String
+        self.navigationController?.pushViewController(scoreViewController, animated: true)
+    }
+    
+    @IBAction func testBtnClick(_ sender: UIButton)
+    {
+        viewMenu.isHidden = true
+        CommonFunctions.closeMenu(view: viewMenu)
+
+        let testViewController  =  self.storyboard?.instantiateViewController(withIdentifier: StoryBoardId.TestViewControllerID) as! TestViewController
+        testViewController.getUnitId = getUnitDict[WSKeyValues.unit_id] as? String
+        self.navigationController?.pushViewController(testViewController, animated: true)
+    }
+
+    //MARK: - UITableView Method
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        return unitArr.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
+        var cell: WeeklyUnitListCell! = tblView_unit.dequeueReusableCell(withIdentifier: "WeeklyUnitListCell") as? WeeklyUnitListCell
+        if cell == nil
+        {
+            tblView_unit.register(UINib(nibName: "WeeklyUnitListCell", bundle: nil), forCellReuseIdentifier: "WeeklyUnitListCell")
+            cell = tblView_unit.dequeueReusableCell(withIdentifier: "WeeklyUnitListCell") as? WeeklyUnitListCell
+        }
+        
+        cell.imgView.image = UIImage(named: "circle-uncheck")
+        if  self.articleDataArr.count>0
+        {
+            let getReadStr = self.articleDataArr[indexPath.row]["read"] as? String ?? ""
+            if getReadStr == "readed"
+            {
+                cell.imgView.image = UIImage(named: "circle-check")
+                cell.viewColor.backgroundColor = UIColor.init(red: 189.0/255.0, green: 223.0/255, blue: 199.0/255.0, alpha: 1.0)
+            }
+            else
+            {
+                cell.viewColor.backgroundColor = UIColor.init(red: 206.0/255.0, green: 206.0/255, blue: 206.0/255.0, alpha: 1.0)
+            }
+        }
+        DispatchQueue.main.async {
+            cell.lbl_title.text = self.unitArr[indexPath.row][WSKeyValues.article_title] as? String
+            self.customAlertController.hideActivityIndicator(uiView: self.view)
+        }
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        self.customAlertController.showActivityIndicatory(uiView: self.view)
+
+        DispatchQueue.main.async {
+            print("You tapped cell number \(indexPath.row).")
+
+            let getDict = self.unitArr[indexPath.row] as? [String:AnyObject]
+            let getArtcleDict =   self.articleDataArr[indexPath.row]  as? [String: AnyObject]
+            let weeklyDetailVC  =   self.storyboard?.instantiateViewController(withIdentifier: StoryBoardId.WeeklyDetailVCID) as! WeeklyDetailVC
+            weeklyDetailVC.getUnitDetailDict = getDict
+            weeklyDetailVC.getArticleDetailDict = getArtcleDict
+            self.navigationController?.pushViewController(weeklyDetailVC, animated: true)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        return 44
+    }
+    
+    //MARK: - Memory Warning
+    override func didReceiveMemoryWarning()
+    {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

@@ -43,8 +43,7 @@ struct DateModel {
     
     func getOtherDate()->String{
         return "Other"
-        
-    }
+       }
     
     func saveCurrentDate()->String{
         formatter?.timeStyle = .none
@@ -55,6 +54,5 @@ struct DateModel {
         
     }
     
-    
-      
+
 }

@@ -1,5 +1,7 @@
 PODS:
+  - CommonCryptoModule (1.0.2)
   - DropDown (2.3.2)
+  - IQKeyboardManagerSwift (5.0.0)
   - ObjectMapper (3.3.0)
   - ReachabilitySwift (4.1.0)
   - Realm (3.7.4):
@@ -18,7 +20,9 @@ PODS:
   - SwiftHash (2.0.1)
 
 DEPENDENCIES:
+  - CommonCryptoModule (~> 1.0.2)
   - DropDown
+  - IQKeyboardManagerSwift (= 5.0.0)
   - ReachabilitySwift
   - RealmS (~> 4.0.0)
   - Retrolux
@@ -28,7 +32,9 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - CommonCryptoModule
     - DropDown
+    - IQKeyboardManagerSwift
     - ObjectMapper
     - ReachabilitySwift
     - Realm
@@ -40,7 +46,9 @@ SPEC REPOS:
     - SwiftHash
 
 SPEC CHECKSUMS:
+  CommonCryptoModule: 63a68b57abed79655b3a01011419bf037a05b0a0
   DropDown: 7f87abecc28f9b4edad810fe1211c5c018c257e5
+  IQKeyboardManagerSwift: 3f340202ebe1a7076279b9b9b3c817243ddb3aab
   ObjectMapper: b612bf8c8e99c4dc0bb6013a51f7c27966ed5da9
   ReachabilitySwift: 6849231cd4e06559f3b9ef4a97a0a0f96d41e09f
   Realm: a469bb59e33f9926102ccaea4349822c53b9117e
@@ -51,6 +59,6 @@ SPEC CHECKSUMS:
   SlideMenuControllerSwift: 021d6318201c53d4d4d3710517d43d6c556c7dd0
   SwiftHash: c805de5a434eacfa0dac7210745a50c55d7fe33d
 
-PODFILE CHECKSUM: 23db7a793919f274169bd385231e2fc7dacfb92e
+PODFILE CHECKSUM: 545d12590860f6b6c6fd867cc185df1ca80d0f83
 
 COCOAPODS: 1.5.3

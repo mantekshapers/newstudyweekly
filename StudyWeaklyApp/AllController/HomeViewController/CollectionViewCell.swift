@@ -8,15 +8,11 @@
 
 import UIKit
 
-class CollectionViewCell: UICollectionViewCell {
-    
+class CollectionViewCell: UICollectionViewCell
+{
     @IBOutlet weak var imgCell: UIImageView!
     @IBOutlet weak var lbl_title: UILabel!
-    
     @IBOutlet weak var activitiView: UIActivityIndicatorView!
-    
     @IBOutlet weak var progressBar: UIProgressView!
-    
     @IBOutlet weak var view_fade: UIView!
-    
 }

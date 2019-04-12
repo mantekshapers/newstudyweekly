@@ -42,6 +42,8 @@ class SearchViewController: UIViewController ,UISearchBarDelegate,UITableViewDel
 //        let trU = gaurInt
 //        print(gaurInt ?? 0)
 //        lbl_allbtn.text = String(gaurInt ?? 0)
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -51,27 +53,23 @@ class SearchViewController: UIViewController ,UISearchBarDelegate,UITableViewDel
         searchBar.backgroundImage = UIImage()
         DispatchQueue.main.async {
             self.tblView_search.reloadData()
-        }
+            }
         
-    }
+      }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
-    }
+         }
     
     // number of rows in table view
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if btn_identity == "standard"{
-           
              return standardArr.count
-            
         }else if btn_identity == "articles"{
-            
             return articleArr.count
-            
         }else if btn_identity == "media"{
             return mediaArr.count
-        }
+          }
         return 0
     }
     
@@ -83,6 +81,7 @@ class SearchViewController: UIViewController ,UISearchBarDelegate,UITableViewDel
             tblView_search.register(UINib(nibName: "SearchCell", bundle: nil), forCellReuseIdentifier: "SearchCell")
             cell = tblView_search.dequeueReusableCell(withIdentifier: "SearchCell") as? SearchCell
           }
+        
 //        addDict["media_id"] = getDict["media_id"] as? String as AnyObject
 //        addDict["media_name"] = getDict["video_name"] as? String as AnyObject
 //        addDict["media_splash"] = getDict["video_splash"] as? String as AnyObject
@@ -106,30 +105,29 @@ class SearchViewController: UIViewController ,UISearchBarDelegate,UITableViewDel
              let dataDict = mediaArr[indexPath.row] as? [String:AnyObject]
              imgSplash = dataDict!["media_source"] as? String ?? " "
             let downloadData = dataDict!["download"] as? String
-            
-           
+            if downloadData == "startDownload"{
+                cell.activity_cellView.isHidden = false
+                cell.activity_cellView.startAnimating()
+               }
             let string = imgSplash
             if (string?.range(of: ".mp4")) != nil {
                 if downloadData == "download"{
                    cell.imgView_search.image = UIImage(named: "video_selecetd.png")
                 }else{
                      cell.imgView_search.image = UIImage(named: "video.png")
-                 }
-               
+                    }
             }else if (string?.range(of: ".mp3")) != nil {
                 if downloadData == "download"{
                     cell.imgView_search.image = UIImage(named: "music_icon_selected.png")
                 }else{
                     cell.imgView_search.image = UIImage(named: "music.png")
-                }
-               
+                    }
             }else {
                 if downloadData == "download"{
                     cell.imgView_search.image = UIImage(named: "image_selected.png")
                 }else{
                     cell.imgView_search.image = UIImage(named: "image.png")
                 }
-                
               }
             
 //            if (imgSplash?.contains(".mp4"))!{
@@ -162,15 +160,18 @@ class SearchViewController: UIViewController ,UISearchBarDelegate,UITableViewDel
         print("You tapped cell number \(indexPath.row).")
         let cell = self.tblView_search.cellForRow(at: indexPath) as! SearchCell
         
+        
+          let app = UIApplication.shared.delegate as! AppDelegate
+        let arr = app.wifiDataArr
+        
+         let dictTmp = arr[0] as? [String:AnyObject]
 //        let cell = tableView.cellForItem(at: indexPath) as! SearchCell
 //        let cellIndex = indexPath.item as Int
         
         if btn_identity == "standard"{
             let dataDict = standardArr[indexPath.row] as? [String:AnyObject]
             psssUnitDict = dataDict!
-          
             units_idTemp = dataDict!["unit_id"] as? String ?? ""
-            
             
         }else if btn_identity == "articles"{
             let dataDict = articleArr[indexPath.row] as? [String:AnyObject]
@@ -179,8 +180,15 @@ class SearchViewController: UIViewController ,UISearchBarDelegate,UITableViewDel
         
         }else if btn_identity == "media"{
               var dataDict = mediaArr[indexPath.row] as? [String:AnyObject]
-             psssUnitDict = dataDict!
-             units_idTemp = dataDict!["unit_id"] as? String ?? ""
+              psssUnitDict = dataDict!
+              units_idTemp = dataDict!["unit_id"] as? String ?? ""
+            
+             let string  = dataDict!["media_source"] as? String ?? ""
+           
+//            let audioTmp = dictTmp!["audioSwitch"] as? String
+//            if  audioTmp == "on" {
+//                cell.switch_out.isOn = true
+//            }
             
            // CommonDownloadClass().downloadVideoFile(urlFile: "")
             /*
@@ -190,23 +198,56 @@ class SearchViewController: UIViewController ,UISearchBarDelegate,UITableViewDel
             
                         searchMediaViewController.getMediaDict = self.psssUnitDict
                         self.navigationController?.pushViewController(searchMediaViewController, animated: true)
-                                                                                                                                                                                                                */
+                */
+        
             let searchData =  CDBManager().getSearchMedia(getSearchDict: self.psssUnitDict,searchKey: "particulorKey")
+            
             if searchData.count>0 {
+                
                 let story = UIStoryboard.init(name: "Main", bundle: nil)
                 let searchMediaViewController  =  story.instantiateViewController(withIdentifier: "SearchMediaViewController") as! SearchMediaViewController
                 searchMediaViewController.getMediaDict = psssUnitDict
                 self.navigationController?.pushViewController(searchMediaViewController, animated: true)
+                
             }else{
+                
+                if (string.range(of: ".mp4")) != nil {
+                    
+                    let mediaTmp = dictTmp!["mediaSwitch"] as? String
+                    if  mediaTmp != "on" {
+                        self.customAlertController.showCustomAlert3(getMesage: "Please switch on to medioSwitch", getView: self)
+                        return
+                    }
+                    
+                }else if (string.range(of: ".mp3")) != nil {
+                    let audioTmp = dictTmp!["audioSwitch"] as? String
+                    if audioTmp != "on" {
+                        self.customAlertController.showCustomAlert3(getMesage: "Please switch on to audioSwitch", getView: self)
+                        return
+                    }
+                }else {
+                    
+                    let imgTmp = dictTmp!["imageSwitch"] as? String
+                    if  imgTmp != "on" {
+                        self.customAlertController.showCustomAlert3(getMesage: "Please switch on to imageSwitch", getView: self)
+                        return
+                    }
+                }
+                
                 
                 DispatchQueue.global(qos: .background).async {
                 DispatchQueue.main.async {
                     cell.activity_cellView.isHidden = false
                     cell.activity_cellView.startAnimating()
+                    dataDict?["download"] = "startDownload" as AnyObject
+                    self.mediaArr[indexPath.row] = dataDict as AnyObject
                   }
                 CommonDownloadClass().saveVideo(getMediDict: self.psssUnitDict, completion: { (urlFile, error) in
                     if error == nil{
                         dataDict?["download"] = "download" as AnyObject
+                        self.mediaArr[indexPath.row] = dataDict as AnyObject
+                    }else{
+                        dataDict?["download"] = "notDownload" as AnyObject
                         self.mediaArr[indexPath.row] = dataDict as AnyObject
                     }
                      DispatchQueue.main.async {
@@ -214,11 +255,10 @@ class SearchViewController: UIViewController ,UISearchBarDelegate,UITableViewDel
                         cell.activity_cellView.isHidden = true
                         
                         self.tblView_search.reloadData()
-                    }
-                })
+                      }
+                  })
             }
             }
-            
             return
          }
       
@@ -288,7 +328,7 @@ class SearchViewController: UIViewController ,UISearchBarDelegate,UITableViewDel
                 */
                  
                // }
-                
+                    
               }
            }
         }
@@ -360,13 +400,7 @@ class SearchViewController: UIViewController ,UISearchBarDelegate,UITableViewDel
                     self.customAlertController.showCustomServerErrorAlert(getMesage: "Your session expired.Please login again", getView: self)
                     
                 }else{
-                    
                     let addOnRes = Media(audio: getDict["audio"] as? [AnyObject], images: getDict["images"] as? [AnyObject], videos: getDict["videos"] as? [AnyObject])
-                    
-//                     print("==Udio_audio==\(addOnRes.audio)")
-//                     print("==Udio_image==\(addOnRes.images)")
-//                     print("==Udio_video==\(addOnRes.videos)")
-                
                     let audioArr = getDict["audio"] as? [AnyObject]
               
                     if (audioArr?.count)!>0{
@@ -382,13 +416,6 @@ class SearchViewController: UIViewController ,UISearchBarDelegate,UITableViewDel
                             self.dataSearchArr.append(addDict as AnyObject)
                             }
                     }
-//                    "media_id": "1703",
-//                    "image_name": "Constitution of the United States",
-//                    "image_description": "<p>\n\tThe Constitution of the United States\n<\/p>",
-//                    "optimized_image_source": null,
-//                    "image_source": "s3-us-west-2.amazonaws.com\/static.studiesweekly.com\/online\/resources\/55\/75\/constitution_1_of_4_630.jpg",
-//                    "source_info": "[Public Domain]"
-                    
                     let imageArr = getDict["images"] as? [AnyObject]
 
                     if (imageArr?.count)!>0{
@@ -447,22 +474,21 @@ class SearchViewController: UIViewController ,UISearchBarDelegate,UITableViewDel
                                 }
                                 
                             }
-                            
                         }
                         self.mediaArr = self.dataSearchArr
                         
-                        print(" media data print==\(self.mediaArr)")
+                      //  print(" media data print==\(self.mediaArr)")
                     }
                     }
                 }
                 DispatchQueue.main.async {
                     self.tblView_search.reloadData()
                     
-                }
-                }
+                      }
+                   }
             
-            }
-    }
+              }
+      }
     
     
     func customAlertBtnClick(getAlertTitle: String) {

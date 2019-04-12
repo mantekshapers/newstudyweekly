@@ -7,49 +7,53 @@
 //
 
 import UIKit
-protocol ScreenCellDelegate: class {
+protocol ScreenCellDelegate: class
+{
     func btnIndex(send:String)
 }
- class ScreenCell: UITableViewCell {
+
+ class ScreenCell: UITableViewCell
+ {
     @IBOutlet weak var lblTitle: UILabel!
-    
     @IBOutlet weak var indicationView: UIActivityIndicatorView!
-    
     @IBOutlet weak var btmOut: UIButton!
    weak var cellDelegate:ScreenCellDelegate?
     
-    override func awakeFromNib() {
+    override func awakeFromNib()
+    {
         super.awakeFromNib()
-        // Initialization code
-        
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool)
+    {
         super.setSelected(selected, animated: animated)
-        // Configure the view for the selected state
     }
     
-    func startAnimation(getStr:String){
-        
-        if getStr == "select"{
+    func startAnimation(getStr:String)
+    {
+        if getStr == "select"
+        {
             indicationView.startAnimating()
-         }else {
+         }
+        else
+        {
             indicationView.stopAnimating()
         }
     }
     
-    @IBAction func indexBtnClick(_ sender: UIButton) {
-        
-        if sender.isSelected {
+    @IBAction func indexBtnClick(_ sender: UIButton)
+    {
+        if sender.isSelected
+        {
             sender.isSelected = false
             indicationView.stopAnimating()
-        }else{
+        }
+        else
+        {
              sender.isSelected = true
              indicationView.startAnimating()
-          }
+        }
         print("cell click",String(sender.tag))
         cellDelegate?.btnIndex(send: String(sender.tag))
-       // self.indexBtnClick(String(sender.tag))
     }
-    
 }

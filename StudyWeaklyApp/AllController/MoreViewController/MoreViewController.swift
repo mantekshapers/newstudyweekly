@@ -48,6 +48,7 @@ class MoreViewController: UIViewController {
             if userRoleStr == "teacher"{
                 lbl_line.backgroundColor = UIColor.lightGray
                 view_classHieghtCons.constant = 56
+                
             }else{
                
                  lbl_line.backgroundColor = UIColor.clear

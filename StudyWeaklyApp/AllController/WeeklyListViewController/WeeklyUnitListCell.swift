@@ -7,12 +7,14 @@
 //
 
 import UIKit
-class WeeklyUnitListCell: UITableViewCell {
-    
+class WeeklyUnitListCell: UITableViewCell
+{
     @IBOutlet weak var lbl_title: UILabel!
-    
     @IBOutlet weak var imgView: UIImageView!
-    override func awakeFromNib() {
+    @IBOutlet weak var viewColor: UIView!
+
+    override func awakeFromNib()
+    {
         super.awakeFromNib()
         // Initialization code
          imgView.layer.cornerRadius = imgView.frame.size.width/2

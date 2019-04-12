@@ -8,9 +8,10 @@
 
 import UIKit
 
-class WeeklyTableViewCell: UITableViewCell {
-    
+class WeeklyTableViewCell: UITableViewCell
+{
     @IBOutlet weak var lbl_weekly: UILabel!
+    @IBOutlet weak var btnMore: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -6,441 +6,523 @@
 //  Copyright © 2018 TekShapers. All rights reserved.
 //
 import UIKit
-//import Retrolux
-import CommonCrypto
-import SlideMenuControllerSwift
-class HomeFileViewController: UIViewController,URLSessionDelegate, URLSessionTaskDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,SlideMenuControllerDelegate,CustomAlertBtnDelegate,PinItDelegateClass {
-   
+//import CommonCrypto
+//import SlideMenuControllerSwift
 
-    var pinView = PinClass()
+class HomeFileViewController: UIViewController, URLSessionDelegate, URLSessionTaskDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, CustomAlertBtnDelegate
+{
     let customAlertController = CustomController()
+    
+    @IBOutlet weak var viewNavi : UIView!
+    @IBOutlet weak var viewAlrtExtra : UIView!
+    @IBOutlet weak var viewAlrtBG : UIView!
+    @IBOutlet weak var viewAlrt : UIView!
+    @IBOutlet weak var btnPin : UIButton!
+    @IBOutlet weak var btnRemove : UIButton!
+    @IBOutlet weak var btnClose : UIButton!
+    @IBOutlet weak var lblAlrtTitle : UILabel!
+
+    @IBOutlet weak var viewMenu : UIView!
+    @IBOutlet weak var btnSideMenu : UIButton!
+    @IBOutlet weak var btnInitial : UIButton!
+    @IBOutlet weak var btnSetting : UIButton!
+    @IBOutlet weak var btnCoins : UIButton!
+    @IBOutlet weak var btnLogout : UIButton!
+    @IBOutlet weak var lblName : UILabel!
+    @IBOutlet weak var lblCoins : UILabel!
+    @IBOutlet weak var lblRole : UILabel!
+    
+    @IBOutlet weak var viewBottom : UIView!
+    @IBOutlet weak var btnBack : UIButton!
+    @IBOutlet weak var btnNext : UIButton!
+    @IBOutlet weak var btnCopy : UIButton!
+    @IBOutlet weak var btnSearch : UIButton!
+    @IBOutlet weak var btnPlay : UIButton!
+
     @IBOutlet weak var lbl_title: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
    
     fileprivate var longPressGesture: UILongPressGestureRecognizer!
     var publicDataArr = [AnyObject]()
-     var task : URLSessionTask!
-    override func viewDidLoad() {
+    var task : URLSessionTask!
+    
+    //MARK: - UIView Life Cycle
+    
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.isHidden = true
+        self.navigationController?.isNavigationBarHidden = true
         
-        if NetworkCheckWifiReachbility.iswifi() == true {
-              print("WIFI IS ON THIS TIME and working ")
-        }else {
+        self.customAlertController.showActivityIndicatory(uiView: self.view)
+        btnSideMenu.isUserInteractionEnabled = false
+        
+        let dbArr = CDBManager().getDataFromDB() as [AnyObject]
+        //print(dbArr as AnyObject)
+        if dbArr.count>0
+        {
+            let getDict = dbArr[0] as? [String:AnyObject]
+            lblName.text = getDict?["name"] as? String ?? ""
             
-              print("WIFI IS OFF THIS TIME and not working ")
+            let getPoints = getDict!["points"] as? String ?? ""
+            lblCoins.text = getPoints + " Coins"
+            
+            let userEmailStr = getDict!["userEmail"] as? String ?? ""
+            //print("userEmailStr\(userEmailStr)")
+            let userRoleStr = getDict!["userRole"] as? String ?? ""
+            lblRole.text = userRoleStr
+            
+            let strChar = String(Array(self.lblName.text!)[0])
+            btnSideMenu.setTitle(strChar, for: .normal)
+            btnInitial.setTitle(strChar, for: .normal)
         }
+
+        self.wsCallForHomePage()
+
+        self.viewAlrt.layer.cornerRadius = 5.0
+        self.viewAlrt.layer.masksToBounds = true
+        
+        btnSideMenu.layer.cornerRadius = btnSideMenu.frame.size.width / 2
+        btnSideMenu.layer.masksToBounds = true
+        btnInitial.layer.cornerRadius = btnInitial.frame.size.width / 2
+        btnInitial.layer.masksToBounds = true
+
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tapBlurButton(_:)))
+        tapGesture.numberOfTouchesRequired = 1
+        tapGesture.numberOfTapsRequired = 1
+        self.viewAlrtBG.addGestureRecognizer(tapGesture)
         
         longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(self.handleLongGesture(gesture:)))
         collectionView.addGestureRecognizer(longPressGesture)
         
+        //Bottom Bar
+        btnBack.isEnabled = false
+        btnNext.isEnabled = false
+        btnCopy.isEnabled = true
+        btnSearch.isEnabled = true
+        btnPlay.isEnabled = false
+    }
+    
+    override func viewWillAppear(_ animated: Bool)
+    {
+        super.viewWillAppear(animated)
+
+        viewAlrtBG.isHidden = true
+        viewMenu.isHidden = true
+        CommonFunctions.closeMenu(view: viewMenu)
+    }
+    
+    override func viewDidAppear(_ animated: Bool)
+    {
+        super.viewDidAppear(true)
+        viewMenu.isHidden = true
+        CommonFunctions.closeMenu(view: viewMenu)
+    }
+    
+    //MARK: - Ws Method
+    func wsCallForHomePage()
+    {
         NetworkCheckReachbility.isConnectedToNetwork { (bool1) in
-            if bool1 == false {
+            if bool1 == false
+            {
                 self.publicDataArr = CDBManager().getpublicationFromDB() as [AnyObject]
-                DispatchQueue.main.async {
+                DispatchQueue.main.async{
                     self.collectionView.reloadData()
                     self.collectionView.collectionViewLayout.invalidateLayout()
-                    //self.customAlertController.hideActivityIndicator(uiView: self.view)
+                    self.btnSideMenu.isUserInteractionEnabled = true
                 }
                 return
             }
-       // CDBManager().unitsDeleteFromDB()
-        let userId = NetworkAPI.userID() ?? ""
-        let parameters = ["user_id": userId]
-            self.customAlertController.showActivityIndicatory(uiView: self.view)
-        CommonWebserviceClass.makeHTTPGetRequest(path: BaseUrlOther.baseURLOther + WebserviceName.pulications, postString: parameters, httpMethodName: "GET") { (response, booll) in
-            if booll == false {
-                print(booll) 
-                print("publications error",response)
-               // self.customAlertController.delegate = self
-                self.customAlertController.showCustomAlert3(getMesage: "Server error", getView: self)
-            }else{
-                print("publications RESPOSE",response)
-                let getDict = response as! [String: AnyObject]
-                let keyArr = Array(getDict.keys)
-                if keyArr .contains("error") {
-                    self.customAlertController.delegate  = self
-                self.customAlertController.showCustomServerErrorAlert(getMesage: "Your session expired.Please login again", getView: self)
-                   
-                }else{
-                    
-               //  CDBManager().deletePublicationAllCDB()
-                
-                //self.publicDataArr = (getDict["success"] as? [AnyObject])!
-                    CDBManager().addPublicationCDBData(object: getDict)
-                    self.publicDataArr = CDBManager().getpublicationFromDB() as [AnyObject]
-                     print("publication==\(self.publicDataArr)")
+
+            let userId = NetworkAPI.userID() ?? ""
+            let parameters = ["user_id": userId]
+            CommonWebserviceClass.makeHTTPGetRequest(path: BaseUrlOther.baseURLOther + WebserviceName.pulications, postString: parameters, httpMethodName: "GET")
+            { (response, booll) in
+                if booll == false
+                {
+                    //print("publications error",response as Any)
+                    CustomController.showMessage(message: "Server Error")
+                }
+                else
+                {
+                    //print("publications RESPOSE",response as Any)
+                    let getDict = response as! [String: AnyObject]
+                    let keyArr = Array(getDict.keys)
+                    if keyArr .contains("error")
+                    {
+                        self.customAlertController.delegate  = self
+                        self.customAlertController.showCustomServerErrorAlert(getMesage: "Your is session expired.Please login again", getView: self)
+                    }
+                    else
+                    {
+                        self.btnSideMenu.isUserInteractionEnabled = true
+                        CDBManager().addPublicationCDBData(object: getDict)
+                        self.publicDataArr = CDBManager().getpublicationFromDB() as [AnyObject]
+                        //print("publication==\(self.publicDataArr)")
+                        DispatchQueue.main.async {
+                            //print("publication=count =\(self.publicDataArr.count)")
+                            self.collectionView.reloadData()
+                            self.collectionView.collectionViewLayout.invalidateLayout()
+                        }
+                    }
+                }
                 DispatchQueue.main.async {
-                     print("publication=count =\(self.publicDataArr.count)")
-                    self.collectionView.reloadData()
-                    self.collectionView.collectionViewLayout.invalidateLayout()
-                    //self.customAlertController.hideActivityIndicator(uiView: self.view)
+                    
                 }
             }
-            }
-            DispatchQueue.main.async {
-                self.customAlertController.hideActivityIndicator(uiView: self.view)
-              }
-          }
-            
+        }
     }
-        // Do any additional setup after loading the view.
-       }
-    
-    override func viewWillAppear(_ animated: Bool) {
-          super.viewWillAppear(animated)
-        pinView  = (Bundle.main.loadNibNamed("PinClass", owner: self, options: nil)?.first as? PinClass)!
-        pinView.pinInDelegateClass = self
-        pinView.frame = self.view.frame
-        pinView.center = self.view.center
-        self.view.addSubview(pinView)
-        self.view.bringSubview(toFront: pinView)
-        pinView.isHidden = true
-    }
-   override func viewDidAppear(_ animated: Bool) {
-          super.viewDidAppear(true)
-    }
-    func customAlertBtnClick(getAlertTitle: String) {
+
+    //MARK: - User Define Method
+    func customAlertBtnClick(getAlertTitle: String)
+    {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.rootViewCallMethod(getAlertTitle:getAlertTitle)
     }
     
-    @objc func handleLongGesture(gesture: UILongPressGestureRecognizer) {
-        
-        /*
-        switch(gesture.state) {
-        case .began:
-            guard let selectedIndexPath = self.collectionView.indexPathForItem(at: gesture.location(in: self.collectionView)) else {
-                return
-            }
-            self.collectionView.beginInteractiveMovementForItem(at: selectedIndexPath)
-        case .changed:
-            self.collectionView.updateInteractiveMovementTargetPosition(gesture.location(in: gesture.view!))
-        case .ended:
-            self.collectionView.endInteractiveMovement()
-          
-            self.collectionView.reloadData()
-        default:
-            self.collectionView.cancelInteractiveMovement()
-        }
-        */
-        
-        if gesture.state != .ended {
+    @objc func handleLongGesture(gesture: UILongPressGestureRecognizer)
+    {
+        if gesture.state != .ended
+        {
             return
-          }
+        }
         
         let point = gesture.location(in: self.collectionView)
         let indexPath = self.collectionView.indexPathForItem(at: point)
         
-        if let indexPath = indexPath {
-           // var cell = self.collectionView.cellForItem(at: indexPath)
-            print("Find index path\(indexPath.row)")
-            print(indexPath.row)
-            pinView.isHidden = false
-            pinView.btn_pinIt.tag = indexPath.row
-            pinView.btn_remove.tag = indexPath.row
-        } else {
-            print("Could not find index path")
+        let checkDownload = publicDataArr[(indexPath?.item)!]["publication_download"] as? String ?? ""
+        if checkDownload == "downloaded"
+        {
+            self.openPinPopup()
+            if let indexPath = indexPath
+            {
+                //print("Find index path\(indexPath.row)")
+                btnRemove.tag = indexPath.row
+                btnPin.tag = indexPath.row
+                viewAlrtBG.isHidden = false
+                lblAlrtTitle.text = publicDataArr[indexPath.item]["title"] as? String
+            }
+            else
+            {
+                //print("Could not find index path")
+            }
         }
+        else
+        {
+            CustomController.showMessage(message: "Please download publication first")
+        }
+        
+    }
+    
+    @objc func tapBlurButton(_ sender: UITapGestureRecognizer)
+    {
+        self.closePinPopup()
+    }
 
-      }
+    func openPinPopup()
+    {
+        self.viewAlrtBG.alpha = 0.0
+        self.viewAlrtExtra.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+        
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: [],  animations: {
+            self.viewAlrtBG.alpha = 1
+            self.viewAlrtBG.transform = .identity
+            self.viewAlrtBG.isHidden = false
+        })
+    }
     
+    func closePinPopup()
+    {
+        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: [], animations: {
+            self.viewAlrtExtra.transform = CGAffineTransform(scaleX: 0.9, y:0.9)
+            //self.viewAlrtBG.alpha = 0.0
+
+        }) { (success) in
+            self.viewAlrtBG.isHidden = true
+        }
+    }
     
-    func pinItMethodCall(getIndex: Int) {
-                pinView.isHidden = true
-         let getUnitsId    = StorageClass.getUnitsId()
-//           let spaceData = StorageSizeClass.getStorageSpace() as Double
-//        print("device space showing now..\(spaceData)")
-           }
+    //MARK: - UIButton Method
+    @IBAction func btnPinclicked(_ sender: UIButton)
+    {
+        self.closePinPopup()
+        viewMenu.isHidden = true
+        CommonFunctions.closeMenu(view: viewMenu)
+
+        let getUnitsId    = StorageClass.getUnitsId()
+        //print("getUnitId:- \(getUnitsId)")
+    }
     
-    func removeMethodCall(getIndex: Int) {
-         self.pinView.isHidden = true
-        var dictGet = publicDataArr[getIndex] as? [String: AnyObject]
+    @IBAction func btnRemoveclicked(_ sender: UIButton)
+    {
+        self.closePinPopup()
+        viewMenu.isHidden = true
+        CommonFunctions.closeMenu(view: viewMenu)
+
+        var dictGet = publicDataArr[sender.tag] as? [String: AnyObject]
         dictGet?["publication_download"] = "notDownload" as String as AnyObject
-      // publicDataArr.count
-        publicDataArr[getIndex] = dictGet! as AnyObject
+        publicDataArr[sender.tag] = dictGet! as AnyObject
         let publicationIdStr = dictGet!["publication_id"] as? String
-          self.pinView.isHidden = true
         CDBManager().deletDownloadedPublicationFromDB(publicationId: publicationIdStr!)
         DispatchQueue.main.async {
-             self.collectionView.reloadData()
-           }
-        
-      }
+            self.collectionView.reloadData()
+        }
+    }
     
-    func cancelMethodCall() {
-         pinView.isHidden = true
-        
-     }
-    //MARK: Collection view data source and its delegate
+    @IBAction func btnCancelclicked(_ sender: UIButton)
+    {
+        viewMenu.isHidden = true
+        CommonFunctions.closeMenu(view: viewMenu)
+        self.closePinPopup()
+    }
     
-        func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-            return 1     //return number of sections in collection view
+    @IBAction func searchBtnClick(_ sender: UIButton)
+    {
+        viewAlrtBG.isHidden = true
+        viewMenu.isHidden = true
+        CommonFunctions.closeMenu(view: viewMenu)
+
+        let searchViewController = self.storyboard?.instantiateViewController(withIdentifier: StoryBoardId.SearchViewControllerID) as! SearchViewController
+        self.navigationController?.pushViewController(searchViewController, animated: true)
+    }
+    
+    @IBAction func fileBtnClick(_ sender: UIButton)
+    {
+        viewAlrtBG.isHidden = true
+        viewMenu.isHidden = true
+        CommonFunctions.closeMenu(view: viewMenu)
+
+        let tabViewController  =  self.storyboard?.instantiateViewController(withIdentifier: "TabViewController") as! TabViewController
+        self.navigationController?.pushViewController(tabViewController, animated: true)
+    }
+
+    @IBAction func menuBtnClick(_ sender: UIButton)
+    {
+        sender.isSelected = !sender.isSelected
+        if sender.isSelected
+        {
+            viewMenu.isHidden = false
+            CommonFunctions.openMenu(view: viewMenu)
+        }
+        else
+        {
+            CommonFunctions.closeMenu(view: viewMenu)
+           // viewMenu.isHidden = true
+        }
+    }
+
+    @IBAction func btnSettingsClicked(_ sender: UIButton)
+    {
+        viewAlrtBG.isHidden = true
+        viewMenu.isHidden = true
+        CommonFunctions.closeMenu(view: viewMenu)
+
+        let settingController = self.storyboard?.instantiateViewController(withIdentifier: StoryBoardId.SettingsViewControllerID) as! SettingsViewController
+        self.navigationController?.pushViewController(settingController, animated: true)
+    }
+    
+    @IBAction func btnLogoutClicked(_ sender: UIButton)
+    {
+        viewAlrtBG.isHidden = true
+        viewMenu.isHidden = true
+        CommonFunctions.closeMenu(view: viewMenu)
+
+        CDBManager().deleteAllCDB()
+        NetworkAPI.removeUserId()
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.rootViewCallMethod(getAlertTitle:"sessionExpired")
+    }
+
+    //MARK: - Collection view data source and its delegate
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int
+    {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
+    {
+        return publicDataArr.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
+    {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCell", for: indexPath as IndexPath) as! CollectionViewCell
+        cell.selectedBackgroundView = nil
+        
+        viewMenu.isHidden = true
+        CommonFunctions.closeMenu(view: viewMenu)
+        cell.imgCell.layer.borderColor = UIColor.lightGray.cgColor
+        cell.imgCell.layer.borderWidth = 1.0
+        
+        //print("publicDataArr:- \(publicDataArr)")
+        let getDict = publicDataArr[indexPath.item] as? [String:AnyObject]
+        cell.lbl_title.text = CustomController.checkNullString(strToCompare: getDict!["title"] as! String)
+        
+        let checkDownload = getDict!["publication_download"] as? String ?? ""
+        if checkDownload == "downloaded"
+        {
+            cell.view_fade.alpha = 0
+        }
+        else
+        {
+            cell.view_fade.alpha = 0.85
         }
         
-        func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-            return publicDataArr.count    //return number of rows in section
-        }
+        let coverUrl =  getDict!["cover_url"] as? String ?? ""
+        //print("coverUrl=\(coverUrl)")
         
-        func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCell", for: indexPath as IndexPath) as! CollectionViewCell
-            let getDict = publicDataArr[indexPath.item] as? [String:AnyObject]
-            cell.lbl_title.text = getDict!["title"] as? String ?? ""
-            let coverUrl =  getDict!["cover_url"] as? String ?? ""
-           // var pubDict = publicDataArr[cellIndex] as? [String: AnyObject]
-          let checkDownload = getDict!["publication_download"] as? String ?? ""
-            // cell.imgCell.alpha = 0
-             cell.view_fade.backgroundColor = UIColor.gray
-            cell.view_fade.alpha = 0.6
-            if checkDownload == "downloaded" {
-                 cell.view_fade.alpha = 0
-            }
-            print("hell image url=\(coverUrl)")
-            CommonWebserviceClass.downloadImgFromServer(url:URL(string: coverUrl as? String ?? "0")!) { (DATA, RESPOSE, error) in
-                if DATA != nil {
+        CommonWebserviceClass.downloadImgFromServer(url:URL(string: coverUrl)!) { (DATA, RESPOSE, error) in
+            if DATA != nil {
                 DispatchQueue.main.async { // Correct
-                     cell.imgCell.image = UIImage(data: DATA!)
-                   }
+                    print("DATA:-\(String(describing: DATA))")
+                    print("coverUrl:-\(String(describing: coverUrl))")
+                    print("RESPOSE:-\(String(describing: RESPOSE))")
+
+
+                    cell.imgCell.image = UIImage(data: DATA!)
+                    self.customAlertController.hideActivityIndicator(uiView: self.view)
                 }
             }
-            configureCell(cell: cell, forItemAtIndexPath: indexPath as NSIndexPath)
-
-            return cell      //return your cell
         }
-        func configureCell(cell: CollectionViewCell, forItemAtIndexPath: NSIndexPath) {
-        }
+        configureCell(cell: cell, forItemAtIndexPath: indexPath as NSIndexPath)
         
-        func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-            let view =  collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "collectionCell", for: indexPath as IndexPath) as UICollectionReusableView
-            return view
-        }
-        func collectionView(_ collectionView: UICollectionView,
-                            layout collectionViewLayout: UICollectionViewLayout,
-                            sizeForItemAt indexPath: IndexPath) -> CGSize {
-            let nbCol = 2
-            let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
-            let totalSpace = flowLayout.sectionInset.left
-                + flowLayout.sectionInset.right
-                + (flowLayout.minimumInteritemSpacing * CGFloat(nbCol - 1))
-            let size = Int((collectionView.bounds.width - totalSpace) / CGFloat(nbCol))
-            return CGSize(width: size, height: size)
-        }
-        func collectionView(_ collectionView: UICollectionView, canMoveItemAt indexPath: IndexPath) -> Bool {
-            return true
-        }
-        func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-            print("Starting Index: \(sourceIndexPath.item)")
-             let sourceDict = publicDataArr[sourceIndexPath.item] as AnyObject
-            print("Ending Index: \(destinationIndexPath.item)")
-            let desDict = publicDataArr[destinationIndexPath.item] as AnyObject
-            publicDataArr[sourceIndexPath.item] = desDict
-            publicDataArr[destinationIndexPath.item] = sourceDict
-            collectionView.reloadData()
-        }
-        //MARK: UICollectionViewDelegate
-        func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-            
-            let cell = collectionView.cellForItem(at: indexPath) as! CollectionViewCell
-            let cellIndex = indexPath.item as Int
-            var unitData = [AnyObject]()
-            let getDict = publicDataArr[indexPath.item] as? [String:AnyObject]
-            let getUnitArr = getDict!["units"] as? [AnyObject]
-            let getPublicationId = getDict!["publication_id"] as? String
-            
-            print("=========\(getDict)=====\(getPublicationId)")
-            let unitsArrData = CDBManager().getUnitsDataFromUnitsTable(searchUnits:getPublicationId!)
-            
-            if unitsArrData.count>0{
-                let story = UIStoryboard.init(name: "Main", bundle: nil)
-                let weeklyListViewController  =  story.instantiateViewController(withIdentifier: "WeeklyListViewController") as! WeeklyListViewController
+        return cell
+    }
+    
+    func configureCell(cell: CollectionViewCell, forItemAtIndexPath: NSIndexPath) {
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView
+    {
+        let view =  collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "collectionCell", for: indexPath as IndexPath) as UICollectionReusableView
+        return view
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
+    {
+        let yourWidth = collectionView.frame.size.width/3.0
+        let yourHeight = yourWidth * 1.5
+
+        return CGSize(width: yourWidth, height: yourHeight)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets.zero
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
+    {
+        let cell = collectionView.cellForItem(at: indexPath) as! CollectionViewCell
+        let cellIndex = indexPath.item as Int
+
+        NetworkCheckReachbility.isConnectedToNetwork
+            { (boolTrue) in
+                if boolTrue == false
+                {
+                    CustomController.showMessage(message: AlertTitle.networkStr)
+                    return
+                }
+                
+        self.customAlertController.showActivityIndicatory(uiView: self.view)
+        
+        var unitData = [AnyObject]()
+        let getDict = self.publicDataArr[indexPath.item] as? [String:AnyObject]
+        let getUnitArr = getDict!["units"] as? [AnyObject]
+        let getPublicationId = getDict!["publication_id"] as? String
+        
+        //print("=========\(String(describing: getDict))=====\(String(describing: getPublicationId))")
+        let unitsArrData = CDBManager().getUnitsDataFromUnitsTable(searchUnits:getPublicationId!)
+        
+        if unitsArrData.count>0
+        {
+            DispatchQueue.main.async {
+                let weeklyListViewController  = self.storyboard?.instantiateViewController(withIdentifier: StoryBoardId.WeeklyListViewControllerID) as! WeeklyListViewController
                 weeklyListViewController.getWeeklyDict = getDict
                 weeklyListViewController.sendUnitsDataArr = unitsArrData
                 self.navigationController?.pushViewController(weeklyListViewController, animated: true)
                 return
             }
-          //  print("publications array\(publicationData)")
-           
-            
-           
-          //  print("unitArray count==\(String(describing: getUnitArr?.count))")
+        }
+        
+        DispatchQueue.main.async {
+            cell.progressBar.isHidden = false
+            cell.progressBar.progress = 0
+            cell.activitiView.isHidden = false
+            cell.bringSubview(toFront: cell.activitiView)
+            cell.activitiView.startAnimating()
+        }
+        
+        var progressDoubl:Float? = 0
+        var countHit:Int = 0
+        for data in getUnitArr!
+        {
+            let getUnitId = data["unit_id"] as! String
+            let postDict = ["unit_id":getUnitId]
          //   DispatchQueue.global(qos: .background).async {
                 DispatchQueue.main.async {
-                    cell.progressBar.isHidden = false
-                    cell.progressBar.progress = 0
-                    cell.activitiView.isHidden = false
-                    cell.bringSubview(toFront: cell.activitiView)
-                    cell.activitiView.startAnimating()
-                    
-                 }
-                 var progressDoubl:Float? = 0
-                 var countHit:Int = 0
-            for data in getUnitArr!{
-                let getUnitId = data["unit_id"] as! String
-                let postDict = ["unit_id":getUnitId]
-            DispatchQueue.global(qos: .background).async {
-                DispatchQueue.main.async {
-                   // cell.progressBar.isHidden = false
-                   // cell.progressBar.progress = 0
                     cell.activitiView.isHidden = false
                     cell.activitiView.startAnimating()
                 }
-               
+            
                 CommonWebserviceClass.makeHTTPGetRequest(path: BaseUrlOther.baseURLOther + WebserviceName.unitsName, postString: postDict, httpMethodName: "GET") { (respose, boolTrue) in
-                    if boolTrue == false{
-//                        let getDict = respose as! [String:AnyObject]
-//                        DispatchQueue.main.async {
-//                            self.customAlertController.showCustomAlert3(getMesage: getDict["responseError"] as! String, getView: self)
-//                            appdelegate?.hideLoader()
-//                        }
-                         DispatchQueue.main.async {
-                        cell.activitiView.stopAnimating()
-                        cell.activitiView.isHidden = true
-                        cell.progressBar.progress = Float((progressDoubl!/Float(getUnitArr!.count)))
-                            unitData.removeAll()
+                    if boolTrue == false
+                    {
+                        DispatchQueue.main.async {
+                            cell.activitiView.stopAnimating()
+                            cell.activitiView.isHidden = true
+                            cell.progressBar.progress = Float((progressDoubl!/Float(getUnitArr!.count)))
+                            //unitData.removeAll()
                         }
                         return
-                      }
+                    }
                     var unitsDataDict = [String:AnyObject]()
-                     let getDict = respose as! [String: AnyObject]
+                    let getDict = respose as! [String: AnyObject]
                     unitsDataDict["units"] = getDict["success"] as AnyObject
                     unitsDataDict["unit_id"] = getUnitId as AnyObject
                     unitData.append(unitsDataDict as AnyObject)
+                    
                     DispatchQueue.main.async {
                         countHit = countHit + 1
                         progressDoubl = progressDoubl! + 1
                         cell.progressBar.progress = Float((progressDoubl!/Float(getUnitArr!.count)))
-                        if countHit == getUnitArr!.count {
+                        if countHit == getUnitArr!.count
+                        {
                             cell.activitiView.stopAnimating()
-                             cell.activitiView.isHidden = true
-                             cell.progressBar.isHidden = true
-                            print("unit response",unitData,unitData.count)
+                            cell.activitiView.isHidden = true
+                            cell.progressBar.isHidden = true
+                            //print("unit response:",unitData,unitData.count)
                             var pubDict = self.publicDataArr[cellIndex] as? [String: AnyObject]
                             pubDict!["publication_download"] = "downloaded" as AnyObject
                             self.publicDataArr[cellIndex] = pubDict as AnyObject
-                         //   CDBManager().unitsDeleteFromDB()
-                           CDBManager().addUnitsCDBData(publicationIdStr: getPublicationId!, object: unitData)
+                            //   CDBManager().unitsDeleteFromDB()
+                            CDBManager().addUnitsCDBData(publicationIdStr: getPublicationId!, object: unitData)
                             unitData.removeAll()
-                           
-                            self.collectionView.reloadData()
-                           }
-                       
+                            
+                            DispatchQueue.main.async {
+                                self.collectionView.reloadData()
+                            }
+                        }
                     }
-               }
-            }
-           // }
-         }
-        
-            /*
-            let story = UIStoryboard.init(name: "Main", bundle: nil)
-            let weeklyListViewController  =  story.instantiateViewController(withIdentifier: "WeeklyListViewController") as! WeeklyListViewController
-            weeklyListViewController.getWeeklyDict = getDict
-            self.navigationController?.pushViewController(weeklyListViewController, animated: true)
-            */
-           // downloadVideoFile()
+                }
+            //}
         }
-        
-        func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-            // When user deselects the cell
-          }
-    
-    @IBAction func menuBtnClick(_ sender: Any) {
-          self.slideMenuController()?.openLeft()
-      }
-
-    @IBAction func searchBtnClick(_ sender: UIButton) {
-         let story = UIStoryboard.init(name: "Main", bundle: nil)
-         let searchViewController  =  story.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
-        self.navigationController?.pushViewController(searchViewController, animated: true)
-        
+    }
+}
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
     }
     
-    @IBAction func fileBtnClick(_ sender: UIButton) {
-      
-        let story = UIStoryboard.init(name: "Main", bundle: nil)
-        let tabViewController  =  story.instantiateViewController(withIdentifier: "TabViewController") as! TabViewController
-        self.navigationController?.pushViewController(tabViewController, animated: true)
-        
-       
-    }
-/*
-    lazy var session : URLSession = {
-        let config = URLSessionConfiguration.default
-        config.allowsCellularAccess = false
-        // let session = URLSession(configuration: config, delegate: self, delegateQueue: OperationQueue.mainQueue)
-        // let session = URLSession(configuration: config, delegate: self, delegateQueue: nil)
-        let session = URLSession(configuration: config, delegate: self, delegateQueue: OperationQueue.main)
-        return session
-    }()
-    
-    func downloadVideoFile(getUrlUnitId:String){
-     
-       // s3-us-west-2.amazonaws.com/static.studiesweekly.com/online/masterResources/audio/new35/149076/final.mp3
-   // let s = "https://dl.dropboxusercontent.com/u/87285547/09%20Working%20Man_%20Finding%20My%20Way.mp3"
-        let s = "https://s3-us-west-2.amazonaws.com/static.studiesweekly.com/online/masterResources/audio/new35/149076/final.mp3"
-    let url = NSURL(string:s)!
-    let req = NSMutableURLRequest(url:url as URL)
-    let task = self.session.downloadTask(with: req as URLRequest)
-    self.task = task
-    task.resume()
-
-    }
-    
-    
-    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten writ: Int64, totalBytesExpectedToWrite exp: Int64) {
-        print("downloaded=7 \(100*writ/exp)")
-        
-       // self.counter = Float(100*writ/exp)
-        
-       // guard let url = downloadTask.originalRequest?.url,
-           //let download = downloadService.activeDownloads[url]  else { return }
-        // 2
-      //  download.progress = Float(totalBytesWritten) / Float(totalBytesExpectedToWrite)
-        // 3
-        //let totalSize = ByteCountFormatter.string(fromByteCount: totalBytesExpectedToWrite,
-                                                 // countStyle: .file)
-        // 4
-//        DispatchQueue.main.async {
-//            if let trackCell = self.tableView.cellForRow(at: IndexPath(row: download.track.index,
-//                                                                       section: 0)) as? TrackCell {
-//                trackCell.updateDisplay(progress: download.progress, totalSize: totalSize)
-//            }
-//        }
-    //}
-    
-    }
-    
-    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didResumeAtOffset fileOffset: Int64, expectedTotalBytes: Int64) {
-        // unused in this example
-    }
-    
-    func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
-        print("completed: error: \(error)")
-    }
-    
-    // this is the only required NSURLSessionDownloadDelegate method
-    
-    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
-        
-        print("didFinishDownloading")
-        
-    }
-    */
-   
-     // let session = URLSession(configuration: config, delegate: self, delegateQueue: OperationQueue.mainQueue)
-    
-
-    override func didReceiveMemoryWarning() {
+// MARK: - Memory Warning
+    override func didReceiveMemoryWarning()
+    {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    /*
-    // MARK: - Navigation
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

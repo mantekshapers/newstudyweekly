@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/ViewController.swift"
-            timestampString = "562573878.583197"
+            timestampString = "568903455.560122"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "118"
@@ -58,7 +58,7 @@
                   moduleName = "StudiesWeekly"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mansingh/Desktop/R&amp;R_APP/StudiesWeekly%202/StudyWeaklyApp/ModelClasses/DAO/UserDAO.swift"
-                  timestampString = "568116722.80638"
+                  timestampString = "569240303.898178"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "14"
@@ -73,7 +73,7 @@
                   moduleName = "StudiesWeekly"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mansingh/Desktop/R&amp;R_APP/StudiesWeekly%202/StudyWeaklyApp/ModelClasses/DAO/UserDAO.swift"
-                  timestampString = "568116722.808867"
+                  timestampString = "569240303.900717"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "15"
@@ -122,7 +122,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/ModelClasses/Online/NetworkAPI.swift"
-            timestampString = "566226008.705615"
+            timestampString = "569481998.287751"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "387"
@@ -250,11 +250,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/ScreenViewCotroller/ScreenViewController.swift"
-            timestampString = "567337019.195323"
+            timestampString = "569156118.511355"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "160"
-            endingLineNumber = "160"
+            startingLineNumber = "163"
+            endingLineNumber = "163"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -266,11 +266,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/SearchViewController/SearchViewController.swift"
-            timestampString = "567338527.982687"
+            timestampString = "568718207.445575"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -282,7 +282,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/HomeViewController/HomeFileViewController.swift"
-            timestampString = "568127702.378924"
+            timestampString = "569156118.511446"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "398"
@@ -298,7 +298,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/HomeViewController/HomeFileViewController.swift"
-            timestampString = "568127702.379024"
+            timestampString = "569156118.5115089"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "421"
@@ -314,7 +314,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/HomeViewController/HomeFileViewController.swift"
-            timestampString = "568127702.379108"
+            timestampString = "569156118.511566"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "425"
@@ -330,11 +330,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/ScreenViewCotroller/ScreenViewController.swift"
-            timestampString = "567337019.1959569"
+            timestampString = "569156118.511621"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "162"
-            endingLineNumber = "162"
+            startingLineNumber = "165"
+            endingLineNumber = "165"
             landmarkName = "ScreenViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -346,45 +346,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/WeeklyDetailVC.swift"
-            timestampString = "568127702.379197"
+            timestampString = "569240887.324581"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "151"
-            endingLineNumber = "151"
+            startingLineNumber = "154"
+            endingLineNumber = "154"
             landmarkName = "viewWillAppear(_:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "StudiesWeekly.WeeklyDetailVC.viewWillAppear(Swift.Bool) -&gt; ()"
-                  moduleName = "StudiesWeekly"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mansingh/Desktop/R&amp;R_APP/StudiesWeekly%202/StudyWeaklyApp/AllController/WeeklyListViewController/WeeklyDetailVC.swift"
-                  timestampString = "568116722.856922"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "151"
-                  endingLineNumber = "151"
-                  offsetFromSymbolStart = "92">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in StudiesWeekly.WeeklyDetailVC.viewWillAppear(Swift.Bool) -&gt; ()"
-                  moduleName = "StudiesWeekly"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mansingh/Desktop/R&amp;R_APP/StudiesWeekly%202/StudyWeaklyApp/AllController/WeeklyListViewController/WeeklyDetailVC.swift"
-                  timestampString = "568116722.8593791"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "152"
-                  endingLineNumber = "152"
-                  offsetFromSymbolStart = "22">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -404,7 +372,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/HomeViewController/HomeFileViewController.swift"
-            timestampString = "568127702.379306"
+            timestampString = "569156118.5121469"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "266"
@@ -420,7 +388,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/HomeViewController/HomeFileViewController.swift"
-            timestampString = "568127702.379375"
+            timestampString = "569156118.5122041"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "260"
@@ -436,7 +404,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/HomeViewController/HomeFileViewController.swift"
-            timestampString = "568127702.379433"
+            timestampString = "569156118.5122581"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "321"
@@ -452,7 +420,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/HomeViewController/HomeFileViewController.swift"
-            timestampString = "568127702.37949"
+            timestampString = "569156118.5123121"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "303"
@@ -468,7 +436,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/ModelClasses/New Group/CoreDBManager.swift"
-            timestampString = "568127702.379567"
+            timestampString = "568718656.683494"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "160"
@@ -484,45 +452,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/HomeViewController/HomeFileViewController.swift"
-            timestampString = "568127702.379642"
+            timestampString = "569156118.512386"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "42"
             endingLineNumber = "42"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Bool) -&gt; () in StudiesWeekly.HomeFileViewController.viewDidLoad() -&gt; ()"
-                  moduleName = "StudiesWeekly"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mansingh/Desktop/R&amp;R_APP/StudiesWeekly%202/StudyWeaklyApp/AllController/HomeViewController/HomeFileViewController.swift"
-                  timestampString = "568116722.892984"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "33"
-                  endingLineNumber = "33"
-                  offsetFromSymbolStart = "158">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in closure #1 (Swift.Bool) -&gt; () in StudiesWeekly.HomeFileViewController.viewDidLoad() -&gt; ()"
-                  moduleName = "StudiesWeekly"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mansingh/Desktop/R&amp;R_APP/StudiesWeekly%202/StudyWeaklyApp/AllController/HomeViewController/HomeFileViewController.swift"
-                  timestampString = "568116722.8954329"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "34"
-                  endingLineNumber = "34"
-                  offsetFromSymbolStart = "25">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -532,7 +468,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/HomeViewController/HomeFileViewController.swift"
-            timestampString = "568127702.379699"
+            timestampString = "569156118.51244"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "56"
@@ -548,7 +484,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/HomeViewController/HomeFileViewController.swift"
-            timestampString = "568127702.379756"
+            timestampString = "569156118.512494"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "71"
@@ -564,7 +500,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/ModelClasses/New Group/CoreDBManager.swift"
-            timestampString = "568127702.379813"
+            timestampString = "568718656.683672"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "241"
@@ -580,7 +516,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/WeeklyDetailVC.swift"
-            timestampString = "568127702.379879"
+            timestampString = "569240887.3249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "63"
@@ -596,7 +532,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/ModelClasses/New Group/CoreDBManager.swift"
-            timestampString = "568127702.379971"
+            timestampString = "568718656.683828"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "392"
@@ -612,7 +548,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/ModelClasses/New Group/CoreDBManager.swift"
-            timestampString = "568127702.380061"
+            timestampString = "568718656.683897"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "431"
@@ -628,7 +564,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/ModelClasses/New Group/CoreDBManager.swift"
-            timestampString = "568127702.380127"
+            timestampString = "568718656.683964"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "438"
@@ -644,23 +580,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/ModelClasses/New Group/CoreDBManager.swift"
-            timestampString = "568127702.380192"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "466"
-            endingLineNumber = "466"
-            landmarkName = "updateArticleToDB(getUnitsDetailDict:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "StudyWeaklyApp/ModelClasses/New Group/CoreDBManager.swift"
-            timestampString = "568127702.3802789"
+            timestampString = "568718656.684109"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "440"
@@ -676,7 +596,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/ModelClasses/New Group/CoreDBManager.swift"
-            timestampString = "568127702.3803459"
+            timestampString = "568718656.684175"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "374"
@@ -692,7 +612,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/ModelClasses/New Group/CoreDBManager.swift"
-            timestampString = "568127702.3804229"
+            timestampString = "568718656.684242"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "271"
@@ -708,7 +628,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/ModelClasses/New Group/CoreDBManager.swift"
-            timestampString = "568127702.3804899"
+            timestampString = "568718656.6843081"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "282"
@@ -724,7 +644,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/ModelClasses/New Group/CoreDBManager.swift"
-            timestampString = "568127702.380556"
+            timestampString = "568718656.684375"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "303"
@@ -740,7 +660,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/ModelClasses/New Group/CoreDBManager.swift"
-            timestampString = "568127702.380636"
+            timestampString = "568718656.68444"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "296"
@@ -756,7 +676,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/ModelClasses/New Group/CoreDBManager.swift"
-            timestampString = "568127702.380717"
+            timestampString = "568718656.684507"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "406"
@@ -788,12 +708,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/ModelClasses/New Group/CoreDBManager.swift"
-            timestampString = "568127702.380803"
+            timestampString = "568718656.6846"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "849"
-            endingLineNumber = "849"
-            landmarkName = "podMediaInDB(podMediaArr:)"
+            startingLineNumber = "847"
+            endingLineNumber = "847"
+            landmarkName = "addPodDownloadMediaInDB(getSearchDict:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -804,7 +724,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/ModelClasses/New Group/CoreDBManager.swift"
-            timestampString = "568127702.380868"
+            timestampString = "568718656.684667"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "790"
@@ -820,7 +740,7 @@
                   moduleName = "StudiesWeekly"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mansingh/Desktop/R&amp;R_APP/StudiesWeekly%202/StudyWeaklyApp/ModelClasses/New%20Group/CoreDBManager.swift"
-                  timestampString = "568116722.992372"
+                  timestampString = "569240304.0622129"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "790"
@@ -835,7 +755,7 @@
                   moduleName = "StudiesWeekly"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mansingh/Desktop/R&amp;R_APP/StudiesWeekly%202/StudyWeaklyApp/ModelClasses/New%20Group/CoreDBManager.swift"
-                  timestampString = "568116722.994855"
+                  timestampString = "569240304.064621"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "790"
@@ -852,12 +772,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/ModelClasses/New Group/CoreDBManager.swift"
-            timestampString = "568127702.380934"
+            timestampString = "568718656.684734"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "868"
-            endingLineNumber = "868"
-            landmarkName = "podMediaInDB(podMediaArr:)"
+            startingLineNumber = "866"
+            endingLineNumber = "866"
+            landmarkName = "addPodDownloadMediaInDB(getSearchDict:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -868,12 +788,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/ModelClasses/New Group/CoreDBManager.swift"
-            timestampString = "568127702.380998"
+            timestampString = "568718656.684799"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "861"
-            endingLineNumber = "861"
-            landmarkName = "podMediaInDB(podMediaArr:)"
+            startingLineNumber = "859"
+            endingLineNumber = "859"
+            landmarkName = "addPodDownloadMediaInDB(getSearchDict:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -884,7 +804,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/ModelClasses/New Group/CoreDBManager.swift"
-            timestampString = "568127702.381076"
+            timestampString = "568718656.684865"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "768"
@@ -900,27 +820,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/BonusViewController.swift"
-            timestampString = "568116722.082145"
+            timestampString = "568904526.768495"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/BonusViewController.swift"
-            timestampString = "568116722.0822051"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "223"
-            endingLineNumber = "223"
+            startingLineNumber = "276"
+            endingLineNumber = "276"
             landmarkName = "downloadedCellBtnClick(indexCell:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -932,11 +836,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/BonusViewController.swift"
-            timestampString = "568116722.0822639"
+            timestampString = "568904526.768559"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "229"
-            endingLineNumber = "229"
+            startingLineNumber = "282"
+            endingLineNumber = "282"
             landmarkName = "downloadedCellBtnClick(indexCell:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -948,11 +852,59 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/BonusViewController.swift"
-            timestampString = "568116722.082321"
+            timestampString = "568904526.768617"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "196"
-            endingLineNumber = "196"
+            startingLineNumber = "252"
+            endingLineNumber = "252"
+            landmarkName = "downloadedCellBtnClick(indexCell:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 () -&gt; () in StudiesWeekly.BonusViewController.downloadedCellBtnClick(indexCell: __ObjC.UIButton) -&gt; ()"
+                  moduleName = "StudiesWeekly"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mansingh/Desktop/R&amp;R_APP/StudiesWeekly%202/StudyWeaklyApp/AllController/WeeklyListViewController/BonusViewController.swift"
+                  timestampString = "569240304.0978481"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "252"
+                  endingLineNumber = "252"
+                  offsetFromSymbolStart = "1827">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.String&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #2 () -&gt; () in StudiesWeekly.BonusViewController.downloadedCellBtnClick(indexCell: __ObjC.UIButton) -&gt; ()"
+                  moduleName = "StudiesWeekly"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mansingh/Desktop/R&amp;R_APP/StudiesWeekly%202/StudyWeaklyApp/AllController/WeeklyListViewController/BonusViewController.swift"
+                  timestampString = "569240304.1003"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "212"
+                  endingLineNumber = "212"
+                  offsetFromSymbolStart = "50">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/BonusViewController.swift"
+            timestampString = "568904526.768674"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "259"
+            endingLineNumber = "259"
             landmarkName = "downloadedCellBtnClick(indexCell:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -964,27 +916,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/BonusViewController.swift"
-            timestampString = "568116722.082378"
+            timestampString = "568904526.76873"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "204"
-            endingLineNumber = "204"
-            landmarkName = "downloadedCellBtnClick(indexCell:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/BonusViewController.swift"
-            timestampString = "568116722.082437"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "212"
-            endingLineNumber = "212"
+            startingLineNumber = "265"
+            endingLineNumber = "265"
             landmarkName = "downloadedCellBtnClick(indexCell:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1108,11 +1044,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/BonusViewController.swift"
-            timestampString = "568116722.082949"
+            timestampString = "568904526.768899"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "202"
-            endingLineNumber = "202"
+            startingLineNumber = "257"
+            endingLineNumber = "257"
             landmarkName = "downloadedCellBtnClick(indexCell:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1124,45 +1060,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/BonusViewController.swift"
-            timestampString = "568116722.083006"
+            timestampString = "568904526.768957"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "209"
-            endingLineNumber = "209"
+            startingLineNumber = "262"
+            endingLineNumber = "262"
             landmarkName = "downloadedCellBtnClick(indexCell:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Swift.String&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #2 () -&gt; () in StudiesWeekly.BonusViewController.downloadedCellBtnClick(indexCell: __ObjC.UIButton) -&gt; ()"
-                  moduleName = "StudiesWeekly"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mansingh/Desktop/R&amp;R_APP/StudiesWeekly%202/StudyWeaklyApp/AllController/WeeklyListViewController/BonusViewController.swift"
-                  timestampString = "568116723.099463"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "209"
-                  endingLineNumber = "209"
-                  offsetFromSymbolStart = "573">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 () -&gt; () in closure #1 (Swift.Optional&lt;Swift.String&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #2 () -&gt; () in StudiesWeekly.BonusViewController.downloadedCellBtnClick(indexCell: __ObjC.UIButton) -&gt; ()"
-                  moduleName = "StudiesWeekly"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mansingh/Desktop/R&amp;R_APP/StudiesWeekly%202/StudyWeaklyApp/AllController/WeeklyListViewController/BonusViewController.swift"
-                  timestampString = "568116723.102003"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "182"
-                  endingLineNumber = "182"
-                  offsetFromSymbolStart = "34">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1172,11 +1076,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/WeeklyDetailVC.swift"
-            timestampString = "568127702.381788"
+            timestampString = "569240887.325745"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "457"
-            endingLineNumber = "457"
+            startingLineNumber = "465"
+            endingLineNumber = "465"
             landmarkName = "collectBtnClick(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1188,11 +1092,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/WeeklyDetailVC.swift"
-            timestampString = "568127702.381929"
+            timestampString = "569240887.325806"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "468"
-            endingLineNumber = "468"
+            startingLineNumber = "476"
+            endingLineNumber = "476"
             landmarkName = "collectBtnClick(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1204,11 +1108,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/WeeklyDetailVC.swift"
-            timestampString = "568127702.382012"
+            timestampString = "569240887.325863"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "461"
-            endingLineNumber = "461"
+            startingLineNumber = "469"
+            endingLineNumber = "469"
             landmarkName = "collectBtnClick(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1236,7 +1140,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/WeeklyListViewController.swift"
-            timestampString = "568127702.3821501"
+            timestampString = "568708736.759831"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "57"
@@ -1316,7 +1220,39 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/WeeklyDetailVC.swift"
-            timestampString = "568127702.38248"
+            timestampString = "569240887.326079"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "327"
+            endingLineNumber = "327"
+            landmarkName = "answerSeleckMethod(getAnwr:btnTag:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/WeeklyDetailVC.swift"
+            timestampString = "569240887.3261369"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "337"
+            endingLineNumber = "337"
+            landmarkName = "answerSeleckMethod(getAnwr:btnTag:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/WeeklyDetailVC.swift"
+            timestampString = "569240887.326193"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "319"
@@ -1332,45 +1268,45 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/WeeklyDetailVC.swift"
-            timestampString = "568127702.382576"
+            timestampString = "569240887.326249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "329"
-            endingLineNumber = "329"
+            startingLineNumber = "275"
+            endingLineNumber = "275"
             landmarkName = "answerSeleckMethod(getAnwr:btnTag:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/WeeklyDetailVC.swift"
-            timestampString = "568127702.382692"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "311"
-            endingLineNumber = "311"
-            landmarkName = "answerSeleckMethod(getAnwr:btnTag:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/WeeklyDetailVC.swift"
-            timestampString = "568127702.38276"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "267"
-            endingLineNumber = "267"
-            landmarkName = "answerSeleckMethod(getAnwr:btnTag:)"
-            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "StudiesWeekly.WeeklyDetailVC.answerSeleckMethod(getAnwr: Swift.String, btnTag: Swift.Int) -&gt; ()"
+                  moduleName = "StudiesWeekly"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mansingh/Desktop/R&amp;R_APP/StudiesWeekly%202/StudyWeaklyApp/AllController/WeeklyListViewController/WeeklyDetailVC.swift"
+                  timestampString = "569240304.226985"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "275"
+                  endingLineNumber = "275"
+                  offsetFromSymbolStart = "1638">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Bool) -&gt; () in StudiesWeekly.WeeklyDetailVC.answerSeleckMethod(getAnwr: Swift.String, btnTag: Swift.Int) -&gt; ()"
+                  moduleName = "StudiesWeekly"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mansingh/Desktop/R&amp;R_APP/StudiesWeekly%202/StudyWeaklyApp/AllController/WeeklyListViewController/WeeklyDetailVC.swift"
+                  timestampString = "569240304.229447"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "272"
+                  endingLineNumber = "272"
+                  offsetFromSymbolStart = "155">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1380,7 +1316,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/ModelClasses/Online/NetworkAPI.swift"
-            timestampString = "566226008.708625"
+            timestampString = "569481998.290318"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "366"
@@ -1396,7 +1332,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/ModelClasses/Online/NetworkAPI.swift"
-            timestampString = "566226008.708688"
+            timestampString = "569481998.2904609"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "378"
@@ -1412,7 +1348,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/ModelClasses/Online/NetworkAPI.swift"
-            timestampString = "566226008.7087491"
+            timestampString = "569481998.290565"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "371"
@@ -1428,7 +1364,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/ModelClasses/Online/NetworkAPI.swift"
-            timestampString = "566226008.708842"
+            timestampString = "569481998.290666"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "403"
@@ -1508,11 +1444,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/WeeklyDetailVC.swift"
-            timestampString = "568127702.383184"
+            timestampString = "569240887.326515"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "387"
-            endingLineNumber = "387"
+            startingLineNumber = "395"
+            endingLineNumber = "395"
             landmarkName = "answerSeleckMethod(getAnwr:btnTag:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1524,11 +1460,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/WeeklyDetailVC.swift"
-            timestampString = "568127702.383267"
+            timestampString = "569240887.3265719"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "389"
-            endingLineNumber = "389"
+            startingLineNumber = "397"
+            endingLineNumber = "397"
             landmarkName = "answerSeleckMethod(getAnwr:btnTag:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1540,11 +1476,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/WeeklyDetailVC.swift"
-            timestampString = "568127702.383348"
+            timestampString = "569240887.326629"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "380"
-            endingLineNumber = "380"
+            startingLineNumber = "388"
+            endingLineNumber = "388"
             landmarkName = "answerSeleckMethod(getAnwr:btnTag:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1556,23 +1492,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/WeeklyDetailVC.swift"
-            timestampString = "568127702.383415"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "383"
-            endingLineNumber = "383"
-            landmarkName = "answerSeleckMethod(getAnwr:btnTag:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/WeeklyDetailVC.swift"
-            timestampString = "568127702.383495"
+            timestampString = "569240887.326687"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "391"
@@ -1587,8 +1507,24 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
+            filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/WeeklyDetailVC.swift"
+            timestampString = "569240887.326743"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "399"
+            endingLineNumber = "399"
+            landmarkName = "answerSeleckMethod(getAnwr:btnTag:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/ModelClasses/Online/NetworkAPI.swift"
-            timestampString = "566226008.7091759"
+            timestampString = "569481998.291205"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "480"
@@ -1604,7 +1540,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/ModelClasses/Online/NetworkAPI.swift"
-            timestampString = "566226008.709236"
+            timestampString = "569481998.291316"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "483"
@@ -1620,11 +1556,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/WeeklyDetailVC.swift"
-            timestampString = "568127702.383638"
+            timestampString = "569240887.326852"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "378"
-            endingLineNumber = "378"
+            startingLineNumber = "386"
+            endingLineNumber = "386"
             landmarkName = "answerSeleckMethod(getAnwr:btnTag:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1636,11 +1572,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/WeeklyDetailVC.swift"
-            timestampString = "568127702.383721"
+            timestampString = "569240887.32691"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "404"
-            endingLineNumber = "404"
+            startingLineNumber = "412"
+            endingLineNumber = "412"
             landmarkName = "answerSeleckMethod(getAnwr:btnTag:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1652,27 +1588,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/WeeklyDetailVC.swift"
-            timestampString = "568127702.3838151"
+            timestampString = "569240887.326965"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "265"
-            endingLineNumber = "265"
-            landmarkName = "WeeklyDetailVC"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/WeeklyDetailVC.swift"
-            timestampString = "568127702.3839051"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "334"
-            endingLineNumber = "334"
+            startingLineNumber = "273"
+            endingLineNumber = "273"
             landmarkName = "answerSeleckMethod(getAnwr:btnTag:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1684,7 +1604,23 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/WeeklyDetailVC.swift"
-            timestampString = "568127702.383985"
+            timestampString = "569240887.327021"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "342"
+            endingLineNumber = "342"
+            landmarkName = "answerSeleckMethod(getAnwr:btnTag:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/WeeklyDetailVC.swift"
+            timestampString = "569240887.327077"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "65"
@@ -1700,7 +1636,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/WeeklyDetailVC.swift"
-            timestampString = "568127702.384075"
+            timestampString = "569240887.327132"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "61"
@@ -1716,7 +1652,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/HomeViewController/HomeFileViewController.swift"
-            timestampString = "568127702.384165"
+            timestampString = "569156118.519354"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "163"
@@ -1738,38 +1674,6 @@
             startingLineNumber = "96"
             endingLineNumber = "96"
             landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "StudyWeaklyApp/AllController/MoreViewController/SettingsViewController.swift"
-            timestampString = "566213429.273488"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
-            landmarkName = "contentBtnClick(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "StudyWeaklyApp/AllController/MoreViewController/SettingsViewController.swift"
-            timestampString = "566213429.273545"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
-            landmarkName = "contentBtnClick(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1812,7 +1716,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/TestViewController.swift"
-            timestampString = "566916614.611892"
+            timestampString = "568716905.861658"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1075"
@@ -1860,11 +1764,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/SearchViewController/SearchViewController.swift"
-            timestampString = "567338527.984892"
+            timestampString = "568718207.454964"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "425"
-            endingLineNumber = "425"
+            startingLineNumber = "449"
+            endingLineNumber = "449"
             landmarkName = "searchMethod(methodName:terms:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1876,11 +1780,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/SearchViewController/SearchViewController.swift"
-            timestampString = "567338527.984967"
+            timestampString = "568718207.455097"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "141"
-            endingLineNumber = "141"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1892,11 +1796,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/SearchViewController/SearchViewController.swift"
-            timestampString = "567338527.985034"
+            timestampString = "568718207.455191"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "358"
-            endingLineNumber = "358"
+            startingLineNumber = "395"
+            endingLineNumber = "395"
             landmarkName = "searchMethod(methodName:terms:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1908,11 +1812,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/SearchViewController/SearchViewController.swift"
-            timestampString = "567338527.985099"
+            timestampString = "568718207.455259"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "426"
-            endingLineNumber = "426"
+            startingLineNumber = "450"
+            endingLineNumber = "450"
             landmarkName = "searchMethod(methodName:terms:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1924,11 +1828,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/SearchViewController/SearchViewController.swift"
-            timestampString = "567338527.985163"
+            timestampString = "568718207.455322"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "370"
-            endingLineNumber = "370"
+            startingLineNumber = "401"
+            endingLineNumber = "401"
             landmarkName = "searchMethod(methodName:terms:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1940,11 +1844,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/SearchViewController/SearchViewController.swift"
-            timestampString = "567338527.985229"
+            timestampString = "568718207.455385"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "240"
-            endingLineNumber = "240"
+            startingLineNumber = "277"
+            endingLineNumber = "277"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1956,7 +1860,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/TestViewController.swift"
-            timestampString = "566916614.612699"
+            timestampString = "568716905.861865"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1048"
@@ -1972,7 +1876,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/TestViewController.swift"
-            timestampString = "566916614.612759"
+            timestampString = "568716905.861926"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1016"
@@ -1988,7 +1892,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/SearchViewController/SearchViewController.swift"
-            timestampString = "567338527.98534"
+            timestampString = "568718207.4555039"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "41"
@@ -2004,11 +1908,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/WeeklyDetailVC.swift"
-            timestampString = "568127702.384537"
+            timestampString = "569240887.327659"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "510"
-            endingLineNumber = "510"
+            startingLineNumber = "518"
+            endingLineNumber = "518"
             landmarkName = "timerAction()"
             landmarkType = "7">
          </BreakpointContent>
@@ -2084,7 +1988,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/ModelClasses/New Group/CoreDBManager.swift"
-            timestampString = "568127702.3846821"
+            timestampString = "568718656.68915"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "399"
@@ -2100,7 +2004,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/ModelClasses/New Group/CoreDBManager.swift"
-            timestampString = "568127702.384747"
+            timestampString = "568718656.689214"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "377"
@@ -2292,7 +2196,7 @@
                   moduleName = "StudiesWeekly"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mansingh/Desktop/R&amp;R_APP/StudiesWeekly%202/StudyWeaklyApp/ModelClasses/AudioPlayClass.swift"
-                  timestampString = "568116723.501852"
+                  timestampString = "569240304.5157551"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "78"
@@ -2307,7 +2211,7 @@
                   moduleName = "StudiesWeekly"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mansingh/Desktop/R&amp;R_APP/StudiesWeekly%202/StudyWeaklyApp/ModelClasses/AudioPlayClass.swift"
-                  timestampString = "568116723.504343"
+                  timestampString = "569240304.5182"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "78"
@@ -2404,11 +2308,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/SearchViewController/SearchViewController.swift"
-            timestampString = "567338527.985884"
+            timestampString = "568718207.456809"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "299"
-            endingLineNumber = "299"
+            startingLineNumber = "336"
+            endingLineNumber = "336"
             landmarkName = "btnsClick(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2420,7 +2324,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/TestViewController.swift"
-            timestampString = "566916614.613387"
+            timestampString = "568716905.8629479"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1107"
@@ -2436,7 +2340,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/TestViewController.swift"
-            timestampString = "566916614.613445"
+            timestampString = "568716905.86304"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1082"
@@ -2548,7 +2452,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/HomeViewController/HomeFileViewController.swift"
-            timestampString = "568127702.3855489"
+            timestampString = "569156118.520434"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "113"
@@ -2564,7 +2468,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/TestViewController.swift"
-            timestampString = "566916614.613621"
+            timestampString = "568716905.863341"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1053"
@@ -2580,7 +2484,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/TestViewController.swift"
-            timestampString = "566916614.6136791"
+            timestampString = "568716905.863432"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "649"
@@ -2644,7 +2548,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/TestViewController.swift"
-            timestampString = "566916614.613789"
+            timestampString = "568716905.863606"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1212"
@@ -2660,7 +2564,7 @@
                   moduleName = "StudiesWeekly"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mansingh/Desktop/R&amp;R_APP/StudiesWeekly%202/StudyWeaklyApp/AllController/WeeklyListViewController/TestViewController.swift"
-                  timestampString = "568116723.61587"
+                  timestampString = "569240304.624876"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1212"
@@ -2675,7 +2579,7 @@
                   moduleName = "StudiesWeekly"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mansingh/Desktop/R&amp;R_APP/StudiesWeekly%202/StudyWeaklyApp/AllController/WeeklyListViewController/TestViewController.swift"
-                  timestampString = "568116723.6183619"
+                  timestampString = "569240304.627353"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1213"
@@ -2692,7 +2596,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/TestViewController.swift"
-            timestampString = "566916614.613847"
+            timestampString = "568716905.863693"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1190"
@@ -2708,7 +2612,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/TestViewController.swift"
-            timestampString = "566916614.613904"
+            timestampString = "568716905.863781"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1185"
@@ -2724,7 +2628,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/TestViewController.swift"
-            timestampString = "566916614.613961"
+            timestampString = "568716905.863868"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1196"
@@ -2740,7 +2644,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/TestViewController.swift"
-            timestampString = "566916614.614019"
+            timestampString = "568716905.863957"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1200"
@@ -2756,7 +2660,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/TestViewController.swift"
-            timestampString = "566916614.6140749"
+            timestampString = "568716905.864043"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1210"
@@ -2788,7 +2692,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/TestViewController.swift"
-            timestampString = "566916614.614387"
+            timestampString = "568716905.864217"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "637"
@@ -2804,7 +2708,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/TestViewController.swift"
-            timestampString = "566916614.614447"
+            timestampString = "568716905.864347"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "661"
@@ -2820,7 +2724,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/TestViewController.swift"
-            timestampString = "566916614.6145051"
+            timestampString = "568716905.864542"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "622"
@@ -2836,7 +2740,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/TestViewController.swift"
-            timestampString = "566916614.614562"
+            timestampString = "568716905.864707"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "652"
@@ -2852,7 +2756,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/TestViewController.swift"
-            timestampString = "566916614.61462"
+            timestampString = "568716905.864823"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "939"
@@ -2868,7 +2772,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/SwapViewController.swift"
-            timestampString = "565871512.195333"
+            timestampString = "568623340.622792"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "193"
@@ -2884,7 +2788,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/SwapViewController.swift"
-            timestampString = "565871512.195722"
+            timestampString = "568623340.622862"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "187"
@@ -2900,7 +2804,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/SwapViewController.swift"
-            timestampString = "565871512.195982"
+            timestampString = "568623340.622923"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "197"
@@ -2916,7 +2820,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/TestViewController.swift"
-            timestampString = "566916614.614728"
+            timestampString = "568716905.8649729"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "609"
@@ -2932,7 +2836,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/TestViewController.swift"
-            timestampString = "566916614.614787"
+            timestampString = "568716905.865038"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "613"
@@ -2948,7 +2852,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/SwapViewController.swift"
-            timestampString = "565871512.196403"
+            timestampString = "568623340.623041"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "150"
@@ -2964,7 +2868,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/SwapViewController.swift"
-            timestampString = "565871512.1966749"
+            timestampString = "568623340.6231019"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "171"
@@ -2980,7 +2884,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/SwapViewController.swift"
-            timestampString = "565871512.196937"
+            timestampString = "568623340.623161"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "83"
@@ -2996,7 +2900,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/SwapViewController.swift"
-            timestampString = "565871512.1971951"
+            timestampString = "568623340.62322"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "109"
@@ -3012,7 +2916,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/SwapViewController.swift"
-            timestampString = "565871512.1974519"
+            timestampString = "568623340.62328"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "119"
@@ -3028,7 +2932,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/SwapViewController.swift"
-            timestampString = "565871512.197711"
+            timestampString = "568623340.623338"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "73"
@@ -3044,7 +2948,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/TestViewController.swift"
-            timestampString = "566916614.6149451"
+            timestampString = "568716905.865208"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "971"
@@ -3060,7 +2964,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/SwapViewController.swift"
-            timestampString = "565871512.198027"
+            timestampString = "568623340.623428"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "115"
@@ -3076,7 +2980,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/TestViewController.swift"
-            timestampString = "566916614.6150219"
+            timestampString = "568716905.865291"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "148"
@@ -3124,7 +3028,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/MoreViewController/MoreViewController.swift"
-            timestampString = "566994335.551235"
+            timestampString = "569240887.329412"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "42"
@@ -3140,11 +3044,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/MoreViewController/ClassViewController.swift"
-            timestampString = "566311080.586382"
+            timestampString = "568642241.806542"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
             <Locations>
@@ -3156,11 +3060,11 @@
                   moduleName = "StudiesWeekly"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mansingh/Desktop/R&amp;R_APP/StudiesWeekly%202/StudyWeaklyApp/AllController/MoreViewController/ClassViewController.swift"
-                  timestampString = "568116723.791347"
+                  timestampString = "569240304.947549"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "23"
-                  endingLineNumber = "23"
+                  startingLineNumber = "24"
+                  endingLineNumber = "24"
                   offsetFromSymbolStart = "1224">
                </Location>
                <Location
@@ -3171,11 +3075,11 @@
                   moduleName = "StudiesWeekly"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mansingh/Desktop/R&amp;R_APP/StudiesWeekly%202/StudyWeaklyApp/AllController/MoreViewController/ClassViewController.swift"
-                  timestampString = "568116723.794637"
+                  timestampString = "569240304.9504271"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "24"
-                  endingLineNumber = "24"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
                   offsetFromSymbolStart = "65">
                </Location>
             </Locations>
@@ -3188,11 +3092,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/MoreViewController/ClassViewController.swift"
-            timestampString = "566311080.586439"
+            timestampString = "568642241.806646"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -3204,7 +3108,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/MoreViewController/ClassViewController.swift"
-            timestampString = "566311080.5864919"
+            timestampString = "568642241.80672"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "40"
@@ -3220,7 +3124,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/MoreViewController/ClassViewController.swift"
-            timestampString = "566311080.586545"
+            timestampString = "568642241.80679"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "36"
@@ -3236,11 +3140,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/SearchViewController/SearchViewController.swift"
-            timestampString = "567338527.986912"
+            timestampString = "568718207.4576941"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "348"
-            endingLineNumber = "348"
+            startingLineNumber = "385"
+            endingLineNumber = "385"
             landmarkName = "searchMethod(methodName:terms:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3252,11 +3156,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/SearchViewController/SearchViewController.swift"
-            timestampString = "567338527.986973"
+            timestampString = "568718207.457757"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "344"
-            endingLineNumber = "344"
+            startingLineNumber = "381"
+            endingLineNumber = "381"
             landmarkName = "searchMethod(methodName:terms:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3268,11 +3172,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/SearchViewController/SearchViewController.swift"
-            timestampString = "567338527.987031"
+            timestampString = "568718207.457819"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "364"
-            endingLineNumber = "364"
+            startingLineNumber = "400"
+            endingLineNumber = "400"
             landmarkName = "searchMethod(methodName:terms:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3284,11 +3188,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/SearchViewController/SearchViewController.swift"
-            timestampString = "567338527.987089"
+            timestampString = "568718207.45788"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "197"
-            endingLineNumber = "197"
+            startingLineNumber = "208"
+            endingLineNumber = "208"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3300,7 +3204,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/ModelClasses/New Group/CoreDBManager.swift"
-            timestampString = "568127702.387166"
+            timestampString = "568718656.690366"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "628"
@@ -3316,7 +3220,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/ModelClasses/New Group/CoreDBManager.swift"
-            timestampString = "568127702.387292"
+            timestampString = "568718656.690429"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "610"
@@ -3332,11 +3236,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/SearchViewController/SearchViewController.swift"
-            timestampString = "567338527.987186"
+            timestampString = "568718207.458627"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "441"
-            endingLineNumber = "441"
+            startingLineNumber = "465"
+            endingLineNumber = "465"
             landmarkName = "searchMethod(methodName:terms:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3348,11 +3252,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/SearchViewController/SearchViewController.swift"
-            timestampString = "567338527.987245"
+            timestampString = "568718207.458689"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "435"
-            endingLineNumber = "435"
+            startingLineNumber = "459"
+            endingLineNumber = "459"
             landmarkName = "searchMethod(methodName:terms:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3380,7 +3284,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/ModelClasses/New Group/CoreDBManager.swift"
-            timestampString = "568127702.387519"
+            timestampString = "568718656.69054"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "615"
@@ -3396,7 +3300,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/ModelClasses/New Group/CoreDBManager.swift"
-            timestampString = "568127702.387673"
+            timestampString = "568718656.690601"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "639"
@@ -3412,7 +3316,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/ModelClasses/New Group/CoreDBManager.swift"
-            timestampString = "568127702.3878011"
+            timestampString = "568718656.69067"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "625"
@@ -3428,11 +3332,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/SearchViewController/SearchViewController.swift"
-            timestampString = "567338527.987379"
+            timestampString = "568718207.459762"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "444"
-            endingLineNumber = "444"
+            startingLineNumber = "468"
+            endingLineNumber = "468"
             landmarkName = "searchMethod(methodName:terms:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3444,7 +3348,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/ModelClasses/New Group/CoreDBManager.swift"
-            timestampString = "568127702.387924"
+            timestampString = "568718656.69075"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "538"
@@ -3460,7 +3364,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/HomeViewController/HomeFileViewController.swift"
-            timestampString = "568127702.3880171"
+            timestampString = "569156118.521296"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "367"
@@ -3476,12 +3380,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/HomeViewController/HomeFileViewController.swift"
-            timestampString = "568127702.388098"
+            timestampString = "569156118.5213521"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "357"
             endingLineNumber = "357"
-            landmarkName = "searchBtnClick(_:)"
+            landmarkName = "fileBtnClick(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -3492,7 +3396,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/HomeViewController/HomeFileViewController.swift"
-            timestampString = "568127702.3881789"
+            timestampString = "569156118.521404"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "249"
@@ -3508,7 +3412,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/ModelClasses/New Group/CoreDBManager.swift"
-            timestampString = "568127702.38826"
+            timestampString = "568718656.690863"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "193"
@@ -3540,7 +3444,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/TestViewController.swift"
-            timestampString = "566916614.6154931"
+            timestampString = "568716905.8663729"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "62"
@@ -3556,7 +3460,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/TestViewController.swift"
-            timestampString = "566916614.615554"
+            timestampString = "568716905.86646"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "58"
@@ -3604,11 +3508,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/WeeklyDetailVC.swift"
-            timestampString = "568127702.388491"
+            timestampString = "569240887.330168"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "454"
-            endingLineNumber = "454"
+            startingLineNumber = "462"
+            endingLineNumber = "462"
             landmarkName = "collectBtnClick(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3620,11 +3524,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/ModelClasses/New Group/CoreDBManager.swift"
-            timestampString = "568127702.388628"
+            timestampString = "568718656.691069"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "910"
-            endingLineNumber = "910"
+            startingLineNumber = "940"
+            endingLineNumber = "940"
             landmarkName = "podMediaInDB(podMediaArr:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3636,11 +3540,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/WeeklyDetailVC.swift"
-            timestampString = "568127702.388721"
+            timestampString = "569240887.330254"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "475"
-            endingLineNumber = "475"
+            startingLineNumber = "483"
+            endingLineNumber = "483"
             landmarkName = "collectBtnClick(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3652,7 +3556,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/ModelClasses/New Group/CoreDBManager.swift"
-            timestampString = "568127702.3888561"
+            timestampString = "568718656.691187"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "531"
@@ -3667,72 +3571,8 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/WeeklyDetailVC.swift"
-            timestampString = "568127702.388948"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "130"
-            endingLineNumber = "130"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/WeeklyDetailVC.swift"
-            timestampString = "568127702.38908"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/ModelClasses/New Group/CoreDBManager.swift"
-            timestampString = "568127702.389199"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "669"
-            endingLineNumber = "669"
-            landmarkName = "fetchArticleQstMethod(articlesId:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/WeeklyDetailVC.swift"
-            timestampString = "568127702.389303"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "StudyWeaklyApp/ModelClasses/New Group/CoreDBManager.swift"
-            timestampString = "568127702.3893991"
+            timestampString = "568718656.691483"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "556"
@@ -3747,28 +3587,12 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "StudyWeaklyApp/ModelClasses/New Group/CoreDBManager.swift"
-            timestampString = "568127702.389519"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "677"
-            endingLineNumber = "677"
-            landmarkName = "fetchArticleQstMethod(articlesId:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/WeeklyDetailVC.swift"
-            timestampString = "568127702.389627"
+            timestampString = "569240887.330364"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "520"
-            endingLineNumber = "520"
+            startingLineNumber = "529"
+            endingLineNumber = "529"
             landmarkName = "bonuPointClick(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3780,11 +3604,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/WeeklyDetailVC.swift"
-            timestampString = "568127702.389763"
+            timestampString = "569240887.330422"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "347"
-            endingLineNumber = "347"
+            startingLineNumber = "355"
+            endingLineNumber = "355"
             landmarkName = "answerSeleckMethod(getAnwr:btnTag:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3796,11 +3620,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/BonusViewController.swift"
-            timestampString = "568116722.088035"
+            timestampString = "568904526.780972"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "159"
-            endingLineNumber = "159"
+            startingLineNumber = "178"
+            endingLineNumber = "178"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3812,11 +3636,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/BonusViewController.swift"
-            timestampString = "568116722.0880949"
+            timestampString = "568904526.7810431"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "161"
-            endingLineNumber = "161"
+            startingLineNumber = "180"
+            endingLineNumber = "180"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3828,27 +3652,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/BonusViewController.swift"
-            timestampString = "568116722.0881521"
+            timestampString = "568904526.781111"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "167"
-            endingLineNumber = "167"
-            landmarkName = "tableView(_:didSelectRowAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/BonusViewController.swift"
-            timestampString = "568116722.088209"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "157"
-            endingLineNumber = "157"
+            startingLineNumber = "176"
+            endingLineNumber = "176"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3875,13 +3683,653 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/WeeklyDetailVC.swift"
-            timestampString = "568127702.390071"
+            filePath = "StudyWeaklyApp/ModelClasses/NetworkCheck.swift"
+            timestampString = "568624604.507024"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "108"
-            endingLineNumber = "108"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "iswifi()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyWeaklyApp/ModelClasses/NetworkCheck.swift"
+            timestampString = "568624604.5074069"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
+            landmarkName = "iswifi()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyWeaklyApp/ModelClasses/New Group/CoreDBManager.swift"
+            timestampString = "568718656.692763"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1214"
+            endingLineNumber = "1214"
+            landmarkName = "deletDownloadedPublicationFromDB(publicationId:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyWeaklyApp/AllController/MoreViewController/ContentOptionViewController.swift"
+            timestampString = "569240887.330665"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
+            landmarkName = "ContentOptionViewController"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyWeaklyApp/AllController/MoreViewController/ContentOptionViewController.swift"
+            timestampString = "569240887.330729"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyWeaklyApp/ModelClasses/New Group/CoreDBManager.swift"
+            timestampString = "568718656.69286"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1216"
+            endingLineNumber = "1216"
+            landmarkName = "deletDownloadedPublicationFromDB(publicationId:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyWeaklyApp/AllController/MoreViewController/ContentOptionViewController.swift"
+            timestampString = "569240887.3308131"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
+            landmarkName = "switchValueDidChange(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyWeaklyApp/AllController/MoreViewController/ContentOptionViewController.swift"
+            timestampString = "569240887.3308671"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyWeaklyApp/AllController/MoreViewController/ContentOptionViewController.swift"
+            timestampString = "569240887.33092"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyWeaklyApp/AllController/MoreViewController/ContentOptionViewController.swift"
+            timestampString = "569240887.330974"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
             landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyWeaklyApp/AllController/MoreViewController/ContentOptionViewController.swift"
+            timestampString = "569240887.331027"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "viewWillAppear(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyWeaklyApp/AllController/MoreViewController/ContentOptionViewController.swift"
+            timestampString = "569240887.331081"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyWeaklyApp/AllController/MoreViewController/ContentOptionViewController.swift"
+            timestampString = "569240887.331134"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyWeaklyApp/AllController/MoreViewController/ContentOptionViewController.swift"
+            timestampString = "569240887.331187"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyWeaklyApp/ModelClasses/New Group/CoreDBManager.swift"
+            timestampString = "568718656.69305"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1296"
+            endingLineNumber = "1296"
+            landmarkName = "addSwitchInCDB(onSwitch:switchType:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyWeaklyApp/ModelClasses/NetworkCheck.swift"
+            timestampString = "568624604.507988"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "iswifi()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyWeaklyApp/AllController/MoreViewController/SettingsViewController.swift"
+            timestampString = "569240887.331298"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyWeaklyApp/ModelClasses/NetworkCheck.swift"
+            timestampString = "568624604.508414"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
+            landmarkName = "iswifi()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyWeaklyApp/ModelClasses/NetworkCheck.swift"
+            timestampString = "568624604.508654"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
+            landmarkName = "iswifi()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyWeaklyApp/AllController/SearchViewController/SearchViewController.swift"
+            timestampString = "568718207.464326"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "184"
+            endingLineNumber = "184"
+            landmarkName = "tableView(_:didSelectRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyWeaklyApp/AllController/MoreViewController/SettingsViewController.swift"
+            timestampString = "569240887.33144"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
+            landmarkName = "wifiBtnOnOff(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyWeaklyApp/AllController/MoreViewController/SettingsViewController.swift"
+            timestampString = "569240887.3315001"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
+            landmarkName = "wifiBtnOnOff(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyWeaklyApp/AllController/MoreViewController/SettingsViewController.swift"
+            timestampString = "569240887.3315589"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
+            landmarkName = "wifiBtnOnOff(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyWeaklyApp/AppDelegate.swift"
+            timestampString = "569240887.33162"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "209"
+            endingLineNumber = "209"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyWeaklyApp/AppDelegate.swift"
+            timestampString = "569240887.3316751"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "213"
+            endingLineNumber = "213"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyWeaklyApp/AppDelegate.swift"
+            timestampString = "569240887.331726"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "218"
+            endingLineNumber = "218"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyWeaklyApp/AppDelegate.swift"
+            timestampString = "569240887.331779"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyWeaklyApp/AppDelegate.swift"
+            timestampString = "569240887.331831"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "203"
+            endingLineNumber = "203"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyWeaklyApp/AllController/MoreViewController/SettingsViewController.swift"
+            timestampString = "569240887.3318861"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "viewWillAppear(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyWeaklyApp/AllController/MoreViewController/SettingsViewController.swift"
+            timestampString = "569240887.3319449"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "viewWillAppear(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyWeaklyApp/AllController/MoreViewController/SettingsViewController.swift"
+            timestampString = "569240887.332004"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "willEnterForeground()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/BonusViewController.swift"
+            timestampString = "568904526.7817889"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/WeeklyDetailVC.swift"
+            timestampString = "569240887.332091"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/WeeklyDetailVC.swift"
+            timestampString = "569240887.332149"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/WeeklyDetailVC.swift"
+            timestampString = "569240887.3322051"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/WeeklyDetailVC.swift"
+            timestampString = "569240887.332261"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "160"
+            endingLineNumber = "160"
+            landmarkName = "viewDidAppear(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyWeaklyApp/AllController/WeeklyListViewController/WeeklyDetailVC.swift"
+            timestampString = "569240887.332316"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "144"
+            endingLineNumber = "144"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyWeaklyApp/AllController/MoreViewController/SettingsViewController.swift"
+            timestampString = "569240887.332373"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
+            landmarkName = "viewWillAppear(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyWeaklyApp/AllController/MoreViewController/SettingsViewController.swift"
+            timestampString = "569240887.332433"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "notificatonSwitchOnOff(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyWeaklyApp/AllController/MoreViewController/SettingsViewController.swift"
+            timestampString = "569240887.332491"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
+            landmarkName = "notificatonSwitchOnOff(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyWeaklyApp/AllController/MoreViewController/SettingsViewController.swift"
+            timestampString = "569240887.33255"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
+            landmarkName = "notificatonSwitchOnOff(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

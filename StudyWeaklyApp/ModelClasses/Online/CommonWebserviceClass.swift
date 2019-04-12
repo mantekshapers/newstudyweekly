@@ -7,7 +7,9 @@
 //
 
 import UIKit
-import CommonCrypto
+//import CommonCrypto
+import CommonCryptoModule
+
 typealias ServiceResponse = ( Any?,Bool?) -> Void
 class CommonWebserviceClass: NSObject,URLSessionDelegate, URLSessionTaskDelegate{
     class var sharedInstance: CommonWebserviceClass {
@@ -16,6 +18,7 @@ class CommonWebserviceClass: NSObject,URLSessionDelegate, URLSessionTaskDelegate
            }
          return Static.instance
     }
+    
     class  func makeHTTPGetRequest(path: String,postString: [String:String],httpMethodName:String,onCompletion:  @escaping ServiceResponse) {
         let urlString = "https://app.studiesweekly.com/online/api/v2/app/"
        // let parameters = ["user_id": "1195643"]

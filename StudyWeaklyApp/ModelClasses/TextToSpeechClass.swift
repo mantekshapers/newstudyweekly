@@ -34,9 +34,9 @@ class TextToSpeechClass: NSObject{
         let Language:String = "en-US"
        // prepareAudioSession()
         let speechUtterance = AVSpeechUtterance(string: getWord)
-        speechUtterance.rate = 0.25
+        speechUtterance.rate = 0.5
         speechUtterance.pitchMultiplier = 0.15
-        speechUtterance.volume = 0.99
+        //speechUtterance.volume = 0.99
         speechUtterance.voice = AVSpeechSynthesisVoice(language: "en-US")
         speechSynthesizer.speak(speechUtterance)
     }
@@ -71,10 +71,18 @@ class TextToSpeechClass: NSObject{
     extension TextToSpeechClass: AVSpeechSynthesizerDelegate {
         func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didStart utterance: AVSpeechUtterance) {
             print("Speaker class started")
+      
         }
         
         func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
             print("Speaker class finished")
         }
+        
+        func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, willSpeakRangeOfSpeechString characterRange: NSRange, utterance: AVSpeechUtterance) {
+            
+             print("Speaker class range ==")
+            
+        }
+        
     
 }

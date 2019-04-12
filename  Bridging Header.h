@@ -8,8 +8,8 @@
 
 #ifndef _Bridging_Header_h
 #define _Bridging_Header_h
-#import <CommonCrypto/CommonCrypto.h>
-#import <CommonCrypto/CommonDigest.h>
+//#import <CommonCrypto/CommonCrypto.h>
+//#import <CommonCrypto/CommonDigest.h>
 #import "ObjCExceptionHelper.h"
 #import "Flurry.h"
 

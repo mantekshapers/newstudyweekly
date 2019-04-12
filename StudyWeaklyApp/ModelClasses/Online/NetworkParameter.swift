@@ -19,3 +19,8 @@ struct QuestionSendParameter {
 }
 
 
+struct ForgotResetParameters {
+    let emailId: Field
+  
+}
+

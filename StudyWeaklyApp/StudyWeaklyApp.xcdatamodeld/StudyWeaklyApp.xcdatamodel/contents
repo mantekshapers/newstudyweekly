@@ -13,6 +13,15 @@
         <attribute name="unit_id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="PodMediaDownload" representedClassName="PodMediaDownload" syncable="YES" codeGenerationType="class">
+        <attribute name="article_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="download" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="m_description" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="media_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="media_source" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="PublicationDownload" representedClassName="PublicationDownload" isAbstract="YES" syncable="YES" codeGenerationType="class">
         <attribute name="publication_download" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="publication_id" optional="YES" attributeType="String" syncable="YES"/>
@@ -29,7 +38,7 @@
         <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="units" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Units" syncable="YES"/>
     </entity>
-    <entity name="QuestionsTable" representedClassName="QuestionsTable" syncable="YES" codeGenerationType="class">
+    <entity name="QuestionsTable" representedClassName="QuestionsTable" isAbstract="YES" syncable="YES" codeGenerationType="class">
         <attribute name="a" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="answer" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="article_id" optional="YES" attributeType="String" syncable="YES"/>
@@ -53,6 +62,11 @@
         <attribute name="media_splash" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="SwitchTable" representedClassName="SwitchTable" isAbstract="YES" syncable="YES" codeGenerationType="class">
+        <attribute name="audioSwitch" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imageSwitch" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mediaSwitch" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="Units" representedClassName="Units" isAbstract="YES" syncable="YES" codeGenerationType="class">
         <attribute name="publication_id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="units" optional="YES" attributeType="Transformable" customClassName="[AnyObject]" syncable="YES"/>
@@ -69,10 +83,12 @@
     <elements>
         <element name="ArticlesTable" positionX="18" positionY="135" width="128" height="105"/>
         <element name="PodMedia" positionX="108" positionY="-9" width="128" height="120"/>
+        <element name="PodMediaDownload" positionX="0" positionY="126" width="128" height="150"/>
         <element name="PublicationDownload" positionX="232" positionY="162" width="128" height="103"/>
         <element name="Publications" positionX="-198" positionY="117" width="128" height="163"/>
         <element name="QuestionsTable" positionX="196" positionY="306" width="128" height="223"/>
         <element name="SearchMedia" positionX="27" positionY="429" width="128" height="165"/>
+        <element name="SwitchTable" positionX="0" positionY="126" width="128" height="90"/>
         <element name="Units" positionX="-99" positionY="308" width="128" height="88"/>
         <element name="USER" positionX="-63" positionY="-18" width="128" height="135"/>
     </elements>

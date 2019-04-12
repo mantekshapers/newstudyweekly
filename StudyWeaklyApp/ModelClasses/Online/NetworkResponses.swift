@@ -115,8 +115,8 @@ class QuestionResponse: Reflection {
 //    var error: String?
 //}
 //
-//class PasswordResetResponse: Reflection {
-//    var success: NSNumber?
-//    var message: String?
-//}
+class PasswordResetResponse: Reflection {
+    var success: NSNumber?
+    var message: String?
+}
 

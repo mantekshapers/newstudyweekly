@@ -15,13 +15,10 @@ protocol DownloadBtnDelegate: class {
     
     weak var downloadBtnDelegate:DownloadBtnDelegate?
     @IBOutlet weak var lbl_title: UILabel!
-    
+    @IBOutlet weak var viewColor: UIView!
     @IBOutlet weak var lbl_cellNo: UILabel!
-    
     @IBOutlet weak var img_circle: UIImageView!
-    
     @IBOutlet weak var indicator: UIActivityIndicatorView!
-    
     @IBOutlet weak var img_download: UIImageView!
     
     @IBOutlet weak var btn_download: UIButton!

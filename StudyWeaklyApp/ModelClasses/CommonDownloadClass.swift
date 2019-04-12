@@ -94,6 +94,8 @@ class CommonDownloadClass: NSObject{
     }
     
     
+   
+    
     func fetchMediaFromDocument(urlStr: String)->URL{
         
        // http://freetone.org/ring/stan/iPhone_5-Alarm.mp3
@@ -110,6 +112,64 @@ class CommonDownloadClass: NSObject{
             return destinationUrl
         //}
        
+    }
+    
+    
+     // ----- here is code for pod media soure save -----
+    
+    func savePodMediaMethod(getMediDict:[String:AnyObject],completion: @escaping (String?, Error?) -> Void){
+        
+        
+//        "article_id" = 149104;
+//        "container_id" = 171788;
+//        description = "<p>\n\t  Students have a responsibility to complete homework assignments and turn them in on time.\n</p>";
+//        filesize = 3512295;
+//        "language_code" = "en-US";
+//        "media_id" = 86033;
+//        name = "Doing Homework";
+//        order = 0;
+        
+//        "source_info" = "cegoh (Own Work) [Public Domain], via Pixabay";
+//        type = image;
+//        updated = "2017-05-15 13:26:32.184139";
+//        url = "s3-us-west-2.amazonaws.com/static.studiesweekly.com/online/resources/pod_media/writing-711281.jpg";
+//        
+        let mediaSource = getMediDict["url"] as! String
+        let mediaUrlStr = "https://" +  CustomController.backSlaceRemoveFromUrl(urlStr: mediaSource)
+        
+        // http://freetone.org/ring/stan/iPhone_5-Alarm.mp3
+        if let audioUrl = URL(string: mediaUrlStr) {
+            
+            // then lets create your document folder url
+            let documentsDirectoryURL =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+            
+            // lets create your destination file url
+            let destinationUrl = documentsDirectoryURL.appendingPathComponent(audioUrl.lastPathComponent)
+            print(destinationUrl)
+            
+            // to check if it exists before downloading it
+            if FileManager.default.fileExists(atPath: destinationUrl.path) {
+                print("The file already exists at path")
+                
+                // if the file doesn't exist
+            } else {
+                
+                // you can use NSURLSession.sharedSession to download the data asynchronously
+                URLSession.shared.downloadTask(with: audioUrl, completionHandler: { (location, response, error) -> Void in
+                    guard let location = location, error == nil else { return }
+                    do {
+                        // after downloading your file you need to move it to your destination url
+                        try FileManager.default.moveItem(at: location, to: destinationUrl)
+                        print("File moved to documents folder")
+                        CDBManager().addPodDownloadMediaInDB(getSearchDict: getMediDict)
+                        completion("success",nil)
+                    } catch let error as NSError {
+                        print(error.localizedDescription)
+                    }
+                }).resume()
+            }
+        }
+        
     }
     
     /*

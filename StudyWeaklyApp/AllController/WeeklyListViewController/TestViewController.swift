@@ -11,59 +11,75 @@ import AVKit
 import AVFoundation
 import DropDown
 
-class TestViewController: UIViewController ,UITableViewDelegate,UITableViewDataSource,TestDelegate,QTrueFalseDelegate,QrfibDelegate,CheckAllDelegate,SortDelegateClass,QuestionMatchingDelegate,SwapDelegateClass,UIGestureRecognizerDelegate,UITextFieldDelegate{
-   
-    
-    
+extension String {
+    var withoutHtmlTagss: String {
+        return self.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
+    }
+}
+
+class TestViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, TestDelegate, QTrueFalseDelegate, QrfibDelegate, CheckAllDelegate, SortDelegateClass, QuestionMatchingDelegate, SwapDelegateClass, UIGestureRecognizerDelegate, UITextFieldDelegate
+{
+    @IBOutlet weak var tbleView: UITableView!
+
+    @IBOutlet weak var viewMenu : UIView!
+    @IBOutlet weak var btnSideMenu : UIButton!
+    @IBOutlet weak var btnInitial : UIButton!
+    @IBOutlet weak var btnSetting : UIButton!
+    @IBOutlet weak var btnCoins : UIButton!
+    @IBOutlet weak var btnLogout : UIButton!
+    @IBOutlet weak var lblName : UILabel!
+    @IBOutlet weak var lblCoins : UILabel!
+    @IBOutlet weak var lblRole : UILabel!
+
     var qSwapCellHeight:Int? = 60
     var dropDown:DropDown? = nil
      var cellTitle:UIButton? = nil
     var getUnitId:String?
-    @IBOutlet weak var tbleView: UITableView!
     var testQuestionArr = [AnyObject]()
     var player:AVPlayer?
     var dragCGPoint: CGPoint?
     var multipleSelectArr = [AnyObject]()
     var selectCellIndex: Int? = -1
-     let customAlertController = CustomController() 
-    override func viewDidLoad() {
+     let customAlertController = CustomController()
+    
+    //MARK: - UIView Life Cycle
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = true
-        self.tbleView.delegate = self
-        self.tbleView.dataSource = self
+        btnSideMenu.layer.cornerRadius = btnSideMenu.frame.size.width / 2
+        btnSideMenu.layer.masksToBounds = true
+        btnInitial.layer.cornerRadius = btnInitial.frame.size.width / 2
+        btnInitial.layer.masksToBounds = true
+
         self.tbleView.estimatedRowHeight = 50
         self.tbleView.rowHeight = UITableViewAutomaticDimension
-         player = AVPlayer()
+        player = AVPlayer()
+        
         customAlertController.showActivityIndicatory(uiView: self.view)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-        // Do any additional setup after loading the view.
-        //getUnitId
-        //128061
         
         let postDict = ["unit_id":"128061"]
         CommonWebserviceClass.makeHTTPGetRequest(path: BaseUrlOther.baseURLOther + WebserviceName.assessment_info, postString: postDict as! [String : String], httpMethodName: "GET") { (respose, boolTrue) in
             
-            if boolTrue == false{
-                //let getDict = respose as! [String:AnyObject]
-                DispatchQueue.main.async {
+            if boolTrue == false
+            {
+                DispatchQueue.main.async
+                    {
                     self.customAlertController.hideActivityIndicator(uiView: self.view)
-                    //                    self.customAlertController.showCustomAlert3(getMesage: getDict["responseError"] as! String, getView: self)
-                    //                    appdelegate?.hideLoader()
                 }
                 return
             }
             let getDataDict = respose as? [String: AnyObject]
-            
             let getDataSuccess = getDataDict!["success"] as! [String: AnyObject]
-            
             let getDataArr = getDataSuccess["questions"] as? [AnyObject]
-            print("---------\(getDataArr)")
-            if (getDataArr?.count)!>0{
-                //self.testQuestionArr = getDataArr!
-                // let qSArr = getUnitDetailDict?["standards"] as? [AnyObject]
-                for data in getDataArr!{
+            print("---------\(String(describing: getDataArr))")
+            if (getDataArr?.count)!>0
+            {
+                for data in getDataArr!
+                {
                     var dataDict = [String:AnyObject]()
                     dataDict = data as! [String : AnyObject]
                     dataDict["selectAns"] = "unselect" as AnyObject
@@ -76,47 +92,459 @@ class TestViewController: UIViewController ,UITableViewDelegate,UITableViewDataS
                 self.tbleView.reloadData()
                 print("test Question_response =\(getDataArr!)")
             }
-            
         }
-      }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-     }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        // let getUserId    = NetworkAPI.userID()
-       // let postDict = ["unit_id":getUnitId] as! [String:String]
-       // getUnitId
-        // FOR TEST UNIT_ID = 128061
-        // article_assessment
-      // replace  article_assessment with assessment_info
-        
-      
     }
     
-    // UITableViewAutomaticDimension calculates height of label contents/text
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        // Swift 4.1 and below
+    override func viewWillAppear(_ animated: Bool)
+    {
+        super.viewWillAppear(animated)
+        viewMenu.isHidden = true
+        CommonFunctions.closeMenu(view: viewMenu)
+     }
+    
+    override func viewDidAppear(_ animated: Bool)
+    {
+        super.viewDidAppear(animated)
+        
+        let dbArr = CDBManager().getDataFromDB() as [AnyObject]
+        print(dbArr as AnyObject)
+        if dbArr.count>0
+        {
+            let getDict = dbArr[0] as? [String:AnyObject]
+            print("getDict:\(String(describing: getDict))")
+            
+            lblName.text = getDict?[WSKeyValues.name] as? String ?? ""
+            print("Name:\(String(describing: lblName.text))")
+            let getPoints = getDict![WSKeyValues.points] as? String ?? ""
+            lblCoins.text = getPoints + " Coins"
+            
+            let userRoleStr = getDict!["userRole"] as? String ?? ""
+            lblRole.text = userRoleStr
+            
+            let strChar = String(Array(self.lblName.text!)[0])
+            print("strChar:\(strChar)")
+            
+            btnSideMenu.setTitle(strChar, for: .normal)
+            btnInitial.setTitle(strChar, for: .normal)
+        }
+    }
+    
+    //MARK: - User Define Method
+    func swapBackDataSendMethod(index: Int, swipDict: [String : AnyObject])
+    {
+        // testQuestionArr[index]  = swipDict as AnyObject
+        print(" swap dict print===\(swipDict) && index== \(index)")
+        testQuestionArr[index]  = swipDict as AnyObject
+        // testQuestionArr
+        print("update array at index=\(index)")
+        DispatchQueue.main.async {
+            self.tbleView.reloadData()
+        }
+    }
+    
+    func editBtnClick(_ sender: UIButton)
+    {
+        let sendDict = testQuestionArr[sender.tag] as? [String: AnyObject]
+        let swapViewController  =  self.storyboard?.instantiateViewController(withIdentifier: "SwapViewController") as! SwapViewController
+        swapViewController.getDict = sendDict
+        swapViewController.getIndex = sender.tag
+        /// swapViewController.getArticleDetailDict = getArtcleDict
+        swapViewController.swapDelegateClass = self
+        self.navigationController?.pushViewController(swapViewController, animated: true)
+    }
+
+    func dropDownBtnClickSender(answr: String, indexTag: Int)
+    {
+        
+    }
+
+    //MARK: - UIButton Method
+    @objc func buttonClicked(sender: UIButton!)
+    {
+        //         let btn = sender
+        //        btn?.titleLabel?.textColor = UIColor.green
+        //        btn?.titleLabel?.text = "coo"
+        cellTitle = sender
+        dropDown?.anchorView = sender
+        let pointInTable: CGPoint = sender.convert(sender.bounds.origin, to: self.tbleView)
+        let cellIndexPath = self.tbleView.indexPathForRow(at: pointInTable)
+        print(cellIndexPath!.row)
+        let dictTemp = testQuestionArr[cellIndexPath!.row] as? [String: AnyObject]
+        let answrDict = dictTemp!["questions_rfib_correct_answer"] as! [String:AnyObject]
+        let arrTemp =  answrDict["question_array"] as! [AnyObject]
+        let qAdict =  arrTemp[sender.tag] as! [String: AnyObject]
+        dropDown?.dataSource = qAdict["options"] as! [String]
+        dropDown?.show()
+        //        var alertView = UIAlertView()
+        //        alertView.addButton(withTitle: "Ok")
+        //        alertView.title = "title"
+        //        alertView.message = "message ==\(sender.tag)"
+        //        alertView.show()
+        
+    }
+    
+    @IBAction func finishTestBtnClick(_ sender: UIButton)
+    {
+        CustomController.showMessage(message: "Thank you for Test")
+    }
+    
+    @IBAction func backBtnClick(_ sender: UIButton)
+    {
+        DispatchQueue.main.async {
+            self.navigationController?.popViewController(animated: true)
+        }
+    }
+    
+    @IBAction func menuBtnClick(_ sender: UIButton)
+    {
+        sender.isSelected = !sender.isSelected
+        if sender.isSelected
+        {
+            viewMenu.isHidden = false
+            CommonFunctions.openMenu(view: viewMenu)
+        }
+        else
+        {
+            CommonFunctions.closeMenu(view: viewMenu)
+        }
+    }
+    
+    @IBAction func btnSettingsClicked(_ sender: UIButton)
+    {
+        viewMenu.isHidden = true
+        CommonFunctions.closeMenu(view: viewMenu)
+        
+        let settingController = self.storyboard?.instantiateViewController(withIdentifier: StoryBoardId.SettingsViewControllerID) as! SettingsViewController
+        self.navigationController?.pushViewController(settingController, animated: true)
+    }
+    
+    @IBAction func btnLogoutClicked(_ sender: UIButton)
+    {
+        viewMenu.isHidden = true
+        CommonFunctions.closeMenu(view: viewMenu)
+        
+        CDBManager().deleteAllCDB()
+        NetworkAPI.removeUserId()
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.rootViewCallMethod(getAlertTitle:"sessionExpired")
+    }
+    
+    @IBAction func homeBtnClick(_ sender: UIButton)
+    {
+        viewMenu.isHidden = true
+        CommonFunctions.closeMenu(view: viewMenu)
+        
+        DispatchQueue.main.async {
+            
+            for vc in (self.navigationController?.viewControllers ?? []) {
+                if vc is HomeFileViewController {
+                    _ = self.navigationController?.popToViewController(vc, animated: true)
+                    break
+                }
+            }
+        }
+    }
+
+    //MARK: - Pan Gesture Method
+    @objc func panGestureHandler1(panGesture recognizer: UIPanGestureRecognizer)
+    {
+        // let buttonTag = (recognizer.view?.tag)!
+        // if let button = view.viewWithTag(buttonTag) as? UILabel {
+        let translation = recognizer.translation(in: self.view)
+        print("translation==\(translation)")
+
+        if let img_drag = recognizer.view as? UILabel
+        {
+            if recognizer.state == .began
+            {
+                //  wordButtonCenter = button.center // store old button center
+                print("Cell Index==\(img_drag.tag)")
+                dragCGPoint = img_drag.center
+            }
+            else if recognizer.state == .ended || recognizer.state == .failed || recognizer.state == .cancelled
+            {
+                print("Cell Index==end=\(img_drag.tag)")
+                img_drag.center = dragCGPoint!
+                // button.center = wordButtonCenter // restore button center
+            }
+            else
+            {
+                // let location = recognizer.location(in: view) // get pan location
+                //  button.center = location // set button to where finger is
+                let translation = recognizer.translation(in: self.view)
+                // if let img_drag = recognizer.view as? UILabel{
+                img_drag.center = CGPoint(x: img_drag.center.x + translation.x, y: img_drag.center.y + translation.y)
+                // }
+            }
+            recognizer.setTranslation(CGPoint(x: 0, y: 0), in: self.view)
+        }
+        
+        //        let translation = recognizer.translation(in: self.view)
+        //        if let img_drag = recognizer.view as? UIImageView{
+        //            img_drag.center = CGPoint(x: img_drag.center.x + translation.x, y: img_drag.center.y + translation.y)
+        //        }
+        //        recognizer.setTranslation(CGPoint(x: 0, y: 0), in: self.view)
+    }
+    
+    @objc func panGestureHandler(panGesture recognizer: UIPanGestureRecognizer)
+    {
+        let buttonTag = (recognizer.view?.tag)!
+        print("buttonTag==\(buttonTag)")
+
+        if let img_drag = recognizer.view as? UILabel
+        {
+            if recognizer.state == .began
+            {
+                //  wordButtonCenter = button.center // store old button center
+                dragCGPoint = img_drag.center
+            }
+            else if recognizer.state == .ended || recognizer.state == .failed || recognizer.state == .cancelled
+            {
+                // button.center = wordButtonCenter // restore button center
+                img_drag.center = dragCGPoint!
+            }
+            else
+            {
+                let location = recognizer.location(in: view) // get pan location
+                //  button.center = location // set button to where finger is
+                let translation = recognizer.translation(in: self.view)
+                // if let img_drag = recognizer.view as? UILabel{
+                img_drag.center = CGPoint(x: img_drag.center.x + translation.x, y: img_drag.center.y + translation.y)
+            }
+            recognizer.setTranslation(CGPoint(x: 0, y: 0), in: self.view)
+        }
+        
+        //        let translation = recognizer.translation(in: self.view)
+        //        if let img_drag = recognizer.view as? UIImageView{
+        //            img_drag.center = CGPoint(x: img_drag.center.x + translation.x, y: img_drag.center.y + translation.y)
+        //        }
+        //        recognizer.setTranslation(CGPoint(x: 0, y: 0), in: self.view)
+    }
+    
+    func qmcPlayClick1(_ sender: UIButton)
+    {
+        let indexBtn = sender.tag
+        let getDICT = testQuestionArr[indexBtn] as? [String: AnyObject]
+        let AUDIOuRL = getDICT!["audio_url"] as? String
+        // MediaClass().playMPSongMethod(urlMp: "https://" + AUDIOuRL!)
+        playMethod(urlMP: AUDIOuRL!)
+    }
+    
+    func qmcPlayClick(_ sender: UIButton)
+    {
+        let indexBtn = sender.tag
+        let getDICT = testQuestionArr[indexBtn] as? [String: AnyObject]
+        let AUDIOuRL = getDICT!["audio_url"] as? String
+        playMethod(urlMP: AUDIOuRL!)
+    }
+    
+    func btn_sortPlayMethod(_ sender: UIButton)
+    {
+        let indexBtn = sender.tag
+        let getDICT = testQuestionArr[indexBtn] as? [String: AnyObject]
+        let AUDIOuRL = getDICT!["audio_url"] as? String
+        playMethod(urlMP: AUDIOuRL!)
+    }
+
+    // btn_matchPlayMethod
+    func btn_matchPlayMethod(_ sender: UIButton)
+    {
+        let indexBtn = sender.tag
+        
+        let getDICT = testQuestionArr[indexBtn] as? [String: AnyObject]
+        let AUDIOuRL = getDICT!["audio_url"] as? String
+        playMethod(urlMP: AUDIOuRL!)
+    }
+    
+    func playMethod(urlMP: String)
+    {
+        let urlMp3 = URL(string: "http://" + urlMP)
+        player = AVPlayer(url: urlMp3!)
+        player?.play()
+    }
+    
+    func answerSeleckMethod(getAnwr: String, btnTag: Int)
+    {
+        var getDict = testQuestionArr[btnTag] as? [String: AnyObject]
+        
+        let qAnserDict = getDict?["questions_mc_correct_answer"] as? [String: AnyObject]
+        // let qAnserStr = qAnserDict!["answer"] as? String
+        getDict?["selectAns"] = getAnwr as AnyObject
+        // let selectAnswer = getDict?["selectAns"] as? String
+        //        if getAnwr == qAnserStr {
+        //            getDict?["selectAns"] = getAnwr as AnyObject
+        //        }else {
+        //             getDict?["selectAns"] = "unselect" as AnyObject
+        //        }
+        
+        testQuestionArr[btnTag] = getDict as AnyObject
+        DispatchQueue.main.async {
+            self.tbleView.reloadData()
+        }
+    }
+    
+    func answerSeleckAllMethod(getAnwr: String, btnTag: Int)
+    {
+        if selectCellIndex == btnTag
+        {
+            let elements = multipleSelectArr
+            if let object = elements.filter({ $0 as! String ==  getAnwr}).first
+            {
+                print("found")
+            }
+            else
+            {
+                print("not found")
+                multipleSelectArr.append(getAnwr as AnyObject)
+            }
+        }
+        else
+        {
+            selectCellIndex = btnTag
+            multipleSelectArr.removeAll()
+            multipleSelectArr.append(getAnwr as AnyObject)
+        }
+        var getDict = testQuestionArr[btnTag] as? [String: AnyObject]
+        getDict?["selectAns"] = multipleSelectArr as AnyObject
+        testQuestionArr[btnTag] = getDict as AnyObject
+        DispatchQueue.main.async {
+            self.tbleView.reloadData()
+        }
+    }
+    
+    func answerTrueFalseMethod(answr: String, indexTag: Int)
+    {
+        var getDict = testQuestionArr[indexTag] as? [String: AnyObject]
+        let qAnserDict = getDict?["questions_mc_correct_answer"] as? [String: AnyObject]
+        // let qAnserStr = qAnserDict!["answer"] as? String
+        getDict?["selectAns"] = answr as AnyObject
+        // let selectAnswer = getDict?["selectAns"] as? String
+        //        if getAnwr == qAnserStr {
+        //            getDict?["selectAns"] = getAnwr as AnyObject
+        //        }else {
+        //             getDict?["selectAns"] = "unselect" as AnyObject
+        //        }
+        testQuestionArr[indexTag] = getDict as AnyObject
+        DispatchQueue.main.async {
+            self.tbleView.reloadData()
+        }
+    }
+    
+    func sortSendIndexForReloadMethod(dataArr: [AnyObject], cellIndex: Int)
+    {
+        var getDICT = testQuestionArr[cellIndex] as? [String: AnyObject]
+        var getSortDict = getDICT?["questions_sorting_correct_answer"]  as? [String: AnyObject]
+        //  let getSortArr = getSortDict?["options_array"]  as? [AnyObject]
+        getSortDict?["options_array"] = dataArr as AnyObject
+        getDICT?["questions_sorting_correct_answer"] = getSortDict as AnyObject
+        testQuestionArr[cellIndex] = getDICT as AnyObject
+        //        DispatchQueue.main.async {
+        //          self.tbleView.reloadData()
+        //         }
+    }
+    
+    /// now i am working match question
+    func matchAnsSendMethod(dragIndex: Int, dropIndex: Int, indexPathRow: Int)
+    {
+        var getDICT = testQuestionArr[indexPathRow] as? [String: AnyObject]
+        var getSortDict = getDICT?["questions_matching_correct_answer"]  as? [String: AnyObject]
+        var getSetsArr = getSortDict?["sets"] as? [AnyObject]
+        
+        var commonLeftDict = getSetsArr?[dragIndex] as? [String: AnyObject]
+        var commonRightDict = getSetsArr?[dropIndex] as? [String: AnyObject]
+        
+        var leftDict = commonLeftDict?["left"] as? [String: AnyObject]
+        var rightDict = commonRightDict?["right"] as? [String: AnyObject]
+        
+        let imgLeftTmp = leftDict?["image"] as? String
+        
+        rightDict?["image"] = imgLeftTmp as AnyObject//imgLeftTmp as AnyObject
+        leftDict?["image"] = "" as AnyObject
+        
+        //  print("left image==\(leftDict)")
+        commonLeftDict?["left"] = leftDict as AnyObject
+        
+        //  print("commonLeft==\(commonLeftDict)")
+        commonRightDict?["right"] = rightDict as AnyObject
+        
+        // print("commonRight==\(commonRightDict)")
+        
+        getSetsArr?[dragIndex] = commonLeftDict as AnyObject
+        
+        // print("--Index=\(dragIndex)---\(getSetsArr)")
+        getSetsArr?[dropIndex] = commonRightDict as AnyObject
+        
+        //  print("--***Index=\(dropIndex)***---\(getSetsArr)")
+        getSortDict?["sets"] = getSetsArr as AnyObject
+        getDICT?["questions_matching_correct_answer"] = getSortDict as AnyObject
+        testQuestionArr[indexPathRow] =  getDICT as AnyObject
+        DispatchQueue.main.async {
+            self.tbleView.reloadData()
+        }
+        // print("Change Dict Print==\(testQuestionArr[indexPathRow])")
+        // print("dragTag\(dragIndex) == dropTag==\(dropIndex)==indexCell==\(indexPathRow)")
+    }
+    
+    //MARK: - UITextField Delegate
+    func textFieldDidChange(_ textField:UITextField)
+    {
+        // your code here
+        print("====change text value ==\(textField.tag)")
+    }
+    
+    func keyboardWillShow(_ notification:Notification)
+    {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            tbleView.contentInset = UIEdgeInsetsMake(0, 0, keyboardSize.height, 0)
+        }
+    }
+    
+    func keyboardWillHide(_ notification:Notification)
+    {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            tbleView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0)
+        }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
+    {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    //MARK: - UITableView Delegates
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
         let getDICT = testQuestionArr[indexPath.row] as? [String: AnyObject]
         let typeStr = getDICT!["type"] as! String
-        if typeStr == "questions_labeling"{
+        if typeStr == "questions_labeling"
+        {
             return 370//UITableViewAutomaticDimension
-        }else if typeStr == "questions_true_false"{
+        }
+        else if typeStr == "questions_true_false"
+        {
             //Q_open_Cell
             return 150
-        }else if typeStr == "questions_open"{
+        }
+        else if typeStr == "questions_open"
+        {
             //Q_open_Cell
             return UITableViewAutomaticDimension
-        }else if typeStr == "questions_check_all"{
+        }
+        else if typeStr == "questions_check_all"
+        {
             return UITableViewAutomaticDimension
-        }else if typeStr == "questions_rfib"{
-            return 120
-        }else if typeStr == "questions_sorting"{
+        }
+        else if typeStr == "questions_rfib"
+        {
+            return 110
+        }
+        else if typeStr == "questions_sorting"
+        {
             return 164
-           
-        }else if typeStr == "questions_matching"{
+        }
+        else if typeStr == "questions_matching"
+        {
             return CGFloat(qSwapCellHeight!)
            // return 410
         }
@@ -124,31 +552,35 @@ class TestViewController: UIViewController ,UITableViewDelegate,UITableViewDataS
         return UITableViewAutomaticDimension
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
         return testQuestionArr.count
     }
-    // create a cell for each table view row
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        ///let cell = UITableViewCell()
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
         let getDICT = testQuestionArr[indexPath.row] as? [String: AnyObject]
                 let typeStr = getDICT!["type"] as! String
-                if typeStr == "questions_labeling" {
-                    
+                if typeStr == "questions_labeling"
+                {
                     var cell: TestLblingCell! = tbleView.dequeueReusableCell(withIdentifier: "TestLblingCell") as? TestLblingCell
                     if cell == nil {
                         tbleView.register(UINib(nibName: "TestLblingCell", bundle: nil), forCellReuseIdentifier: "TestLblingCell")
                         cell = tbleView.dequeueReusableCell(withIdentifier: "TestLblingCell") as? TestLblingCell
                       }
                     
-                   // let getDICT = testQuestionArr[indexPath.row] as? [String: AnyObject]
                     let questStr = getDICT!["question"]  as? String
-                    cell.lbl_question.attributedText = CustomController.stringFromHtml(string: questStr!)
+                    let getQNewStr = questStr?.withoutHtmlTagss
+                    print("getQNewStr!\(String(describing: getQNewStr))")
+                    
+                    var myMutableString = NSMutableAttributedString()
+                    myMutableString = NSMutableAttributedString(string: getQNewStr!, attributes: [NSFontAttributeName:UIFont(name: "Helvetica Neue", size: 14.0)!, NSForegroundColorAttributeName:UIColor.darkGray])
+                    cell.lbl_question.attributedText = myMutableString
+                    
                     let imgDict = getDICT!["questions_labeling_q_data"] as? [String: AnyObject]
-                    
                     let imgUrl = imgDict!["url"] as? String
-                    
                      let urlStr = CustomController.backSlaceRemoveFromUrl(urlStr: imgUrl! )
-                   // let imgeUrl = "https://" + urlDtr
+
                     CommonWebserviceClass.downloadImgFromServer(url:URL(string: urlStr ?? "0")!) { (DATA, RESPOSE, error) in
                         if DATA != nil {
                             DispatchQueue.main.async { // Correct
@@ -176,18 +608,21 @@ class TestViewController: UIViewController ,UITableViewDelegate,UITableViewDataS
                     cell.lbl_drag1.addGestureRecognizer(panGesture1)
                     
                     return cell
-                }else if typeStr == "questions_mc" {
+                }
+                else if typeStr == "questions_mc"
+                {
                     var cell: Q_mc_Cell! = tbleView.dequeueReusableCell(withIdentifier: "Q_mc_Cell") as? Q_mc_Cell
-                    if cell == nil {
+                    if cell == nil
+                    {
                         tbleView.register(UINib(nibName: "Q_mc_Cell", bundle: nil), forCellReuseIdentifier: "Q_mc_Cell")
                         cell = tbleView.dequeueReusableCell(withIdentifier: "Q_mc_Cell") as? Q_mc_Cell
                     }
                   //  let getDICT = testQuestionArr[indexPath.row] as? [String: AnyObject]
                     cell.testDelegateCall = self
-                    cell.btn_a.backgroundColor = CustomBGColor.questionBGColor
-                    cell.btn_b.backgroundColor = CustomBGColor.questionBGColor
-                    cell.btn_c.backgroundColor = CustomBGColor.questionBGColor
-                    cell.btn_d.backgroundColor = CustomBGColor.questionBGColor
+//                    cell.btn_a.backgroundColor = UIColor.init(red: 0.0/255.0, green: 113.0/255, blue: 187.0/255.0, alpha: 1.0)
+//                    cell.btn_b.backgroundColor = UIColor.init(red: 0.0/255.0, green: 113.0/255, blue: 187.0/255.0, alpha: 1.0)
+//                    cell.btn_c.backgroundColor = UIColor.init(red: 0.0/255.0, green: 113.0/255, blue: 187.0/255.0, alpha: 1.0)
+//                    cell.btn_d.backgroundColor = UIColor.init(red: 0.0/255.0, green: 113.0/255, blue: 187.0/255.0, alpha: 1.0)
                     cell.btn_a.tag = indexPath.row
                     cell.btn_b.tag = indexPath.row
                     cell.btn_c.tag = indexPath.row
@@ -196,7 +631,13 @@ class TestViewController: UIViewController ,UITableViewDelegate,UITableViewDataS
                     cell.btn_play.addTarget(self, action: #selector(qmcPlayClick(_:)), for: .touchUpInside)
                     
                     let questStr = getDICT!["question"]  as? String
-                    cell.lbl_qTitle.attributedText = CustomController.stringFromHtml(string: questStr!)
+                    let getQNewStr = questStr?.withoutHtmlTagss
+                    print("getQNewStr!\(String(describing: getQNewStr))")
+                    
+                    var myMutableString = NSMutableAttributedString()
+                    myMutableString = NSMutableAttributedString(string: getQNewStr!, attributes: [NSFontAttributeName:UIFont(name: "Helvetica Neue", size: 14.0)!, NSForegroundColorAttributeName:UIColor.darkGray])
+                    cell.lbl_qTitle.attributedText = myMutableString
+                    
                     let selectAnswer = getDICT?["selectAns"] as? String
                     let getQAswerDict = getDICT!["questions_mc_correct_answer"] as? [String: AnyObject]
                     let qAndA_a = "A. \(getQAswerDict?["a"] as? String ?? "")"
@@ -207,37 +648,52 @@ class TestViewController: UIViewController ,UITableViewDelegate,UITableViewDataS
                     cell.btn_b.setTitle(qAndA_b, for: .normal)
                     cell.btn_c.setTitle(qAndA_c, for: .normal)
                     cell.btn_d.setTitle(qAndA_d, for: .normal)
-                    if selectAnswer == "a"{
-                      cell.btn_a.backgroundColor = UIColor.green
-                    }else if selectAnswer == "b"{
-                        cell.btn_b.backgroundColor = UIColor.green
-                    }else if selectAnswer == "c"{
-                         cell.btn_c.backgroundColor = UIColor.green
-                       
-                    }else if selectAnswer == "d" {
-                         cell.btn_d.backgroundColor = UIColor.green
+                    
+                    if selectAnswer == "a"
+                    {
+                      cell.btn_a.backgroundColor = UIColor.init(red: 229.0/255.0, green: 241.0/255, blue: 194.0/255.0, alpha: 1.0)
+                    }
+                    else if selectAnswer == "b"
+                    {
+                        cell.btn_b.backgroundColor = UIColor.init(red: 229.0/255.0, green: 241.0/255, blue: 194.0/255.0, alpha: 1.0)
+                    }
+                    else if selectAnswer == "c"
+                    {
+                         cell.btn_c.backgroundColor = UIColor.init(red: 229.0/255.0, green: 241.0/255, blue: 194.0/255.0, alpha: 1.0)
+                    }
+                    else if selectAnswer == "d"
+                    {
+                         cell.btn_d.backgroundColor = UIColor.init(red: 229.0/255.0, green: 241.0/255, blue: 194.0/255.0, alpha: 1.0)
                       }
                    
                     return cell
-                  
-                }else if typeStr == "questions_true_false"{
+                }
+                else if typeStr == "questions_true_false"
+                {
                     //questions_true_false
                     var cell: Q_true_false_Cell! = tbleView.dequeueReusableCell(withIdentifier: "Q_true_false_Cell") as? Q_true_false_Cell
-                if cell == nil {
+                    if cell == nil
+                    {
                         tbleView.register(UINib(nibName: "Q_true_false_Cell", bundle: nil), forCellReuseIdentifier: "Q_true_false_Cell")
                         cell = tbleView.dequeueReusableCell(withIdentifier: "Q_true_false_Cell") as? Q_true_false_Cell
                     }
                     
                     cell.qTrueFalseDelegate = self
-                    cell.btn_yes.backgroundColor = CustomBGColor.questionBGColor
-                    cell.btn_no.backgroundColor = CustomBGColor.questionBGColor
+//                    cell.btn_yes.backgroundColor = CustomBGColor.questionBGColor
+//                    cell.btn_no.backgroundColor = CustomBGColor.questionBGColor
                     cell.btn_play.tag = indexPath.row
                     cell.btn_yes.tag = indexPath.row
                     cell.btn_no.tag = indexPath.row
                     cell.btn_play.addTarget(self, action: #selector(qmcPlayClick(_:)), for: .touchUpInside)
                     
                     let questStr = getDICT!["question"]  as? String
-                    cell.lbl_qTitle.attributedText = CustomController.stringFromHtml(string: questStr!)
+                    let getQNewStr = questStr?.withoutHtmlTagss
+                    print("getQNewStr!\(String(describing: getQNewStr))")
+
+                    var myMutableString = NSMutableAttributedString()
+                    myMutableString = NSMutableAttributedString(string: getQNewStr!, attributes: [NSFontAttributeName:UIFont(name: "Helvetica Neue", size: 14.0)!, NSForegroundColorAttributeName:UIColor.darkGray])
+                    cell.lbl_qTitle.attributedText = myMutableString
+                    
                     let selectAnswer = getDICT?["selectAns"] as? String
 //                    let getQAswerDict = getDICT!["questions_mc_correct_answer"] as? [String: AnyObject]
                     let qAndA_a = "A. True"
@@ -246,14 +702,19 @@ class TestViewController: UIViewController ,UITableViewDelegate,UITableViewDataS
                     cell.btn_yes.setTitle(qAndA_a, for: .normal)
                     cell.btn_no.setTitle(qAndA_b, for: .normal)
                    
-                     if selectAnswer == "Yes"{
-                        cell.btn_yes.backgroundColor = UIColor.green
-                     }else if selectAnswer == "No"{
-                        cell.btn_no.backgroundColor = UIColor.green
+                     if selectAnswer == "Yes"
+                     {
+                        cell.btn_yes.backgroundColor = UIColor.init(red: 229.0/255.0, green: 241.0/255, blue: 194.0/255.0, alpha: 1.0)
+                     }
+                     else if selectAnswer == "No"
+                     {
+                        cell.btn_no.backgroundColor = UIColor.init(red: 229.0/255.0, green: 241.0/255, blue: 194.0/255.0, alpha: 1.0)
                       }
                     
                     return cell
-                }else if typeStr == "questions_rfib"{
+                }
+                else if typeStr == "questions_rfib"
+                {
                     //questions_true_false
                     var cell: Q_rfib_Cell! = tbleView.dequeueReusableCell(withIdentifier: "Q_rfib_Cell") as? Q_rfib_Cell
                     if cell == nil {
@@ -273,38 +734,47 @@ class TestViewController: UIViewController ,UITableViewDelegate,UITableViewDataS
                     let arr = dictGet["question_array"] as! [AnyObject]
                     
                     let array = ["Public","private"]
-                    for var i in 0..<arr.count {
+                    print("array:\(array)")
+                    for var i in 0..<arr.count
+                    {
                         let wordDict = arr[i] as? [String: AnyObject]
                         let wordStr = wordDict!["blank"] as? String
                 
                         let answerStr = wordDict!["word"] as? String
-                        if wordStr == "true" {
+                        if wordStr == "true"
+                        {
                             let optionArr = wordDict!["options"] as! [AnyObject]
+                            print("optionArr:\(optionArr)")
+                            
                             let range: NSRange = (txtView!.text as NSString).range(of: answerStr!)
-                        let beginning: UITextPosition? = txtView?.beginningOfDocument
-                        let start: UITextPosition? = txtView?.position(from: beginning!, offset: range.location)
-                        let end: UITextPosition? = txtView?.position(from: start!, offset: range.length)
-                        let textRange: UITextRange? = txtView?.textRange(from: start!, to: end!)
-                        let rect: CGRect = txtView!.firstRect(for: textRange!)
-                       
-                        let btn = UIButton()
+                            let beginning: UITextPosition? = txtView?.beginningOfDocument
+                            let start: UITextPosition? = txtView?.position(from: beginning!, offset: range.location)
+                            let end: UITextPosition? = txtView?.position(from: start!, offset: range.length)
+                            let textRange: UITextRange? = txtView?.textRange(from: start!, to: end!)
+                            let rect: CGRect = txtView!.firstRect(for: textRange!)
+                            
+                            let btn = UIButton()
                             btn.frame = rect
-                           btn.titleLabel?.font =  .systemFont(ofSize: 9)
-                          //  btn.titleLabel?.textColor = UIColor.red
-                          btn.backgroundColor = UIColor.lightGray
-                       // btn.tag = range.location
+                            btn.titleLabel?.font =  .systemFont(ofSize: 9)
+                            //  btn.titleLabel?.textColor = UIColor.red
+                            btn.backgroundColor = UIColor.lightGray
+                            // btn.tag = range.location
                             btn.tag = i
-                           btn.addTarget(self, action: #selector(self.buttonClicked), for: .touchUpInside)
-                
-                           txtView?.addSubview(btn)
+                            btn.addTarget(self, action: #selector(self.buttonClicked), for: .touchUpInside)
+                            
+                            txtView?.addSubview(btn)
                             print("frame of button ==\(btn.frame)")
                             let x = btn.frame.origin.x
-                             let y  = btn.frame.origin.y
+                            let y  = btn.frame.origin.y
+                            
+                            print("x==\(x)")
+                            print("y==\(y)")
+
                             dropDown = DropDown()
                             // The view to which the drop down will appear on
                             // UIView or UIBarButtonItem
                             // The list of items to display. Can be changed dynamically
-                           // dropDown?.dataSource = optionArr as! [String]//["Car", "Motorcycle", "Truck"]
+                            // dropDown?.dataSource = optionArr as! [String]//["Car", "Motorcycle", "Truck"]
                             /*** IMPORTANT PART FOR CUSTOM CELLS ***/
                             dropDown?.cellNib = UINib(nibName: "MyCell", bundle: nil)
                             
@@ -313,19 +783,19 @@ class TestViewController: UIViewController ,UITableViewDelegate,UITableViewDataS
                                 // Setup your custom UI components
                                 // cell2.logoImageView.image = UIImage(named: "logo_\(index)")
                                 cell2.lbl_title.text = item
-                              }
+                            }
                             dropDown?.selectionAction = { [weak self] (index, item) in
                                 print("====\(item)")
                                 self?.cellTitle?.setTitle(item, for: .normal)
-                            
-                               }
+                            }
                             dropDown?.hide()
-                           // cell.dropDownMethod(dropDown: dropDown!)
-                          }
+                            // cell.dropDownMethod(dropDown: dropDown!)
+                        }
                       }
-                    
                     return cell
-                 }else if typeStr == "questions_open"{
+                 }
+                else if typeStr == "questions_open"
+                {
                     //questions_true_false
                     var cell: Q_open_Cell! = tbleView.dequeueReusableCell(withIdentifier: "Q_open_Cell") as? Q_open_Cell
                     if cell == nil {
@@ -334,12 +804,19 @@ class TestViewController: UIViewController ,UITableViewDelegate,UITableViewDataS
                     }
                     cell.txtField_open.delegate = self
                     let questStr = getDICT!["actual_question"]  as? String
-                    cell.lbl_openQ.attributedText = CustomController.stringFromHtml(string: questStr!)
+                    let getQNewStr = questStr?.withoutHtmlTagss
+                    print("getQNewStr!\(String(describing: getQNewStr))")
+                    
+                    var myMutableString = NSMutableAttributedString()
+                    myMutableString = NSMutableAttributedString(string: getQNewStr!, attributes: [NSFontAttributeName:UIFont(name: "Helvetica Neue", size: 14.0)!, NSForegroundColorAttributeName:UIColor.darkGray])
+                    cell.lbl_openQ.attributedText = myMutableString
+
                     cell.txtField_open.tag = indexPath.row
                     cell.txtField_open.addTarget(self, action: #selector(textFieldDidChange(_:)), for: UIControlEvents.editingChanged)
                     return cell
-                    
-                }else if typeStr == "questions_check_all"{
+                }
+                else if typeStr == "questions_check_all"
+                {
                     //questions_true_false
                     var cell: Q_check_all_Cell! = tbleView.dequeueReusableCell(withIdentifier: "Q_check_all_Cell") as? Q_check_all_Cell
                     if cell == nil {
@@ -348,10 +825,10 @@ class TestViewController: UIViewController ,UITableViewDelegate,UITableViewDataS
                     }
                     cell.checkAllDelegate = self
                     
-                    cell.btn_a.backgroundColor = CustomBGColor.questionBGColor
-                    cell.btn_b.backgroundColor = CustomBGColor.questionBGColor
-                    cell.btn_c.backgroundColor = CustomBGColor.questionBGColor
-                    cell.btn_d.backgroundColor = CustomBGColor.questionBGColor
+//                    cell.btn_a.backgroundColor = CustomBGColor.questionBGColor
+//                    cell.btn_b.backgroundColor = CustomBGColor.questionBGColor
+//                    cell.btn_c.backgroundColor = CustomBGColor.questionBGColor
+//                    cell.btn_d.backgroundColor = CustomBGColor.questionBGColor
                     cell.btn_a.tag = indexPath.row
                     cell.btn_b.tag = indexPath.row
                     cell.btn_c.tag = indexPath.row
@@ -360,7 +837,13 @@ class TestViewController: UIViewController ,UITableViewDelegate,UITableViewDataS
                     cell.btn_playCheck.addTarget(self, action: #selector(qmcPlayClick(_:)), for: .touchUpInside)
                     
                     let questStr = getDICT!["question"]  as? String
-                    cell.lbl_checkTitle.attributedText = CustomController.stringFromHtml(string: questStr!)
+                    let getQNewStr = questStr?.withoutHtmlTagss
+                    print("getQNewStr!\(String(describing: getQNewStr))")
+                    
+                    var myMutableString = NSMutableAttributedString()
+                    myMutableString = NSMutableAttributedString(string: getQNewStr!, attributes: [NSFontAttributeName:UIFont(name: "Helvetica Neue", size: 14.0)!, NSForegroundColorAttributeName:UIColor.darkGray])
+                    cell.lbl_checkTitle.attributedText = myMutableString
+
                     let getQAswerDict = getDICT!["questions_check_all_answers"] as? [String: AnyObject]
                     let qAndA_a = "A. \(getQAswerDict?["a"] as? String ?? "")"
                     let qAndA_b = "B. \(getQAswerDict?["b"] as? String ?? "")"
@@ -371,39 +854,39 @@ class TestViewController: UIViewController ,UITableViewDelegate,UITableViewDataS
                     cell.btn_c.setTitle(qAndA_c, for: .normal)
                     cell.btn_d.setTitle(qAndA_d, for: .normal)
                     
-                    if let selectArr = getDICT?["selectAns"] as? [AnyObject] {
-                        
-                     for var i in 0..<selectArr.count {
-                    let selectAnswer = selectArr[i] as? String
-                    if selectAnswer == "a"{
-                        
-                        cell.btn_a.backgroundColor = UIColor.green
-                        
-                     }else if selectAnswer == "b"{
-                        
-                        cell.btn_b.backgroundColor = UIColor.green
-                        
-                     }else if selectAnswer == "c"{
-                        
-                        cell.btn_c.backgroundColor = UIColor.green
-                        
-                     }else if selectAnswer == "d" {
-                        
-                        cell.btn_d.backgroundColor = UIColor.green
-                        
+                    if let selectArr = getDICT?["selectAns"] as? [AnyObject]
+                    {
+                        for var i in 0..<selectArr.count
+                        {
+                            let selectAnswer = selectArr[i] as? String
+                            if selectAnswer == "a"
+                            {
+                                cell.btn_a.backgroundColor = UIColor.init(red: 229.0/255.0, green: 241.0/255, blue: 194.0/255.0, alpha: 1.0)
+                            }
+                            else if selectAnswer == "b"
+                            {
+                                cell.btn_b.backgroundColor = UIColor.init(red: 229.0/255.0, green: 241.0/255, blue: 194.0/255.0, alpha: 1.0)
+                            }
+                            else if selectAnswer == "c"
+                            {
+                                cell.btn_c.backgroundColor = UIColor.init(red: 229.0/255.0, green: 241.0/255, blue: 194.0/255.0, alpha: 1.0)
+                            }
+                            else if selectAnswer == "d"
+                            {
+                                cell.btn_d.backgroundColor = UIColor.init(red: 229.0/255.0, green: 241.0/255, blue: 194.0/255.0, alpha: 1.0)
+                            }
                         }
-                      }
-                  }
+                    }
                     //CheckAllDelegate
                     return cell
-        }else if typeStr == "questions_sorting"{
-                    
+                }
+                else if typeStr == "questions_sorting"
+                {
                     //questions_true_false
                     var cell: Q_sorting_Cell! = tbleView.dequeueReusableCell(withIdentifier: "Q_sorting_Cell") as? Q_sorting_Cell
                     if cell == nil {
                         tbleView.register(UINib(nibName: "Q_sorting_Cell", bundle: nil), forCellReuseIdentifier: "Q_sorting_Cell")
                         cell = tbleView.dequeueReusableCell(withIdentifier: "Q_sorting_Cell") as? Q_sorting_Cell
-                        
                       }
                     cell.sortDelegateClass = self
                     cell.btn_sortPlay.tag = indexPath.row
@@ -416,9 +899,9 @@ class TestViewController: UIViewController ,UITableViewDelegate,UITableViewDataS
                     let getSortArr = getSortDict!["options_array"]  as? [AnyObject]
                     cell.sendCollectionMethod(getOptionArr: getSortArr!,index:indexPath.row)
                     return cell
-                    
-         }else if typeStr == "questions_matching"{
-                    
+                }
+                else if typeStr == "questions_matching"
+                {
                     //questions_true_false
                     /*
                     var cell: Q_match_Cell! = tbleView.dequeueReusableCell(withIdentifier: "Q_match_Cell") as? Q_match_Cell
@@ -430,15 +913,20 @@ class TestViewController: UIViewController ,UITableViewDelegate,UITableViewDataS
                     
                      var cell: QSwapCell! = tbleView.dequeueReusableCell(withIdentifier: "QSwapCell") as? QSwapCell
                     
-                    if cell == nil {
+                    if cell == nil
+                    {
                         tbleView.register(UINib(nibName: "QSwapCell", bundle: nil), forCellReuseIdentifier: "QSwapCell")
-                      cell = tbleView.dequeueReusableCell(withIdentifier: "QSwapCell") as? QSwapCell
+                        cell = tbleView.dequeueReusableCell(withIdentifier: "QSwapCell") as? QSwapCell
                         let getSortDict = getDICT!["questions_matching_correct_answer"]  as? [String: AnyObject]
                         let getSetsArr = getSortDict!["sets"]  as? [AnyObject]
-                         var rx_axix:Int = 130
+                        var rx_axix:Int = 130
+                        print("rx_axix:\(rx_axix)")
                          var y_axix:Int = 74
-                        for var i in 0..<getSetsArr!.count {
-                             let lbl_match = UILabel()
+                        print("y_axix:\(y_axix)")
+
+                        for var i in 0..<getSetsArr!.count
+                        {
+                            let lbl_match = UILabel()
                             lbl_match.frame = CGRect(x: rx_axix + 110, y: y_axix, width: Int(self.view.frame.size.width - CGFloat(rx_axix + 120)), height: 100)
                             lbl_match.tag = (1000  + i)
                             lbl_match.numberOfLines = 0
@@ -514,17 +1002,33 @@ class TestViewController: UIViewController ,UITableViewDelegate,UITableViewDataS
                     cell.btn_edit.addTarget(self,action:#selector(editBtnClick(_:)),for: .touchUpInside)
                     cell.btn_q_swapPlay.tag = indexPath.row
                     cell.btn_q_swapPlay.addTarget(self, action: #selector(qmcPlayClick(_:)), for: .touchUpInside)
+                    
                     let questStr = getDICT!["question"]  as? String
-                    cell.lbl_q_swapTitle.attributedText = CustomController.stringFromHtml(string: questStr!)
+                    let getQNewStr = questStr?.withoutHtmlTagss
+                    print("getQNewStr!\(String(describing: getQNewStr))")
+                    
+                    var myMutableString = NSMutableAttributedString()
+                    myMutableString = NSMutableAttributedString(string: getQNewStr!, attributes: [NSFontAttributeName:UIFont(name: "Helvetica Neue", size: 14.0)!, NSForegroundColorAttributeName:UIColor.darkGray])
+                    cell.lbl_q_swapTitle.attributedText = myMutableString
+
                     print("ROW PATH INDEX=\(indexPath.row)")
                     let getSortDict = getDICT!["questions_matching_correct_answer"]  as? [String: AnyObject]
                     let getSetsArr = getSortDict!["sets"]  as? [AnyObject]
      
                     var x_axix:Int = 16
+                    print("x_axix==\(x_axix)")
+
                     var y_axix:Int = 74
+                    print("y_axix==\(y_axix)")
+
                     var Rx_axix:Int = 130
+                    print("Rx_axix==\(Rx_axix)")
+
                     var yView_axix:Int = 74
-                    for var i in 0..<getSetsArr!.count {
+                    print("yView_axix==\(yView_axix)")
+
+                    for var i in 0..<getSetsArr!.count
+                    {
                         print("print==\(i)")
                         qSwapCellHeight = qSwapCellHeight! + 120
                         let commonDict = getSetsArr![i] as? [String: AnyObject]
@@ -533,266 +1037,269 @@ class TestViewController: UIViewController ,UITableViewDelegate,UITableViewDataS
                         
                         let imgTmp = leftDict!["image"] as? String
                         let txtTmp = leftDict!["text"] as? String
-                        
-                         let imgRight = rightDict!["image"] as? String
+                        print("txtTmp==\(txtTmp)")
+
+                        let imgRight = rightDict!["image"] as? String
                         let txtRightStr = rightDict!["text"] as? String
                         
-
-                          let lbl_matchTitle:UILabel = cell.viewWithTag((1000  + i)) as! UILabel
-                            lbl_matchTitle.text = txtRightStr
-                          //.  let lbl_match = UILabel()
-                            let img_rightView = UIImageView()
-                            let imgView = UIImageView()
-                            let imgView1 = UIImageView()
-                           // imgView1.backgroundColor = UIColor.red
-                            imgView.tag = i
-                            imgView1.frame = CGRect(x: x_axix, y: y_axix, width: 100, height: 100)
-                            imgView.frame = CGRect(x: x_axix, y: y_axix, width: 100, height: 100)
+                        let lbl_matchTitle:UILabel = cell.viewWithTag((1000  + i)) as! UILabel
+                        lbl_matchTitle.text = txtRightStr
+                        //.  let lbl_match = UILabel()
+                        let img_rightView = UIImageView()
+                        let imgView = UIImageView()
+                        let imgView1 = UIImageView()
+                        // imgView1.backgroundColor = UIColor.red
+                        imgView.tag = i
+                        imgView1.frame = CGRect(x: x_axix, y: y_axix, width: 100, height: 100)
+                        imgView.frame = CGRect(x: x_axix, y: y_axix, width: 100, height: 100)
                         
-                           img_rightView.frame = CGRect(x: Rx_axix, y: y_axix, width: 100, height: 100)
-                         // lbl_match.frame = CGRect(x: Rx_axix + 110, y: y_axix, width: Int(self.view.frame.size.width - CGFloat(Rx_axix + 120)), height: 100)
-                       // lbl_match.backgroundColor = UIColor.red
-                       // img_rightView.backgroundColor = UIColor.yellow
+                        img_rightView.frame = CGRect(x: Rx_axix, y: y_axix, width: 100, height: 100)
+                        // lbl_match.frame = CGRect(x: Rx_axix + 110, y: y_axix, width: Int(self.view.frame.size.width - CGFloat(Rx_axix + 120)), height: 100)
+                        // lbl_match.backgroundColor = UIColor.red
+                        // img_rightView.backgroundColor = UIColor.yellow
                         //panRec.addTarget(self, action: "draggedView:")
-//                        lbl_match.numberOfLines = 0
-//                        lbl_match.textAlignment = .center
-//                        lbl_match.text = txtRightStr
-//                        cell.addSubview(lbl_match)
+                        //                        lbl_match.numberOfLines = 0
+                        //                        lbl_match.textAlignment = .center
+                        //                        lbl_match.text = txtRightStr
+                        //                        cell.addSubview(lbl_match)
                         cell.addSubview(img_rightView)
-                            
-                           // imgView.backgroundColor = UIColor.green
-                            //panRec.addTarget(self, action: "draggedView:")
-                            imgView.tag = i
-                            cell.addSubview(imgView1)
-                            cell.addSubview(imgView)
-                            // self.view?.bringSubview(toFront: imgView!)
-                            y_axix = y_axix + 120
-                       
+                        
+                        // imgView.backgroundColor = UIColor.green
+                        //panRec.addTarget(self, action: "draggedView:")
+                        imgView.tag = i
+                        cell.addSubview(imgView1)
+                        cell.addSubview(imgView)
+                        // self.view?.bringSubview(toFront: imgView!)
+                        y_axix = y_axix + 120
+                        
                         DispatchQueue.main.async { // Correct
                             img_rightView.image = UIImage(named: "drop_image.png")
                             imgView.image = UIImage(named: "drag_icon")
                         }
-                        if imgRight == "" || imgRight == nil {
-                           
-                            if imgTmp != "" {
-                            let urlStr = CustomController.backSlaceRemoveFromUrl(urlStr: imgTmp! )
-                            let url = URL(string: urlStr) as? URL
-                            // let coverImage = getMediaDict!["media_splash"] as? String ?? "0"
-                               // DispatchQueue.global(qos: .background).async {
-                            CommonWebserviceClass.downloadImgFromServer(url:url!) { (DATA, RESPOSE, error) in
-                                if DATA != nil {
-                                    DispatchQueue.main.async { // Correct
-                                        imgView.image = UIImage(data: DATA!)
+                        if imgRight == "" || imgRight == nil
+                        {
+                            if imgTmp != ""
+                            {
+                                let urlStr = CustomController.backSlaceRemoveFromUrl(urlStr: imgTmp! )
+                                let url = URL(string: urlStr) as? URL
+                                // let coverImage = getMediaDict!["media_splash"] as? String ?? "0"
+                                // DispatchQueue.global(qos: .background).async {
+                                CommonWebserviceClass.downloadImgFromServer(url:url!) { (DATA, RESPOSE, error) in
+                                    if DATA != nil
+                                    {
+                                        DispatchQueue.main.async { // Correct
+                                            imgView.image = UIImage(data: DATA!)
+                                        }
                                     }
-                                }else{
-                                    
-                                    imgView.image = nil
-                                  }
-                              }
-                       // }
-                          }else {
-                           
-                          }
-                         }else {
+                                    else
+                                    {
+                                        imgView.image = nil
+                                    }
+                                }
+                                // }
+                            }else {
+                            }
+                        }
+                        else
+                        {
                             img_rightView.image = nil
                             imgView.image = nil
-                            if imgRight != "" {
-                               
+                            if imgRight != ""
+                            {
                                 let urlStr = CustomController.backSlaceRemoveFromUrl(urlStr: imgRight!)
                                 let url = URL(string: urlStr) as? URL
                                 // let coverImage = getMediaDict!["media_splash"] as? String ?? "0"
-                               // DispatchQueue.global(qos: .background).async {
-                                    CommonWebserviceClass.downloadImgFromServer(url:url!) { (DATA, RESPOSE, error) in
-                                        if DATA != nil {
-                                            DispatchQueue.main.async { // Correct
-                                                 imgView.image =  UIImage(named: "")
-                                                img_rightView.image = UIImage(data: DATA!)
-                                            }
-                                        }else{
+                                // DispatchQueue.global(qos: .background).async {
+                                CommonWebserviceClass.downloadImgFromServer(url:url!) { (DATA, RESPOSE, error) in
+                                    if DATA != nil {
+                                        DispatchQueue.main.async { // Correct
                                             imgView.image =  UIImage(named: "")
-                                            img_rightView.image = nil
+                                            img_rightView.image = UIImage(data: DATA!)
                                         }
+                                    }else{
+                                        imgView.image =  UIImage(named: "")
+                                        img_rightView.image = nil
                                     }
                                 }
-                           // }
-                            
+                            }
+                            // }
                         }
                         
                         /*
-                        if i == 0 {
-                            cell.lbl_matchTitle1.text = txtRightStr
-                        if (imgTmp == nil || imgTmp == "") && (imgRight == "" || imgRight == nil) {
-                            var lbl_drag = UILabel()
-                             lbl_drag.text = txtTmp
-                             lbl_drag.font = UIFont.systemFont(ofSize: 10)
-                             lbl_drag.numberOfLines = 0
-                             lbl_drag.textAlignment = NSTextAlignment.center
-                             lbl_drag.frame =  cell.view_drag1.frame//CGRect(x: 0, y: 0, width: 76, height: 100)
-                           // cell.view_drag1.addSubview(lbl_drag)
-                               lbl_drag.tag = i
-                            cell.contentView.addSubview(lbl_drag)
-                        lbl_drag.bringSubview(toFront: cell.contentView)
-                            lbl_drag.backgroundColor = UIColor.green
-                            lbl_drag.isUserInteractionEnabled = true
+                         if i == 0 {
+                         cell.lbl_matchTitle1.text = txtRightStr
+                         if (imgTmp == nil || imgTmp == "") && (imgRight == "" || imgRight == nil) {
+                         var lbl_drag = UILabel()
+                         lbl_drag.text = txtTmp
+                         lbl_drag.font = UIFont.systemFont(ofSize: 10)
+                         lbl_drag.numberOfLines = 0
+                         lbl_drag.textAlignment = NSTextAlignment.center
+                         lbl_drag.frame =  cell.view_drag1.frame//CGRect(x: 0, y: 0, width: 76, height: 100)
+                         // cell.view_drag1.addSubview(lbl_drag)
+                         lbl_drag.tag = i
+                         cell.contentView.addSubview(lbl_drag)
+                         lbl_drag.bringSubview(toFront: cell.contentView)
+                         lbl_drag.backgroundColor = UIColor.green
+                         lbl_drag.isUserInteractionEnabled = true
                          
-                            cell.gestureAddOnAnyViewMethod(view: lbl_drag, cellIndex: indexPath.row)
-                          
-                          //  cell.gestureAddOnAnyViewMethod(view: lbl_drag)
-                            
-                        }else if (imgTmp != nil || imgTmp != "") && (imgRight == "" || imgRight == nil){
-                            
-                            let img_drag = UIImageView()
-                            img_drag.frame =  cell.view_drag1.frame//CGRect(x: 0, y: 0, width: 76, height: 100)
-                            // cell.view_drag2.addSubview(img_drag)
-                            cell.addSubview(img_drag)
-                           // img_drag.bringSubview(toFront: cell.view_drag1)
-                             img_drag.isUserInteractionEnabled = true
-                             img_drag.tag = i
-                            cell.gestureAddOnAnyViewMethod(view: img_drag, cellIndex: indexPath.row)
-                            
-                            let urlStr = CustomController.backSlaceRemoveFromUrl(urlStr: imgTmp!)
-                            let url = URL(string: urlStr) as? URL
-                           // let coverImage = getMediaDict!["media_splash"] as? String ?? "0"
-                            CommonWebserviceClass.downloadImgFromServer(url:url!) { (DATA, RESPOSE, error) in
-                                if DATA != nil {
-                                    DispatchQueue.main.async { // Correct
-                                       img_drag.image = UIImage(data: DATA!)
-                                    }
-                                }else{
-                                     img_drag.image = nil
-                                }
-                            }
-                        }else if (imgTmp == nil || imgTmp == "") && (imgRight != "" || imgRight != nil) {
-                            
-                            let urlStr = CustomController.backSlaceRemoveFromUrl(urlStr: imgRight!)
-                            let url = URL(string: urlStr) as? URL
-                            // let coverImage = getMediaDict!["media_splash"] as? String ?? "0"
-                            CommonWebserviceClass.downloadImgFromServer(url:url!) { (DATA, RESPOSE, error) in
-                                if DATA != nil {
-                                    DispatchQueue.main.async { // Correct
-                                        cell.img_dropOnView.isHidden = false
-//                                        cell.img_drop1OnView.isHidden = true
-//                                        cell.img_drop2OnView.isHidden = true
-                                        cell.img_dropOnView.image = UIImage(data: DATA!)
-                                      }
-                                }else{
-                                      cell.img_dropOnView.image = UIImage()
-                                  }
-                            }
-                            
-                            }
-                        }else if i == 1 {
-                              cell.lbl_matchTitle2.text = txtRightStr
-                            if (imgTmp == nil || imgTmp == "") && (imgRight == "" || imgRight == nil) {
-                                let lbl_drag = UILabel()
-                                lbl_drag.text = txtTmp
-                                lbl_drag.numberOfLines = 0
-                                lbl_drag.textAlignment = NSTextAlignment.center
-                                lbl_drag.font = UIFont.systemFont(ofSize: 10)
-//                                lbl_drag.frame = CGRect(x: 0, y: 0, width: 76, height: 100)
-                               lbl_drag.backgroundColor = UIColor.green
-//                                cell.view_drag2.addSubview(lbl_drag)
-                                lbl_drag.frame =  cell.view_drag2.frame//CGRect(x: 0, y: 0, width: 76, height: 100)
-                                // cell.view_drag1.addSubview(lbl_drag)
-                                cell.addSubview(lbl_drag)
-                                lbl_drag.tag = i
-                                lbl_drag.isUserInteractionEnabled = true
-                                lbl_drag.bringSubview(toFront: cell.contentView)
-                                cell.gestureAddOnAnyViewMethod(view: lbl_drag, cellIndex: indexPath.row)
-                                
-                            }else if (imgTmp != nil || imgTmp != "") && (imgRight == "" || imgRight == nil) {
-                                let img_drag = UIImageView()
-                                img_drag.frame =  cell.view_drag2.frame//CGRect(x: 0, y: 0, width: 76, height: 100)
-                               // cell.view_drag2.addSubview(img_drag)
-                                cell.contentView.addSubview(img_drag)
-                                img_drag.bringSubview(toFront: cell.view_drag2)
-                                img_drag.isUserInteractionEnabled = true
-                                   img_drag.tag = i
-                                cell.gestureAddOnAnyViewMethod(view: img_drag, cellIndex: indexPath.row)
-                                 let urlStr = CustomController.backSlaceRemoveFromUrl(urlStr: imgTmp!)
-            CommonWebserviceClass.downloadImgFromServer(url:URL(string: urlStr as? String ?? "0")!) { (DATA, RESPOSE, error) in
-                                    if DATA != nil {
-                                        DispatchQueue.main.async { // Correct
-                                            img_drag.image = UIImage(data: DATA!)
-                                          }
-                                    }else{
-                                         img_drag.image = UIImage()
-                                    }
-                                  }
-                            }else if (imgTmp == nil || imgTmp == "") && (imgRight != "" || imgRight != nil){
-                                let urlStr = CustomController.backSlaceRemoveFromUrl(urlStr: imgRight!)
-                                let url = URL(string: urlStr) as? URL
-                                // let coverImage = getMediaDict!["media_splash"] as? String ?? "0"
-                                CommonWebserviceClass.downloadImgFromServer(url:url!) { (DATA, RESPOSE, error) in
-                                    if DATA != nil {
-                                        DispatchQueue.main.async { // Correct
-                                            cell.img_drop1OnView.isHidden = false
-                                            cell.img_drop1OnView.image = UIImage(data: DATA!)
-                                        }
-                                    }else{
-                                        cell.img_drop1OnView.image = nil
-                                    }
-                                }
-                            }
-                        }else if i == 2 {
-                            cell.lbl_matchTitle.text = txtRightStr
-                            if (imgTmp == nil || imgTmp == "") && (imgRight == "" || imgRight == nil) {
-                                let lbl_drag = UILabel()
-                                lbl_drag.text = txtTmp
-                                lbl_drag.numberOfLines = 0
-                                 lbl_drag.textAlignment = NSTextAlignment.center
-                                lbl_drag.font = UIFont.systemFont(ofSize: 10)
-//                                lbl_drag.frame = CGRect(x: 0, y: 0, width: 76, height: 100)
-                                 lbl_drag.backgroundColor = UIColor.green
-//                                cell.view_drag3.addSubview(lbl_drag)
-                                lbl_drag.frame =  cell.view_drag3.frame//CGRect(x: 0, y: 0, width: 76, height: 100)
-                                // cell.view_drag1.addSubview(lbl_drag)
-                                cell.contentView.addSubview(lbl_drag)
-                                lbl_drag.tag = i
-                                lbl_drag.bringSubview(toFront: cell.contentView)
-                                lbl_drag.isUserInteractionEnabled = true
-                                cell.gestureAddOnAnyViewMethod(view: lbl_drag, cellIndex: indexPath.row)
-                            }else if (imgTmp != nil || imgTmp != "") && (imgRight == "" || imgRight == nil){
-                                let img_drag = UIImageView()
-                                img_drag.frame =  cell.view_drag2.frame//CGRect(x: 0, y: 0, width: 76, height: 100)
-                                // cell.view_drag2.addSubview(img_drag)
-                                cell.contentView.addSubview(img_drag)
-                                img_drag.bringSubview(toFront: cell.view_drag2)
-                                img_drag.isUserInteractionEnabled = true
-                                img_drag.tag = i
-                                cell.gestureAddOnAnyViewMethod(view: img_drag, cellIndex: indexPath.row)
-                                let urlStr = CustomController.backSlaceRemoveFromUrl(urlStr: imgTmp!)
+                         cell.gestureAddOnAnyViewMethod(view: lbl_drag, cellIndex: indexPath.row)
+                         
+                         //  cell.gestureAddOnAnyViewMethod(view: lbl_drag)
+                         
+                         }else if (imgTmp != nil || imgTmp != "") && (imgRight == "" || imgRight == nil){
+                         
+                         let img_drag = UIImageView()
+                         img_drag.frame =  cell.view_drag1.frame//CGRect(x: 0, y: 0, width: 76, height: 100)
+                         // cell.view_drag2.addSubview(img_drag)
+                         cell.addSubview(img_drag)
+                         // img_drag.bringSubview(toFront: cell.view_drag1)
+                         img_drag.isUserInteractionEnabled = true
+                         img_drag.tag = i
+                         cell.gestureAddOnAnyViewMethod(view: img_drag, cellIndex: indexPath.row)
+                         
+                         let urlStr = CustomController.backSlaceRemoveFromUrl(urlStr: imgTmp!)
+                         let url = URL(string: urlStr) as? URL
+                         // let coverImage = getMediaDict!["media_splash"] as? String ?? "0"
+                         CommonWebserviceClass.downloadImgFromServer(url:url!) { (DATA, RESPOSE, error) in
+                         if DATA != nil {
+                         DispatchQueue.main.async { // Correct
+                         img_drag.image = UIImage(data: DATA!)
+                         }
+                         }else{
+                         img_drag.image = nil
+                         }
+                         }
+                         }else if (imgTmp == nil || imgTmp == "") && (imgRight != "" || imgRight != nil) {
+                         
+                         let urlStr = CustomController.backSlaceRemoveFromUrl(urlStr: imgRight!)
+                         let url = URL(string: urlStr) as? URL
+                         // let coverImage = getMediaDict!["media_splash"] as? String ?? "0"
+                         CommonWebserviceClass.downloadImgFromServer(url:url!) { (DATA, RESPOSE, error) in
+                         if DATA != nil {
+                         DispatchQueue.main.async { // Correct
+                         cell.img_dropOnView.isHidden = false
+                         //                                        cell.img_drop1OnView.isHidden = true
+                         //                                        cell.img_drop2OnView.isHidden = true
+                         cell.img_dropOnView.image = UIImage(data: DATA!)
+                         }
+                         }else{
+                         cell.img_dropOnView.image = UIImage()
+                         }
+                         }
+                         
+                         }
+                         }else if i == 1 {
+                         cell.lbl_matchTitle2.text = txtRightStr
+                         if (imgTmp == nil || imgTmp == "") && (imgRight == "" || imgRight == nil) {
+                         let lbl_drag = UILabel()
+                         lbl_drag.text = txtTmp
+                         lbl_drag.numberOfLines = 0
+                         lbl_drag.textAlignment = NSTextAlignment.center
+                         lbl_drag.font = UIFont.systemFont(ofSize: 10)
+                         //                                lbl_drag.frame = CGRect(x: 0, y: 0, width: 76, height: 100)
+                         lbl_drag.backgroundColor = UIColor.green
+                         //                                cell.view_drag2.addSubview(lbl_drag)
+                         lbl_drag.frame =  cell.view_drag2.frame//CGRect(x: 0, y: 0, width: 76, height: 100)
+                         // cell.view_drag1.addSubview(lbl_drag)
+                         cell.addSubview(lbl_drag)
+                         lbl_drag.tag = i
+                         lbl_drag.isUserInteractionEnabled = true
+                         lbl_drag.bringSubview(toFront: cell.contentView)
+                         cell.gestureAddOnAnyViewMethod(view: lbl_drag, cellIndex: indexPath.row)
+                         
+                         }else if (imgTmp != nil || imgTmp != "") && (imgRight == "" || imgRight == nil) {
+                         let img_drag = UIImageView()
+                         img_drag.frame =  cell.view_drag2.frame//CGRect(x: 0, y: 0, width: 76, height: 100)
+                         // cell.view_drag2.addSubview(img_drag)
+                         cell.contentView.addSubview(img_drag)
+                         img_drag.bringSubview(toFront: cell.view_drag2)
+                         img_drag.isUserInteractionEnabled = true
+                         img_drag.tag = i
+                         cell.gestureAddOnAnyViewMethod(view: img_drag, cellIndex: indexPath.row)
+                         let urlStr = CustomController.backSlaceRemoveFromUrl(urlStr: imgTmp!)
                          CommonWebserviceClass.downloadImgFromServer(url:URL(string: urlStr as? String ?? "0")!) { (DATA, RESPOSE, error) in
-                                    if DATA != nil {
-                                        DispatchQueue.main.async { // Correct
-                                            img_drag.image = UIImage(data: DATA!)
-                                        }
-                                    }else {
-                                          img_drag.image = nil
-                                 }
-                                }
-                            }else if (imgTmp == nil || imgTmp == "") && (imgRight != "" || imgRight != nil){
-                                
-                                let urlStr = CustomController.backSlaceRemoveFromUrl(urlStr: imgRight!)
-                                let url = URL(string: urlStr) as? URL
-                                // let coverImage = getMediaDict!["media_splash"] as? String ?? "0"
-                                CommonWebserviceClass.downloadImgFromServer(url:url!) { (DATA, RESPOSE, error) in
-                                    if DATA != nil {
-                                        DispatchQueue.main.async { // Correct
-                                            cell.img_drop2OnView.isHidden = false
-                                            cell.img_drop2OnView.image = UIImage(data: DATA!)
-                                              }
-                                        }else{
-                                        cell.img_drop2OnView.image = nil
-                                      }
-                                   }
-                                
-                                }
-                            
-                            }
-                        */
-                       
-                        }
+                         if DATA != nil {
+                         DispatchQueue.main.async { // Correct
+                         img_drag.image = UIImage(data: DATA!)
+                         }
+                         }else{
+                         img_drag.image = UIImage()
+                         }
+                         }
+                         }else if (imgTmp == nil || imgTmp == "") && (imgRight != "" || imgRight != nil){
+                         let urlStr = CustomController.backSlaceRemoveFromUrl(urlStr: imgRight!)
+                         let url = URL(string: urlStr) as? URL
+                         // let coverImage = getMediaDict!["media_splash"] as? String ?? "0"
+                         CommonWebserviceClass.downloadImgFromServer(url:url!) { (DATA, RESPOSE, error) in
+                         if DATA != nil {
+                         DispatchQueue.main.async { // Correct
+                         cell.img_drop1OnView.isHidden = false
+                         cell.img_drop1OnView.image = UIImage(data: DATA!)
+                         }
+                         }else{
+                         cell.img_drop1OnView.image = nil
+                         }
+                         }
+                         }
+                         }else if i == 2 {
+                         cell.lbl_matchTitle.text = txtRightStr
+                         if (imgTmp == nil || imgTmp == "") && (imgRight == "" || imgRight == nil) {
+                         let lbl_drag = UILabel()
+                         lbl_drag.text = txtTmp
+                         lbl_drag.numberOfLines = 0
+                         lbl_drag.textAlignment = NSTextAlignment.center
+                         lbl_drag.font = UIFont.systemFont(ofSize: 10)
+                         //                                lbl_drag.frame = CGRect(x: 0, y: 0, width: 76, height: 100)
+                         lbl_drag.backgroundColor = UIColor.green
+                         //                                cell.view_drag3.addSubview(lbl_drag)
+                         lbl_drag.frame =  cell.view_drag3.frame//CGRect(x: 0, y: 0, width: 76, height: 100)
+                         // cell.view_drag1.addSubview(lbl_drag)
+                         cell.contentView.addSubview(lbl_drag)
+                         lbl_drag.tag = i
+                         lbl_drag.bringSubview(toFront: cell.contentView)
+                         lbl_drag.isUserInteractionEnabled = true
+                         cell.gestureAddOnAnyViewMethod(view: lbl_drag, cellIndex: indexPath.row)
+                         }else if (imgTmp != nil || imgTmp != "") && (imgRight == "" || imgRight == nil){
+                         let img_drag = UIImageView()
+                         img_drag.frame =  cell.view_drag2.frame//CGRect(x: 0, y: 0, width: 76, height: 100)
+                         // cell.view_drag2.addSubview(img_drag)
+                         cell.contentView.addSubview(img_drag)
+                         img_drag.bringSubview(toFront: cell.view_drag2)
+                         img_drag.isUserInteractionEnabled = true
+                         img_drag.tag = i
+                         cell.gestureAddOnAnyViewMethod(view: img_drag, cellIndex: indexPath.row)
+                         let urlStr = CustomController.backSlaceRemoveFromUrl(urlStr: imgTmp!)
+                         CommonWebserviceClass.downloadImgFromServer(url:URL(string: urlStr as? String ?? "0")!) { (DATA, RESPOSE, error) in
+                         if DATA != nil {
+                         DispatchQueue.main.async { // Correct
+                         img_drag.image = UIImage(data: DATA!)
+                         }
+                         }else {
+                         img_drag.image = nil
+                         }
+                         }
+                         }else if (imgTmp == nil || imgTmp == "") && (imgRight != "" || imgRight != nil){
+                         
+                         let urlStr = CustomController.backSlaceRemoveFromUrl(urlStr: imgRight!)
+                         let url = URL(string: urlStr) as? URL
+                         // let coverImage = getMediaDict!["media_splash"] as? String ?? "0"
+                         CommonWebserviceClass.downloadImgFromServer(url:url!) { (DATA, RESPOSE, error) in
+                         if DATA != nil {
+                         DispatchQueue.main.async { // Correct
+                         cell.img_drop2OnView.isHidden = false
+                         cell.img_drop2OnView.image = UIImage(data: DATA!)
+                         }
+                         }else{
+                         cell.img_drop2OnView.image = nil
+                         }
+                         }
+                         
+                         }
+                         
+                         }
+                         */
+                        
+                    }
                     
                     return cell
                 }
@@ -818,6 +1325,7 @@ class TestViewController: UIViewController ,UITableViewDelegate,UITableViewDataS
         
         return UITableViewCell()
     }
+    
     /*
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let getDICT = testQuestionArr[indexPath.row] as? [String: AnyObject]
@@ -933,36 +1441,9 @@ class TestViewController: UIViewController ,UITableViewDelegate,UITableViewDataS
 //    func tableView(_ tableView: UITableView, willcellForRowAt indexPath: IndexPath) -> UITableViewCell{
 //
 //    }
-    func swapBackDataSendMethod(index: Int, swipDict: [String : AnyObject]) {
-        // testQuestionArr[index]  = swipDict as AnyObject
-        
-        print(" swap dict print===\(swipDict) && index== \(index)")
-        testQuestionArr[index]  = swipDict as AnyObject
-       // testQuestionArr
-        print("update array at index=\(index)")
-        DispatchQueue.main.async {
-            self.tbleView.reloadData()
-        }
-        
-        
-        
-        
-    }
     
-    func editBtnClick(_ sender: UIButton){
-        
-        let sendDict = testQuestionArr[sender.tag] as? [String: AnyObject]
-        let story = UIStoryboard.init(name: "Main", bundle: nil)
-        let swapViewController  =  story.instantiateViewController(withIdentifier: "SwapViewController") as! SwapViewController
-        swapViewController.getDict = sendDict
-        swapViewController.getIndex = sender.tag
-        /// swapViewController.getArticleDetailDict = getArtcleDict
-        swapViewController.swapDelegateClass = self
-        self.navigationController?.pushViewController(swapViewController, animated: true)
-        
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
         /*
          let sendDict = testQuestionArr[indexPath.row] as? [String: AnyObject]
       
@@ -982,286 +1463,9 @@ class TestViewController: UIViewController ,UITableViewDelegate,UITableViewDataS
         */
     }
     
-    @objc func buttonClicked(sender: UIButton!) {
-//         let btn = sender
-//        btn?.titleLabel?.textColor = UIColor.green
-//        btn?.titleLabel?.text = "coo"
-        cellTitle = sender
-        dropDown?.anchorView = sender
-        let pointInTable: CGPoint = sender.convert(sender.bounds.origin, to: self.tbleView)
-        let cellIndexPath = self.tbleView.indexPathForRow(at: pointInTable)
-        print(cellIndexPath!.row)
-        let dictTemp = testQuestionArr[cellIndexPath!.row] as? [String: AnyObject]
-        let answrDict = dictTemp!["questions_rfib_correct_answer"] as! [String:AnyObject]
-        let arrTemp =  answrDict["question_array"] as! [AnyObject]
-        let qAdict =  arrTemp[sender.tag] as! [String: AnyObject]
-         dropDown?.dataSource = qAdict["options"] as! [String]
-         dropDown?.show()
-//        var alertView = UIAlertView()
-//        alertView.addButton(withTitle: "Ok")
-//        alertView.title = "title"
-//        alertView.message = "message ==\(sender.tag)"
-//        alertView.show()
-        
-    }
-    
-    @objc func panGestureHandler1(panGesture recognizer: UIPanGestureRecognizer) {
-       // let buttonTag = (recognizer.view?.tag)!
-       // if let button = view.viewWithTag(buttonTag) as? UILabel {
-        let translation = recognizer.translation(in: self.view)
-           if let img_drag = recognizer.view as? UILabel{
-            if recognizer.state == .began {
-              //  wordButtonCenter = button.center // store old button center
-                print("Cell Index==\(img_drag.tag)")
-                dragCGPoint = img_drag.center
-            } else if recognizer.state == .ended || recognizer.state == .failed || recognizer.state == .cancelled {
-                print("Cell Index==end=\(img_drag.tag)")
-                img_drag.center = dragCGPoint!
-               // button.center = wordButtonCenter // restore button center
-            } else {
-               // let location = recognizer.location(in: view) // get pan location
-              //  button.center = location // set button to where finger is
-                      let translation = recognizer.translation(in: self.view)
-                      // if let img_drag = recognizer.view as? UILabel{
-                           img_drag.center = CGPoint(x: img_drag.center.x + translation.x, y: img_drag.center.y + translation.y)
-                       // }
-            }
-            recognizer.setTranslation(CGPoint(x: 0, y: 0), in: self.view)
-        }
-        
-//        let translation = recognizer.translation(in: self.view)
-//        if let img_drag = recognizer.view as? UIImageView{
-//            img_drag.center = CGPoint(x: img_drag.center.x + translation.x, y: img_drag.center.y + translation.y)
-//        }
-//        recognizer.setTranslation(CGPoint(x: 0, y: 0), in: self.view)
-    }
-    
-    @objc func panGestureHandler(panGesture recognizer: UIPanGestureRecognizer) {
-        let buttonTag = (recognizer.view?.tag)!
-        
-        if let img_drag = recognizer.view as? UILabel {
-            
-            if recognizer.state == .began {
-                //  wordButtonCenter = button.center // store old button center
-                 dragCGPoint = img_drag.center
-            } else if recognizer.state == .ended || recognizer.state == .failed || recognizer.state == .cancelled {
-                // button.center = wordButtonCenter // restore button center
-                 img_drag.center = dragCGPoint!
-            } else {
-                let location = recognizer.location(in: view) // get pan location
-                //  button.center = location // set button to where finger is
-                let translation = recognizer.translation(in: self.view)
-                // if let img_drag = recognizer.view as? UILabel{
-                img_drag.center = CGPoint(x: img_drag.center.x + translation.x, y: img_drag.center.y + translation.y)
-              }
-             recognizer.setTranslation(CGPoint(x: 0, y: 0), in: self.view)
-        }
-        
-//        let translation = recognizer.translation(in: self.view)
-//        if let img_drag = recognizer.view as? UIImageView{
-//            img_drag.center = CGPoint(x: img_drag.center.x + translation.x, y: img_drag.center.y + translation.y)
-//        }
-//        recognizer.setTranslation(CGPoint(x: 0, y: 0), in: self.view)
-    }
-    
-    func qmcPlayClick1(_ sender: UIButton){
-        let indexBtn = sender.tag
-        let getDICT = testQuestionArr[indexBtn] as? [String: AnyObject]
-        let AUDIOuRL = getDICT!["audio_url"] as? String
-       // MediaClass().playMPSongMethod(urlMp: "https://" + AUDIOuRL!)
-         playMethod(urlMP: AUDIOuRL!)
-    }
-    func qmcPlayClick(_ sender: UIButton) {
-        let indexBtn = sender.tag
-        let getDICT = testQuestionArr[indexBtn] as? [String: AnyObject]
-        let AUDIOuRL = getDICT!["audio_url"] as? String
-         playMethod(urlMP: AUDIOuRL!)
-       }
-    
-    func btn_sortPlayMethod(_ sender: UIButton) {
-        let indexBtn = sender.tag
-        let getDICT = testQuestionArr[indexBtn] as? [String: AnyObject]
-        let AUDIOuRL = getDICT!["audio_url"] as? String
-        playMethod(urlMP: AUDIOuRL!)
-      }
-    
-   // btn_matchPlayMethod
-    func btn_matchPlayMethod(_ sender: UIButton) {
-        let indexBtn = sender.tag
-        
-        let getDICT = testQuestionArr[indexBtn] as? [String: AnyObject]
-        let AUDIOuRL = getDICT!["audio_url"] as? String
-        playMethod(urlMP: AUDIOuRL!)
-    }
-   
-    
-    func playMethod(urlMP: String){
-        let urlMp3 = URL(string: "http://" + urlMP)
-        player = AVPlayer(url: urlMp3!)
-        player?.play()
-       }
-    
-    func answerSeleckMethod(getAnwr: String, btnTag: Int) {
-        
-         var getDict = testQuestionArr[btnTag] as? [String: AnyObject]
-        
-        let qAnserDict = getDict?["questions_mc_correct_answer"] as? [String: AnyObject]
-        // let qAnserStr = qAnserDict!["answer"] as? String
-        getDict?["selectAns"] = getAnwr as AnyObject
-       // let selectAnswer = getDict?["selectAns"] as? String
-//        if getAnwr == qAnserStr {
-//            getDict?["selectAns"] = getAnwr as AnyObject
-//        }else {
-//             getDict?["selectAns"] = "unselect" as AnyObject
-//        }
-        
-        testQuestionArr[btnTag] = getDict as AnyObject
-        DispatchQueue.main.async {
-            self.tbleView.reloadData()
-        }
-      }
-    
-    
-    func answerSeleckAllMethod(getAnwr: String, btnTag: Int) {
-        if selectCellIndex == btnTag {
-            let elements = multipleSelectArr
-            if let object = elements.filter({ $0 as! String ==  getAnwr}).first {
-                print("found")
-            } else {
-                print("not found")
-                multipleSelectArr.append(getAnwr as AnyObject)
-              }
-           }else {
-            selectCellIndex = btnTag
-            multipleSelectArr.removeAll()
-            multipleSelectArr.append(getAnwr as AnyObject)
-             }
-          var getDict = testQuestionArr[btnTag] as? [String: AnyObject]
-          getDict?["selectAns"] = multipleSelectArr as AnyObject
-          testQuestionArr[btnTag] = getDict as AnyObject
-          DispatchQueue.main.async {
-            self.tbleView.reloadData()
-            }
-     }
-    
-    func answerTrueFalseMethod(answr: String, indexTag: Int) {
-        
-        var getDict = testQuestionArr[indexTag] as? [String: AnyObject]
-        let qAnserDict = getDict?["questions_mc_correct_answer"] as? [String: AnyObject]
-        // let qAnserStr = qAnserDict!["answer"] as? String
-        getDict?["selectAns"] = answr as AnyObject
-        // let selectAnswer = getDict?["selectAns"] as? String
-        //        if getAnwr == qAnserStr {
-        //            getDict?["selectAns"] = getAnwr as AnyObject
-        //        }else {
-        //             getDict?["selectAns"] = "unselect" as AnyObject
-        //        }
-         testQuestionArr[indexTag] = getDict as AnyObject
-        DispatchQueue.main.async {
-            self.tbleView.reloadData()
-            }
-        
-      }
-    
-    func sortSendIndexForReloadMethod(dataArr: [AnyObject], cellIndex: Int) {
-        var getDICT = testQuestionArr[cellIndex] as? [String: AnyObject]
-        var getSortDict = getDICT?["questions_sorting_correct_answer"]  as? [String: AnyObject]
-      //  let getSortArr = getSortDict?["options_array"]  as? [AnyObject]
-        getSortDict?["options_array"] = dataArr as AnyObject
-        getDICT?["questions_sorting_correct_answer"] = getSortDict as AnyObject
-        testQuestionArr[cellIndex] = getDICT as AnyObject
-//        DispatchQueue.main.async {
-//          self.tbleView.reloadData()
-//         }
-    }
-    
-    /// now i am working match question
-    func matchAnsSendMethod(dragIndex: Int, dropIndex: Int, indexPathRow: Int) {
-        var getDICT = testQuestionArr[indexPathRow] as? [String: AnyObject]
-        var getSortDict = getDICT?["questions_matching_correct_answer"]  as? [String: AnyObject]
-        var getSetsArr = getSortDict?["sets"] as? [AnyObject]
-        
-        var commonLeftDict = getSetsArr?[dragIndex] as? [String: AnyObject]
-        var commonRightDict = getSetsArr?[dropIndex] as? [String: AnyObject]
-        
-        var leftDict = commonLeftDict?["left"] as? [String: AnyObject]
-        var rightDict = commonRightDict?["right"] as? [String: AnyObject]
-        
-        let imgLeftTmp = leftDict?["image"] as? String
-       
-        rightDict?["image"] = imgLeftTmp as AnyObject//imgLeftTmp as AnyObject
-        leftDict?["image"] = "" as AnyObject
-        
-      //  print("left image==\(leftDict)")
-        commonLeftDict?["left"] = leftDict as AnyObject
-        
-      //  print("commonLeft==\(commonLeftDict)")
-        commonRightDict?["right"] = rightDict as AnyObject
-        
-       // print("commonRight==\(commonRightDict)")
-        
-        getSetsArr?[dragIndex] = commonLeftDict as AnyObject
-        
-       // print("--Index=\(dragIndex)---\(getSetsArr)")
-        getSetsArr?[dropIndex] = commonRightDict as AnyObject
-        
-      //  print("--***Index=\(dropIndex)***---\(getSetsArr)")
-        getSortDict?["sets"] = getSetsArr as AnyObject
-        getDICT?["questions_matching_correct_answer"] = getSortDict as AnyObject
-        testQuestionArr[indexPathRow] =  getDICT as AnyObject
-        DispatchQueue.main.async {
-            self.tbleView.reloadData()
-        }
-       // print("Change Dict Print==\(testQuestionArr[indexPathRow])")
-       // print("dragTag\(dragIndex) == dropTag==\(dropIndex)==indexCell==\(indexPathRow)")
-    }
-    func textFieldDidChange(_ textField:UITextField) {
-        // your code here
-         print("====change text value ==\(textField.tag)")
-     }
-    
-    func keyboardWillShow(_ notification:Notification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            tbleView.contentInset = UIEdgeInsetsMake(0, 0, keyboardSize.height, 0)
-           }
-    }
-    func keyboardWillHide(_ notification:Notification) {
-        
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            tbleView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0)
-            }
-      }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-      }
-    
-    func dropDownBtnClickSender(answr: String, indexTag: Int) {
-        
-      }
-    
-    @IBAction func finishTestBtnClick(_ sender: UIButton) {
-        
-       }
-    
-    @IBAction func backBtnClick(_ sender: UIButton) {
-        self.navigationController?.popViewController(animated: true)
-    }
-    override func didReceiveMemoryWarning() {
+    //MARK: - Memory Warning
+    override func didReceiveMemoryWarning()
+    {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

@@ -11,6 +11,8 @@ target 'StudiesWeekly' do
   pod 'SwiftHash'
   pod 'SlideMenuControllerSwift'
   pod 'DropDown'
+  pod 'CommonCryptoModule', '~> 1.0.2'
+  pod 'IQKeyboardManagerSwift', '5.0.0'
  # pod 'RealmSwift'
   # Pods for StudiesWeekly
 

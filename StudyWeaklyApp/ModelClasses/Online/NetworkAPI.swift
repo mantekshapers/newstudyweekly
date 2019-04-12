@@ -8,7 +8,9 @@
 
 import Foundation
 import Retrolux
-import CommonCrypto
+import CommonCryptoModule
+
+//import CommonCrypto
 //import SwiftHash
 //import Crashlytics
 
@@ -134,12 +136,12 @@ class NetworkAPI {
 //        args: UpdateUsernameArgs(),
 //        response: SuccessResponse.self)
 //
-//    static let passwordReset = builder.makeRequest(
-//        method: .post,
-//        endpoint: "user/password_reset",
-//        args: Query("email"),
-//        response: PasswordResetResponse.self
-//    )
+    static let passwordReset = builder.makeRequest(
+        method: .post,
+        endpoint: "user/password_reset",
+        args: Query("email"),
+        response: PasswordResetResponse.self
+    )
 //
 //    // MARK: Assessment
 //    static let getAssessment = builder.makeRequest(

@@ -12,17 +12,13 @@ protocol AlertQuestionDelegate:class {
     func oKayAlertBtnClick()
     func cancelAlertBtnClick()
 }
-class AlertQuestionAnswerView: UIView {
+class AlertQuestionAnswerView: UIView
+{
      weak var alertQuestionDelegate:AlertQuestionDelegate?
     
     @IBOutlet weak var lbl_title: UILabel!
-    
     @IBOutlet weak var lbl_showPoints: UILabel!
-    
     @IBOutlet weak var img_question: UIImageView!
-    
-    
-    
     @IBOutlet weak var btn_okay: UIButton!
     
     override init(frame: CGRect) {
@@ -41,6 +37,10 @@ class AlertQuestionAnswerView: UIView {
     */
     
     @IBAction func oKayBtnClick(_ sender: UIButton) {
+        
+        btn_okay.layer.cornerRadius = 2.0
+        btn_okay.layer.masksToBounds = true
+        
          alertQuestionDelegate?.oKayAlertBtnClick()
     }
     
@@ -48,6 +48,4 @@ class AlertQuestionAnswerView: UIView {
     @IBAction func cancelBtnClick(_ sender: UIButton) {
         alertQuestionDelegate?.cancelAlertBtnClick()
     }
-    
-
 }
